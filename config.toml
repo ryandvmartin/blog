@@ -1,4 +1,4 @@
-baseurl = "https://example.com"
+baseurl = "https://dektoud.github.io/blog/"
 title = "Rmar's Guide"
 copyright = "&copy; 2017 Ryan Martin"
 theme = "academic"
