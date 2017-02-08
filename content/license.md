@@ -1,25 +1,7 @@
-+++
-# Contact widget.
-
-date = "2016-04-20T00:00:00"
-draft = false
-
-title = "Contact"
-subtitle = ""
-widget = "contact"
-
-# Order that this section will appear in.
-weight = 70
-
-# Automatically link email and phone?
-autolink = true
-
-+++
-
 All content included on this site unless otherwise attributed ownership is subject to the following license: 
 
-```plaintext
-Copyright (c) 2017 Ryan Martin
+```
+Copyright (c) 2016 Ryan Martin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,4 +21,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
