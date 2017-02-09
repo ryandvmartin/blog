@@ -26,9 +26,9 @@ html {
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
 }
-@media screen and (min-width: 58em) {
+@media screen and (min-width: 65em) {
   html {
-    font-size: 20px;
+    font-size: 15px;
   }
 }
 
@@ -43,7 +43,7 @@ body {
 }
 @media screen and (max-width: 1200px) { /* Match max-width of .nav-bar query. */
   body {
-    margin-top: 51px; /* Offset body content by navbar height. */
+    margin-top: 30px; /* Offset body content by navbar height. */
   }
 }
 
@@ -204,13 +204,13 @@ blockquote p:last-child {
 
 .home-section {
   background-color: rgb(255, 255, 255);
-  padding: 110px 0 110px 0;
+  padding: 50px 0 50px 0;
   animation: intro 0.3s both;
   animation-delay: 0.15s;
 }
 
 .home-section:first-of-type {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .home-section:nth-of-type(even) {
@@ -222,7 +222,7 @@ blockquote p:last-child {
     padding: 60px 0 60px 0;
   }
   .home-section:first-of-type {
-    padding-top: 40px;
+    padding-top: 20px;
   }
 }
 
