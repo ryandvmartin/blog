@@ -25,7 +25,7 @@ However, as with any research project, you are on the cutting edge and sometimes
 
 Keeping in mind that we are at the cutting edge and need to develop fast subroutines for complicated numerical analyses, and also that our definition of ***fast*** is to execute numerical calculations in the least amount of time (as opposed to querying databases or other non-numerical tasks), what are the ways that we can do this within our chosen Python scripting universe? Anyone who has traveled down this road is likely familiar with the major options, and there are benefits and drawbacks to each of them. It depends on the application, complexity of the code, and the intended use of the code. I am focused on numerical computations in my research using linear algebra, matrix solvers, and machine learning techniques. Since my research group primarily produces the standalone Fortran executables, [F2PY](https://docs.scipy.org/doc/numpy-dev/f2py/) project is attractive for mixing Python and Fortran code. There are other methods to call Fortran code from Python, too, like [ctypes](https://docs.python.org/3.5/library/ctypes.html) or a library called [cffi](http://cffi.readthedocs.io/en/latest/). However, all of these methods require fairly polished and working Fortran code that can be compiled and runs with minimal and easy to trace errors. This may not be completely suitable for speeding up research code since tracking down and fixing errors is difficult, especially for the newcomer. Compiling the code can be a headache in itself, especially if you are working on windows (which I am). As a beginning programmer and researcher learning about designing algorithms I guarantee that the flexibility in debugging and testing out subroutines that Python provides will improve the development of your ideas.
 
-A number of projects address the need for fast Python subroutines, like [Numpy](http://www.numpy.org/), [PyPy](http://pypy.org/),  [numba](http://numba.pydata.org/), [cython](http://cython.org/), and many many many others.... I'm sure. So, for the beginning researcher? Which methodology provides the most benefit with the least amount of investment? I will focus on the following mainly because they are the ones that I have tried: 
+A number of projects address the need for fast Python subroutines, like [Numpy](http://www.numpy.org/), [PyPy](http://pypy.org/),  [Numba](http://numba.pydata.org/), [Cython](http://cython.org/), and many many many others.... I'm sure. So, for the beginning researcher? Which methodology provides the most benefit with the least amount of investment? I will focus on the following mainly because they are the ones that I have tried: 
 
 1. [F2PY]({{< ref "fast_subroutines.md#F2PY" >}})
 2. [Numpy]({{< ref "fast_subroutines.md#numpy" >}})
@@ -48,6 +48,15 @@ def timefunc(function, args, n=100):
         function(*args)
     return 'Time per iteration %.9f' % ((time.time() - stime) / float(n)) 
 ```
+
+and tested with:
+
+```python
+def function ():
+    return 'this is the function '
+
+print(timefunc(function, arguments))
+``` 
 
 The test data is constant between runs, and generated using numpy:
 
@@ -87,7 +96,7 @@ def calc_gradients(grid):
 Which takes $0.365s$ per iteration. This isnt terribly bad. Some time is saved by using the standard library `max()` function instead of the numpy `np.maximum()` function. 
 
 # Numba {#numba}
-[Numba](http://numba.pydata.org/) is just-in-time (JIT) compiler that at a very high level takes Python code and makes machine code that runs very fast. This method is most suitable to the case presented here with many loops and simple (to moderately advanced) mathematical operations. Recent versions of Numba support many Numpy functions (you can [check it out here](http://numba.pydata.org/)). This is the simplest way to speed up this type of triple loop happening in Python. A simple decorator `@numba.jit` placed at the start of the function: 
+[Numba](http://numba.pydata.org/), the JIT compiler, at a very high level takes Python code and makes machine code that runs very fast. Recent versions of Numba support many Numpy functions (you can [check it out here](http://numba.pydata.org/)). To my knowledge, this is the simplest way to speed up this type of triple loop happening in Python. A simple decorator `@numba.jit` placed at the start of the function: 
 
 ```python
 import numba
@@ -120,7 +129,7 @@ def calc_gradients_jit(grid):
 And the function runs in $0.695ms$, or about $525x$ faster average over 1000 iterations. Unfortunately if things outside of simple mathematical operations are required, and those are unsupported within the set of functions converted from Numpy (or other libraries) to standard Python implementations specifically for Numba, then you're stuck implementing them on your own. So, this can't be used for everything. But in this simple case, it is the best!
 
 # Cython {#cython}
-[Cython](http://cython.org/) is a nice library that essentially lets you write compiled C extensions with familiar Python-like syntax. Speed comes from declaring static types with specialized code. Cython is essentially its own syntax although many things are similar to Python or Cw (although I have never used the latter). The Cython code is converted to Cw using all sorts of trickery that isn't important at this level of understanding, and the result is an extension module that can be imported and called from Python, and has all the speed of a compiled language. I think Cython can be quite flexible, but the most speed comes from being explicit and defining the types of all variables that are used in the code. So, our 3D gradient subroutine becomes (using the Cython magic cell): 
+[Cython](http://cython.org/) is a nice library that essentially lets you write compiled C extensions with familiar Python-like syntax. Speed comes from declaring static types with specialized code. Cython is essentially its own syntax although many things are similar to Python or C (although I have never used the latter). The Cython code is converted to C using all sorts of trickery that isn't important at this level of understanding, and the result is an extension module that can be imported and called from Python, and has all the speed of a compiled language. I think Cython can be quite flexible, but the most speed comes from being explicit and defining the types of all variables that are used in the code. Special syntax is required for this part which can be a bit confusing to learn, but there are lots of examples out there. So, our 3D gradient subroutine becomes (using the Cython magic cell): 
 
 ```python
 %%cython
@@ -161,7 +170,7 @@ def calc_gradients_cy(np.ndarray[np.double_t, ndim=3] grid):
 This function comes in slightly behind Numba at $0.953ms$ average over 1000 iterations, which is a $383x$ speedup. However, this comes at a cost of much more complex conversion of the original code to statically type everything. Additionally, there are likely Cython best practice conventions that I have not considered, and therefore the above code may be suboptimal. 
 
 # F2PY {#F2PY}
-[F2PY](https://docs.scipy.org/doc/numpy-dev/f2py/) is my favorite methodology to compile fast code, but is because: 1) my research group uses Fortran, 2) I know Fortran, and 3) I have mastered F2PY on Windows. This method is definitely not where I would start if I am learning. Many people view Fortran as an ancient language not worth learning. I agree that prototyping code and ideas in Fortran can be arduous, but the open source GSLIB programs released in the 90's, which are still relevant, pretty well sum up how useful Fortran can be; distributing static executables allows you to reach a wider audience than Python which is notoriously hard to distribute on Windows. If you are a student, you have access to the [free ifort compiler](https://software.intel.com/en-us/qualify-for-free-software/student). There are also open-source Fortran compilers from GNU. 
+[F2PY](https://docs.scipy.org/doc/numpy-dev/f2py/) is my favorite methodology to compile fast code, but this is because: 1) my research group uses Fortran, 2) I know Fortran, and 3) I have mastered F2PY on Windows with the Intel Compiler. This method is definitely not where I would start if I am learning. Many people view Fortran as an ancient language not worth learning. I agree that prototyping code and ideas in Fortran can be arduous, but the open source GSLIB programs released in the 90's, which are still relevant, pretty well sum up how useful Fortran can be. Distributing static executables allows you to reach a wider audience than Python which is notoriously hard to distribute on Windows to people who don't use Python. 
 
 ```fortran 
 subroutine calc_gradients(nx, ny, nz, grid, gx, gy, gz)
@@ -191,14 +200,12 @@ subroutine calc_gradients(nx, ny, nz, grid, gx, gy, gz)
 end subroutine calc_gradients
 ```
 
-This function runs in roughly the same amount of time as Cython at $0.993ms$ average over 1000 iterations, which is a $367x$ speedup. However, this is a totally different language and if you need to change and recompile the function with F2PY, you have to restart the kernel in order to reimport the modified Fortran extension, which ends up loosing you some efficiency in the long run. It is extremely useful if your end use case is to deploy with Fortran executables, of if you want to leverage some ancient Fortran library that isn't already wrapped for Python. However, it's hard to recommend this method for newcomers since the other methods are simpler to get going.
+This function runs in roughly the same amount of time as Cython at $0.993ms$ average over 1000 iterations, which is a $367x$ speedup. However, this is a totally different language and if you need to change the code and recompile the function with F2PY, you have to restart the kernel in order to reimport the modified Fortran extension, which ends up loosing you some efficiency in the long run. This method is extremely useful if your end use case is to deploy with Fortran executables, of if you want to leverage some ancient Fortran library that isn't already wrapped for Python. However, it's hard to recommend this method for newcomers since the other methods are simpler to get fast code going.
 
-The common issue with linking Fortran to Python (mainly for Windows users) is with F2PY. Depending on the version of Python, Fortran compiler, and platform, this can either be a breeze, or a complete pain. If you are having some issues in windows, you can check out the [pygeostat documentation on Fortran in Python](http://www.ccgalberta.com/pygeostat/fortran.html) for some examples on common errors and some suggested solutions. Typically the fact of running Windows is the single greatest hurdle to using F2PY for this workflow. Luckily [pygeostat](www.ccgalberta.com/pygeostat) has taken care of the hard work and implements a custom F2PY compiler for Windows that works across several versions of Python and with Intel and GNU Fortran compilers. 
+The common issue with linking Fortran to Python (mainly for Windows users) is with F2PY. Depending on the version of Python, Fortran compiler, and platform, this can either be a breeze, or a complete pain. If you are having some issues in Windows, you can check out the [pygeostat documentation on Fortran in Python](http://www.ccgalberta.com/pygeostat/fortran.html) for some examples on common errors and some suggested solutions. Typically the fact of running Windows is the single greatest hurdle to using F2PY for this workflow. Luckily [pygeostat](www.ccgalberta.com/pygeostat) has taken care of the hard work and implements a custom F2PY compiling script for Windows that works across several versions of Python and with Intel and GNU Fortran compilers. 
 
 # So, what about straight up Numpy? {#numpy}
-Of course, for a task such as computing the gradients on the grid (this is a very common task), Numpy and its vast library of computational functions should probably be investigated. A quick google of `'numpy gradients'` returns the [numpy.gradient](https://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html) function which can be used to quickly compute the gradients of the 3D grid. 
-
-The implementation is simple: 
+Of course, for a task such as computing the gradients on the grid (this is a very common task), Numpy and its vast library of computational functions should probably be investigated. A quick Google search for `'numpy gradients'` returns the [numpy.gradient](https://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html) function which can be used to quickly compute the gradients of the 3D grid. The implementation is simple: 
 
 ```python
 from numpy import gradient
