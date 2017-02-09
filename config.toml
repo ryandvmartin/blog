@@ -139,10 +139,10 @@ defaultContentLanguageInSubdir = false
     icon_pack = "fa"
     link = "//ca.linkedin.com/in/ryan-martin-b30079103"
 
-  [[params.social]]
-    icon = "github"
-    icon_pack = "fa"
-    link = "//github.com/dektoud"
+  # [[params.social]]
+  #   icon = "github"
+  #   icon_pack = "fa"
+  #   link = "//github.com/dektoud"
 
 
 # Navigation Links
