@@ -49,7 +49,7 @@
 
 &lt;h1 id=&#34;example&#34;&gt;Example where fast code is needed&lt;/h1&gt;
 
-&lt;p&gt;Lets consider an example of computing the gradients on a 3D grid using the forward-reverse difference at each cell. Lets start with un-vectorized Python code using loops (pretty much the worst case and something that should never be done in Python). We also assume that we don&amp;rsquo;t have any knowledge about specialized libraries that have already implemented this feature. Lets also assume that writing out the code like this benefits our research so we can add in some ad-hoc calculations in the grid that &lt;em&gt;couldn&amp;rsquo;t&lt;/em&gt; be handled if we used an existing package to get the gradients.&lt;/p&gt;
+&lt;p&gt;Lets consider an example of computing the gradients on a 3D grid using the forward-reverse difference at each cell. Assume that we don&amp;rsquo;t have any knowledge about specialized libraries that have already implemented this feature. Lets also assume that writing out the code in loop-format benefits our research so we can add in some ad-hoc calculations in the grid that &lt;em&gt;couldn&amp;rsquo;t&lt;/em&gt; be handled if we used an existing package to get the gradients, or if we used vectorized code (which Python is very good at).&lt;/p&gt;
 
 &lt;h2 id=&#34;testing-the-code&#34;&gt;Testing the Code&lt;/h2&gt;
 
@@ -77,7 +77,9 @@ print(timefunc(function, arguments))
 grid = np.random.rand(50, 50, 50)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The first function is the pure python implementation:&lt;/p&gt;
+&lt;h1 id=&#34;python-only&#34;&gt;Python Only&lt;/h1&gt;
+
+&lt;p&gt;Lets start with un-vectorized Python code using loops (pretty much the worst case and something that should never be done in Python, but hey, we&amp;rsquo;re learning):&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
 

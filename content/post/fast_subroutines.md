@@ -35,7 +35,7 @@ A number of projects address the need for fast Python subroutines, like [Numpy](
 Each of the above methods attacks the problem in different ways. F2PY lets you compile Fortran code into easily callable python modules. Numpy provides a vast library of numerical computation functions that might allow you to skip the lower level languages all together. Numba uses 'just in time' (JIT) compiling to 'compile' native python code. This can be advantageous when the code consists of a number of loops with relatively simple mathematical operations. And finally Cython allows you to write static-typed 'Python' that is compiled to C++ and taken to the extreme using Cython would allow you to write an entire project essentially in C++. 
 
 # Example where fast code is needed {#example}
-Lets consider an example of computing the gradients on a 3D grid using the forward-reverse difference at each cell. Lets start with un-vectorized Python code using loops (pretty much the worst case and something that should never be done in Python). We also assume that we don't have any knowledge about specialized libraries that have already implemented this feature. Lets also assume that writing out the code like this benefits our research so we can add in some ad-hoc calculations in the grid that *couldn't* be handled if we used an existing package to get the gradients. 
+Lets consider an example of computing the gradients on a 3D grid using the forward-reverse difference at each cell. Assume that we don't have any knowledge about specialized libraries that have already implemented this feature. Lets also assume that writing out the code in loop-format benefits our research so we can add in some ad-hoc calculations in the grid that *couldn't* be handled if we used an existing package to get the gradients, or if we used vectorized code (which Python is very good at). 
 
 ## Testing the Code
 I run Python 3.5 from Anaconda usually in the Jupyter notebook. A magic cell prefixed with `%time` or `%%timeit` *should* be available to time functions, but these have never worked for me. Therefore I am using the following to test the functions implemented in this document:
@@ -65,7 +65,8 @@ import numpy as np
 grid = np.random.rand(50, 50, 50)
 ```
 
-The first function is the pure python implementation:
+# Python Only
+Lets start with un-vectorized Python code using loops (pretty much the worst case and something that should never be done in Python, but hey, we're learning):
 
 ```python
 import numpy as np
