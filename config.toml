@@ -136,7 +136,7 @@ defaultContentLanguageInSubdir = false
 
   [[params.social]]
     icon = "linkedin"
-    icon_pack = "ai"
+    icon_pack = "fa"
     link = "//ca.linkedin.com/in/ryan-martin-b30079103"
 
   [[params.social]]
