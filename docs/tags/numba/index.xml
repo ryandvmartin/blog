@@ -59,7 +59,7 @@ def timefunc(function, args, n=100):
     stime = time.time()
     for _ in range(n):
         function(*args)
-    return &#39;Time per iteration %.9f&#39; % ((time.time() - stime) / float(n)) 
+    return &#39;Time per iteration %.9f&#39; % ((time.time() - stime) / float(n))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and tested with:&lt;/p&gt;
@@ -90,7 +90,7 @@ def calc_gradients(grid):
     # the dreaded triple loop, a naive python implementation
     for i in range(nx):
         for j in range(ny):
-            for k in range(nz): 
+            for k in range(nz):
                 # limit the array indexes, remember about Python 0-indexing
                 ist = max([0, i - 1])
                 jst = max([0, j - 1])
@@ -123,7 +123,7 @@ def calc_gradients_jit(grid):
     # the dreaded triple loop, a naive python implementation
     for i in range(nx):
         for j in range(ny):
-            for k in range(nz): 
+            for k in range(nz):
                 # limit the array indexes, remember about Python 0-indexing
                 ist = max(0, i - 1)
                 jst = max(0, j - 1)
@@ -164,7 +164,7 @@ def calc_gradients_cy(np.ndarray[np.double_t, ndim=3] grid):
     # the dreaded triple loop, a naive python implementation
     for i in range(nx):
         for j in range(ny):
-            for k in range(nz): 
+            for k in range(nz):
                 # limit the array indexes, remember about Python 0-indexing
                 ist = max(0, i - 1)
                 jst = max(0, j - 1)
@@ -191,7 +191,7 @@ def calc_gradients_cy(np.ndarray[np.double_t, ndim=3] grid):
   real*8, intent(in) :: grid(nx, ny, nz)
   real*8, intent(out) :: gx(nx, ny, nz), gy(nx, ny, nz), gz(nx, ny, nz)
   integer :: i, j, k, ist, jst, kst, ifn, jfn, kfn
-  ! triple loop, reverse fastest axes 
+  ! triple loop, reverse fastest axes
   do k = 1, nz
     do j = 1, ny
       do i = 1, nx
@@ -214,7 +214,7 @@ end subroutine calc_gradients
 
 &lt;p&gt;This function runs in roughly the same amount of time as Cython at $0.993ms$ average over 1000 iterations, which is a $367x$ speedup. However, this is a totally different language and if you need to change the code and recompile the function with F2PY, you have to restart the kernel in order to reimport the modified Fortran extension, which ends up loosing you some efficiency in the long run. This method is extremely useful if your end use case is to deploy with Fortran executables, of if you want to leverage some ancient Fortran library that isn&amp;rsquo;t already wrapped for Python. However, it&amp;rsquo;s hard to recommend this method for newcomers since the other methods are simpler to get fast code going.&lt;/p&gt;
 
-&lt;p&gt;The common issue with linking Fortran to Python (mainly for Windows users) is with F2PY. Depending on the version of Python, Fortran compiler, and platform, this can either be a breeze, or a complete pain. If you are having some issues in Windows, you can check out the &lt;a href=&#34;http://www.ccgalberta.com/pygeostat/fortran.html&#34; target=&#34;_blank&#34;&gt;pygeostat documentation on Fortran in Python&lt;/a&gt; for some examples on common errors and some suggested solutions. Typically the fact of running Windows is the single greatest hurdle to using F2PY for this workflow. Luckily &lt;a href=&#34;www.ccgalberta.com/pygeostat&#34; target=&#34;_blank&#34;&gt;pygeostat&lt;/a&gt; has taken care of the hard work and implements a custom F2PY compiling script for Windows that works across several versions of Python and with Intel and GNU Fortran compilers.&lt;/p&gt;
+&lt;p&gt;The common issue with linking Fortran to Python (mainly for Windows users) is with F2PY. Depending on the version of Python, Fortran compiler, and platform, this can either be a breeze, or a complete pain. If you are having some issues in Windows, you can check out the &lt;a href=&#34;http://www.ccgalberta.com/pygeostat/fortran.html&#34; target=&#34;_blank&#34;&gt;pygeostat documentation on Fortran in Python&lt;/a&gt; for some examples on common errors and some suggested solutions. Typically the fact of running Windows is the single greatest hurdle to using F2PY for this workflow. Luckily &lt;a href=&#34;http://www.ccgalberta.com/pygeostat&#34; target=&#34;_blank&#34;&gt;pygeostat&lt;/a&gt; has taken care of the hard work and implements a custom F2PY compiling script for Windows that works across several versions of Python and with Intel and GNU Fortran compilers.&lt;/p&gt;
 
 &lt;h1 id=&#34;numpy&#34;&gt;So, what about straight up Numpy?&lt;/h1&gt;
 
