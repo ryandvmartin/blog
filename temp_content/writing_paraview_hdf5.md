@@ -26,49 +26,55 @@ An example of an HDF5 format used to export a
        <Grid Name="mesh" GridType="Uniform">
          <Topology TopologyType="3DCoRectMesh" Dimensions="55 70 95"/>
           <Geometry Type="ORIGIN_DXDYDZ">
-            <DataItem Format="XML" Dimensions="3">156.6470925925926 897.239768115942 4.931255319148936</DataItem>
-            <DataItem Format="XML" Dimensions="3">13.920185185185185  13.985536231884058  13.862510638297872</DataItem>
+            <DataItem Format="XML" Dimensions="3">156.6 897.2 4.9</DataItem>
+            <DataItem Format="XML" Dimensions="3">13.9  13.9  13.8</DataItem>
           </Geometry>
            <Attribute Name="cat1"
              AttributeType="Scalar"
              Center="Node">
-           <DataItem Dimensions="95 70 55" NumberType="Float" Precision="8" Format="HDF">
-            aniso_clip.hvtk:data/cat1/data
+           <DataItem Dimensions="95 70 55" NumberType="Float"
+                     Precision="8" Format="HDF">
+            h5datafile.hvtk:data/cat1/data
            </DataItem>
          </Attribute>
            <Attribute Name="cat2"
              AttributeType="Scalar"
              Center="Node">
-           <DataItem Dimensions="95 70 55" NumberType="Float" Precision="8" Format="HDF">
-            aniso_clip.hvtk:data/cat2/data
+           <DataItem Dimensions="95 70 55" NumberType="Float"
+                     Precision="8" Format="HDF">
+            h5datafile.hvtk:data/cat2/data
            </DataItem>
          </Attribute>
            <Attribute Name="cat3"
              AttributeType="Scalar"
              Center="Node">
-           <DataItem Dimensions="95 70 55" NumberType="Float" Precision="8" Format="HDF">
-            aniso_clip.hvtk:data/cat3/data
+           <DataItem Dimensions="95 70 55" NumberType="Float"
+                     Precision="8" Format="HDF">
+            h5datafile.hvtk:data/cat3/data
            </DataItem>
          </Attribute>
            <Attribute Name="cat4"
              AttributeType="Scalar"
              Center="Node">
-           <DataItem Dimensions="95 70 55" NumberType="Float" Precision="8" Format="HDF">
-            aniso_clip.hvtk:data/cat4/data
+           <DataItem Dimensions="95 70 55" NumberType="Float"
+                     Precision="8" Format="HDF">
+            h5datafile.hvtk:data/cat4/data
            </DataItem>
          </Attribute>
            <Attribute Name="cat5"
              AttributeType="Scalar"
              Center="Node">
-           <DataItem Dimensions="95 70 55" NumberType="Float" Precision="8" Format="HDF">
-            aniso_clip.hvtk:data/cat5/data
+           <DataItem Dimensions="95 70 55" NumberType="Float"
+                     Precision="8" Format="HDF">
+            h5datafile.hvtk:data/cat5/data
            </DataItem>
          </Attribute>
            <Attribute Name="cat6"
              AttributeType="Scalar"
              Center="Node">
-           <DataItem Dimensions="95 70 55" NumberType="Float" Precision="8" Format="HDF">
-            aniso_clip.hvtk:data/cat6/data
+           <DataItem Dimensions="95 70 55" NumberType="Float"
+                     Precision="8" Format="HDF">
+            h5datafile.hvtk:data/cat6/data
            </DataItem>
          </Attribute>
 

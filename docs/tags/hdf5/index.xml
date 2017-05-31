@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hdf5 on Rmar&#39;s Guide</title>
+    <link>https://dektoud.github.io/blog/tags/hdf5/index.xml</link>
+    <description>Recent content in Hdf5 on Rmar&#39;s Guide</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Ryan Martin</copyright>
+    <atom:link href="/blog/tags/hdf5/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Generating XDMF files to read HDF5 in Paraview</title>
+      <link>https://dektoud.github.io/blog/post/writing_paraview_hdf5/</link>
+      <pubDate>Sat, 11 Feb 2017 20:10:39 -0700</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/post/writing_paraview_hdf5/</guid>
+      <description>&lt;p&gt;In geostatistics, we are often required to view large 3D models with $M$ variables simulated on the $[nx, ny, nz]$ dimensioned grid. The number of cells in the model can quickly approach the 10&amp;rsquo;s of millions, depending on the project and the purpose of the model. Binary storage is increasingly important for such models for practical reasons since: 1) we must store the models; and 2) we need a way to quickly work with the models including numerical processing and visualizations.&lt;/p&gt;
+
+&lt;p&gt;Enter &lt;a href=&#34;https://support.hdfgroup.org/HDF5/&#34; target=&#34;_blank&#34;&gt;HDF5&lt;/a&gt;, the open source binary format that has been adopted by many in the data science and scientific communities. Most scientific computing languages and software in some form or another support this binary storage format. HDF5 is available as compiled libraries for Fortran projects, C++ projects, has implementations for Python, Matlab and readers of HDF5 files are available in Paraview to speed up visualization of large datasets.&lt;/p&gt;
+
+&lt;p&gt;Paraview uses the &lt;a href=&#34;http://www.xdmf.org/index.php/XDMF_Model_and_Format&#34; target=&#34;_blank&#34;&gt;XDMF format&lt;/a&gt; to configure HDF5 file reads. The XDMF format provides a convenient method to define the geometry format, properties of the visualization, and the path to the relevant data contained in the corresponding HDF5 file. Many examples are shown &lt;a href=&#34;http://www.xdmf.org/index.php/XDMF_Model_and_Format&#34; target=&#34;_blank&#34;&gt;on the XDMF&lt;/a&gt; example site.&lt;/p&gt;
+
+&lt;p&gt;An example of an HDF5 format used to export a&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; ?&amp;gt;
+    &amp;lt;!DOCTYPE Xdmf SYSTEM &amp;quot;Xdmf.dtd&amp;quot; []&amp;gt;
+    &amp;lt;Xdmf Version=&amp;quot;2.0&amp;quot;&amp;gt;
+     &amp;lt;Domain&amp;gt;
+       &amp;lt;Grid Name=&amp;quot;mesh&amp;quot; GridType=&amp;quot;Uniform&amp;quot;&amp;gt;
+         &amp;lt;Topology TopologyType=&amp;quot;3DCoRectMesh&amp;quot; Dimensions=&amp;quot;55 70 95&amp;quot;/&amp;gt;
+          &amp;lt;Geometry Type=&amp;quot;ORIGIN_DXDYDZ&amp;quot;&amp;gt;
+            &amp;lt;DataItem Format=&amp;quot;XML&amp;quot; Dimensions=&amp;quot;3&amp;quot;&amp;gt;156.6 897.2 4.9&amp;lt;/DataItem&amp;gt;
+            &amp;lt;DataItem Format=&amp;quot;XML&amp;quot; Dimensions=&amp;quot;3&amp;quot;&amp;gt;13.9  13.9  13.8&amp;lt;/DataItem&amp;gt;
+          &amp;lt;/Geometry&amp;gt;
+           &amp;lt;Attribute Name=&amp;quot;cat1&amp;quot;
+             AttributeType=&amp;quot;Scalar&amp;quot;
+             Center=&amp;quot;Node&amp;quot;&amp;gt;
+           &amp;lt;DataItem Dimensions=&amp;quot;95 70 55&amp;quot; NumberType=&amp;quot;Float&amp;quot;
+                     Precision=&amp;quot;8&amp;quot; Format=&amp;quot;HDF&amp;quot;&amp;gt;
+            h5datafile.hvtk:data/cat1/data
+           &amp;lt;/DataItem&amp;gt;
+         &amp;lt;/Attribute&amp;gt;
+           &amp;lt;Attribute Name=&amp;quot;cat2&amp;quot;
+             AttributeType=&amp;quot;Scalar&amp;quot;
+             Center=&amp;quot;Node&amp;quot;&amp;gt;
+           &amp;lt;DataItem Dimensions=&amp;quot;95 70 55&amp;quot; NumberType=&amp;quot;Float&amp;quot;
+                     Precision=&amp;quot;8&amp;quot; Format=&amp;quot;HDF&amp;quot;&amp;gt;
+            h5datafile.hvtk:data/cat2/data
+           &amp;lt;/DataItem&amp;gt;
+         &amp;lt;/Attribute&amp;gt;
+           &amp;lt;Attribute Name=&amp;quot;cat3&amp;quot;
+             AttributeType=&amp;quot;Scalar&amp;quot;
+             Center=&amp;quot;Node&amp;quot;&amp;gt;
+           &amp;lt;DataItem Dimensions=&amp;quot;95 70 55&amp;quot; NumberType=&amp;quot;Float&amp;quot;
+                     Precision=&amp;quot;8&amp;quot; Format=&amp;quot;HDF&amp;quot;&amp;gt;
+            h5datafile.hvtk:data/cat3/data
+           &amp;lt;/DataItem&amp;gt;
+         &amp;lt;/Attribute&amp;gt;
+           &amp;lt;Attribute Name=&amp;quot;cat4&amp;quot;
+             AttributeType=&amp;quot;Scalar&amp;quot;
+             Center=&amp;quot;Node&amp;quot;&amp;gt;
+           &amp;lt;DataItem Dimensions=&amp;quot;95 70 55&amp;quot; NumberType=&amp;quot;Float&amp;quot;
+                     Precision=&amp;quot;8&amp;quot; Format=&amp;quot;HDF&amp;quot;&amp;gt;
+            h5datafile.hvtk:data/cat4/data
+           &amp;lt;/DataItem&amp;gt;
+         &amp;lt;/Attribute&amp;gt;
+           &amp;lt;Attribute Name=&amp;quot;cat5&amp;quot;
+             AttributeType=&amp;quot;Scalar&amp;quot;
+             Center=&amp;quot;Node&amp;quot;&amp;gt;
+           &amp;lt;DataItem Dimensions=&amp;quot;95 70 55&amp;quot; NumberType=&amp;quot;Float&amp;quot;
+                     Precision=&amp;quot;8&amp;quot; Format=&amp;quot;HDF&amp;quot;&amp;gt;
+            h5datafile.hvtk:data/cat5/data
+           &amp;lt;/DataItem&amp;gt;
+         &amp;lt;/Attribute&amp;gt;
+           &amp;lt;Attribute Name=&amp;quot;cat6&amp;quot;
+             AttributeType=&amp;quot;Scalar&amp;quot;
+             Center=&amp;quot;Node&amp;quot;&amp;gt;
+           &amp;lt;DataItem Dimensions=&amp;quot;95 70 55&amp;quot; NumberType=&amp;quot;Float&amp;quot;
+                     Precision=&amp;quot;8&amp;quot; Format=&amp;quot;HDF&amp;quot;&amp;gt;
+            h5datafile.hvtk:data/cat6/data
+           &amp;lt;/DataItem&amp;gt;
+         &amp;lt;/Attribute&amp;gt;
+
+      &amp;lt;/Grid&amp;gt;
+     &amp;lt;/Domain&amp;gt;
+    &amp;lt;/Xdmf&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

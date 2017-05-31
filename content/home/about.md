@@ -14,8 +14,8 @@ weight = 1
   interests = [
     "Machine Learning",
     "Geostatistics",
-    "Stationarity", 
-    "Spatial Clustering", 
+    "Stationarity",
+    "Spatial Clustering",
     "Python",
     "Fortran",
     "Parallel Computing"
@@ -36,12 +36,12 @@ weight = 1
   course = "BSc in Geology"
   institution = "University of Waterloo, Ontario, Canada"
   year = "2009"
- 
+
 +++
 
 # Biography {#bio}
 
-Ryan Martin is a PhD student at the University of Alberta studying Geostatistics for uncertainty characterizations in natural systems. Following his MSc he worked as an exploration geologist in northern Ontario at a syenite-hosted gold deposit. He has keen interest in geochemistry, mineral chemistry, spatial clustering, implicit modeling, locally varying anisotropy and other non-stationary geostatistical topics. 
+I am a PhD candidate at the University of Alberta studying Geostatistics for uncertainty characterizations in natural systems. Following my MSc at the University of Waterloo I worked as an exploration geologist in northern Ontario at a syenite-hosted gold deposit. I have a keen interest in geochemistry, mineral chemistry, spatial clustering, implicit modeling, locally varying anisotropy and other non-stationary geostatistical topics.
 
-Ryan is a self-taught programmer who enjoys the `art` of Fortran. He excels at creating *mildly* inefficient research code that accomplishes a variety of tasks. Of special interest, Ryan enjoys compiling and testing various numerical libraries; sparse solvers, binary storage, parallel computing, etc, developing python code for [pygeostat](ccgalberta.com/pygeostat), writing research papers, geeking out over computers and components and [CS:GO](http://blog.counter-strike.net/).
+I am a self-taught programmer that enjoys the `art` of Fortran. I excel at creating *mildly* inefficient research code that accomplishes a variety of tasks. Of special interest, I enjoy compiling and testing various numerical libraries; sparse solvers, binary storage, parallel computing, etc, developing python code for [pygeostat](http://ccgalberta.com/pygeostat), writing research papers, geeking out over computers and components and [CS:GO](http://blog.counter-strike.net/).
 
