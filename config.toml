@@ -140,10 +140,10 @@ defaultContentLanguageInSubdir = false
     icon_pack = "fa"
     link = "//ca.linkedin.com/in/ryan-martin-b30079103"
 
-  # [[params.social]]
-  #   icon = "github"
-  #   icon_pack = "fa"
-  #   link = "//github.com/dektoud"
+  [[params.social]]
+    icon = "github"
+    icon_pack = "fa"
+    link = "//github.com/dektoud"
 
 
 # Navigation Links
@@ -161,10 +161,10 @@ defaultContentLanguageInSubdir = false
   url = "#posts"
   weight = 2
 
-# [[menu.main]]
-#   name = "Publications"
-#   url = "#publications_selected"
-#   weight = 3
+[[menu.main]]
+  name = "Publications"
+  url = "#publications"
+  weight = 3
 
 
 # [[menu.main]]
