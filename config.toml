@@ -23,8 +23,8 @@ defaultContentLanguageInSubdir = false
 [params]
   name = "Ryan Martin"
   role = "PhD Candidate, Research Assistant"
-  organization = "University of Alberta"
-  organization_url = ""
+  organization = "Center for Computational Geostatistics, University of Alberta"
+  organization_url = "www.ccgalberta.com"
   avatar = "portrait.jpg"
   email = "rdm1@ualberta.ca"
   address = "5070 - Natural Resources Engineering Facility, Markin/CNRL, 9109 116 St NW, Edmonton, AB T6G 1P9"
