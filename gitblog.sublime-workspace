@@ -531,10 +531,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 384.0,
-		"last_filter": "",
+		"height": 222.0,
+		"last_filter": "impor",
 		"selected_items":
 		[
+			[
+				"impor",
+				"Project Manager: Import *.sublime-project File"
+			],
 			[
 				"open",
 				"Project Manager: Open Project in New Window"
@@ -795,10 +799,27 @@
 	},
 	"expanded_folders":
 	[
-		"/C/GIT/gitblog"
+		"/C/GIT/gitblog",
+		"/C/GIT/gitblog/content",
+		"/C/GIT/gitblog/content/home",
+		"/C/GIT/gitblog/content/post",
+		"/C/GIT/gitblog/static",
+		"/C/GIT/gitblog/static/img"
 	],
 	"file_history":
 	[
+		"/C/GIT/gitblog/config.toml",
+		"/C/GIT/gitblog/content/home/contact.md",
+		"/C/GIT/gitblog/content/publication/_index.md",
+		"/C/GIT/gitblog/content/home/posts.md",
+		"/C/GIT/gitblog/content/home/publications.md",
+		"/C/GIT/gitblog/content/publication/geological-features.md",
+		"/C/GIT/gitblog/themes/academic/exampleSite/content/publication/clothing-search.md",
+		"/C/GIT/gitblog/themes/academic/exampleSite/content/publication/_index.md",
+		"/C/GIT/gitblog/themes/academic/exampleSite/content/home/publications_selected.md",
+		"/C/GIT/gitblog/themes/academic/exampleSite/content/home/publications.md",
+		"/C/GIT/gitblog/content/publication/clothing-search.md",
+		"/C/GIT/gitblog/content/publication/person-re-identification.md",
 		"/C/GIT/rmar_/rmutils/fsource/autocorrelation.f90",
 		"/C/GIT/rmar_/rmutils/clustering/__init__.py",
 		"/C/GIT/rmar_/rmutils/stats.py",
@@ -876,7 +897,6 @@
 		"/C/cygwin64/home/Executables/SGS_lva/chknam.for",
 		"/C/GIT/gitblog/writing_topics.md",
 		"/C/GIT/pygeostat_/pygeostat/fortran/resource/GSB/gslib_binary_bak.f90",
-		"/C/GIT/gitblog/content/home/posts.md",
 		"/C/GIT/gitblog/content/post/_index.md",
 		"/C/Users/nayrm/OneDrive/2014 MSc/1B CCG Meetings/2017-09 MAIN CCG Meeting/6_Geostatistics with realizations of stationary decisions/Scripts/_run_all.py",
 		"/C/GIT/rmar_/acronyms.tex",
@@ -915,22 +935,11 @@
 		"/D/0_User Data/Desktop/SRK a1est/Wassa_ByLith/aa_projectdefs.py",
 		"/D/0_User Data/Desktop/slice_with_oris/aa_projectdefs.py",
 		"/Z/Temp/To Tyler/finalreals.xdmf",
-		"/Q/CCV/Cresson_AuFA/_custom_functions.py",
-		"/Q/CCV/GoldBug_AuFA/_project_defs.py",
-		"/Q/CCV/Cresson_AuFA/_project_defs.py",
-		"/C/GIT/pygeostat_/pygeostat/variograms/variograms.py",
-		"/Q/CCV/GoldBug_AuFA/_cos_functions.py",
-		"/C/Users/nayrm/AppData/Local/Temp/7zO82F32C71/Scaling - ISOMAP_landmark.F90",
-		"/C/Users/nayrm/AppData/Local/Temp/7zO82F72951/makepar_kt3d_lva.f90",
-		"/C/Users/nayrm/AppData/Local/Temp/7zO402D7AA6/swathplt.f90",
-		"/C/Users/nayrm/AppData/Local/Temp/7zOC667C074/swathplt.f90",
-		"/C/GIT/pygeostat_/pygeostat/plotting/qqplt.py",
-		"/C/GIT/pygeostat_/pygeostat/plotting/scatxval.py",
-		"/E/1_CCG Reports/Report 05 2003/01-Trend_SC/Programs/nscore_t/nscore_t.for"
+		"/Q/CCV/Cresson_AuFA/_custom_functions.py"
 	],
 	"find":
 	{
-		"height": 29.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
@@ -944,6 +953,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"publications"
 		],
 		"highlight": true,
 		"in_selection": false,
