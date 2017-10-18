@@ -34,11 +34,11 @@
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/license/">
+  <link rel="canonical" href="https://dektoud.github.io/blog/publication/geological-features/">
 
   
 
-  <title> | Rmar&#39;s Guide</title>
+  <title>Iterative refinement of implicit boundary models for improved geological feature reproduction | Rmar&#39;s Guide</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -118,62 +118,50 @@
   </div>
 </nav>
 
+<div class="container pub" itemscope itemtype="http://schema.org/CreativeWork">
 
-<article class="article" itemscope itemtype="http://schema.org/Article">
-
-  
-
-  <div class="article-container">
-    <h1 itemprop="name"></h1>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Mon, Jan 1, 0001
-    </time>
-  </span>
-
-  
-
-  
-
-  
-  
+  <div class="pub-title">
+    <h1 itemprop="name">Iterative refinement of implicit boundary models for improved geological feature reproduction</h1>
+    <span class="pub-authors" itemprop="author">
+      
+      Ryan Martin, Jeff Boisvert
+      
+    </span>
+    <span class="pull-right">
+      
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2flicense%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2flicense%2f"
+         href="https://twitter.com/intent/tweet?text=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2flicense%2f&amp;title="
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f&amp;title=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2flicense%2f&amp;title="
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f&amp;title=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2flicense%2f">
+         href="mailto:?subject=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -181,26 +169,105 @@
 </div>
 
 
-  
-
-</div>
-
-    <div class="article-style" itemprop="articleBody">
-      <p>All content included on this site unless otherwise attributed ownership is subject to the following license:</p>
-
-<pre><code>Copyright (c) 2017 Ryan Martin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</code></pre>
-
-    </div>
+    </span>
   </div>
 
-</article>
+</div>
+<div class="article-container">
+
+  
+  <img src="https://dektoud.github.io/blog/img/iref.gif" class="pub-banner" itemprop="image">
+  
+
+  <h3>Abstract</h3>
+  <p class="pub-abstract" itemprop="text">Geological domains contain non-stationary features that cannot be described by a single direction of continuity. Non-stationary estimation frameworks generate more realistic curvilinear interpretations of subsurface geome-tries. A radial basis function (RBF) based implicit modeling framework using domain decomposition is developed that permits introduction of locally varying orientations and magnitudes of anisotropy for boundary models to better account for the local variability of complex geological deposits. The interpolation framework is paired with a method to automatically infer the locally predominant orientations, which results in a rapid and robust iterative non-stationary boundary modeling technique that can refine locally anisotropic geological shapes automatically from the sample data. The method also permits quantification of the volumetric uncertainty associated with the boundary modeling. The methodology is demonstrated on a porphyry dataset and shows improved local geological features.</p>
+
+  
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading">Type</div>
+        <div class="col-xs-12 col-sm-9">
+          
+          <a href="/blog/publication/#2">
+            Journal
+          </a>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+  
+
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading">Publication</div>
+        <div class="col-xs-12 col-sm-9"><em>Computers and Geoscience</em></div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
+        <div class="col-xs-12 col-sm-9" itemprop="datePublished">
+          July, 2017
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+
+  <div class="row" style="padding-top: 10px">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading" style="line-height:34px;">Links</div>
+        <div class="col-xs-12 col-sm-9">
+
+          
+
+
+
+
+<a class="btn btn-primary btn-outline" href="http://www.sciencedirect.com/science/article/pii/S0098300416307555">
+  PDF
+</a>
+
+
+
+
+
+
+
+<a class="btn btn-primary btn-outline" href="http://www.ccgalberta.com">
+  CCG UAlberta
+</a>
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+
+  <div class="space-below"></div>
+
+  <div class="article-style"></div>
+
+</div>
 
 <div class="container">
   <nav>
@@ -210,36 +277,6 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
     
   </ul>
 </nav>
-
-</div>
-
-<div class="article-container">
-  
-<section id="comments">
-  <div id="disqus_thread">
-    <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "rmaruab" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  </div>
-</section>
-
 
 </div>
 
@@ -312,6 +349,11 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
     
 
     
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
     
 
   </body>
