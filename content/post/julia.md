@@ -76,9 +76,9 @@ function gridgradients(a)
                 je = min(nx, j + 1)
                 ks = max(1, k - 1)
                 ke = min(nx, k + 1)
-                gx[i, j, k] = a[ie, j, k] - a[is, j, k]
-                gy[i, j, k] = a[i, je, k] - a[i, js, k]
-                gz[i, j, k] = a[i, j, ke] - a[i, j, ks]
+                gx[i, j, k] = (a[ie, j, k] - a[is, j, k]) / 2.0
+                gy[i, j, k] = (a[i, je, k] - a[i, js, k]) / 2.0
+                gz[i, j, k] = (a[i, j, ke] - a[i, j, ks]) / 2.0
             end
         end
     end
@@ -120,9 +120,9 @@ function gridgradients_inbounds(a)
                 je = min(nx, j + 1)
                 ks = max(1, k - 1)
                 ke = min(nx, k + 1)
-                gx[i, j, k] = a[ie, j, k] - a[is, j, k]
-                gy[i, j, k] = a[i, je, k] - a[i, js, k]
-                gz[i, j, k] = a[i, j, ke] - a[i, j, ks]
+                gx[i, j, k] = (a[ie, j, k] - a[is, j, k]) / 2.0
+                gy[i, j, k] = (a[i, je, k] - a[i, js, k]) / 2.0
+                gz[i, j, k] = (a[i, j, ke] - a[i, j, ks]) / 2.0
             end
         end
     end

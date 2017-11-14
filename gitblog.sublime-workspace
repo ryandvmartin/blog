@@ -531,10 +531,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 222.0,
-		"last_filter": "impor",
+		"height": 400.0,
+		"last_filter": "theme",
 		"selected_items":
 		[
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"impor",
 				"Project Manager: Import *.sublime-project File"
@@ -560,10 +568,6 @@
 				"Colorsublime: Install Theme"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"select",
 				"UI: Select Color Scheme"
 			],
@@ -574,10 +578,6 @@
 			[
 				"import",
 				"Project Manager: Import *.sublime-project File"
-			],
-			[
-				"theme",
-				"UI: Select Theme"
 			],
 			[
 				"download",
@@ -776,7 +776,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 544.0
+		"width": 558.0
 	},
 	"console":
 	{
@@ -808,9 +808,10 @@
 	],
 	"file_history":
 	[
+		"/C/GIT/gitblog/content/post/julia.md",
+		"/C/GIT/gitblog/content/post/julia-autoreloading.md",
 		"/C/GIT/gitblog/config.toml",
 		"/C/GIT/gitblog/content/post/fast_subroutines.md",
-		"/C/GIT/gitblog/content/post/julia.md",
 		"/C/GIT/gitblog/content/home/contact.md",
 		"/C/GIT/gitblog/content/publication/_index.md",
 		"/C/GIT/gitblog/content/home/posts.md",
@@ -934,12 +935,11 @@
 		"/C/cygwin64/home/Executables/faciesdistfunction_1000/searchtemplate.f90",
 		"/Z/Temp/To Tyler/wassa_kriged.xdmf",
 		"/D/0_User Data/Desktop/slice_with_oris/orientationfield.py",
-		"/D/0_User Data/Desktop/SRK a1est/Wassa_ByLith/aa_projectdefs.py",
-		"/D/0_User Data/Desktop/slice_with_oris/aa_projectdefs.py"
+		"/D/0_User Data/Desktop/SRK a1est/Wassa_ByLith/aa_projectdefs.py"
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 50.0
 	},
 	"find_in_files":
 	{
@@ -954,6 +954,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cython",
+			"@inbounds ",
 			"highlight",
 			"publications"
 		],
@@ -1155,7 +1157,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 202.0,
+	"side_bar_width": 174.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
