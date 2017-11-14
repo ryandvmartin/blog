@@ -204,7 +204,7 @@
 
 <h2 id="two-languages">Two Languages</h2>
 
-<p>Python suffers from a two language problem. On one end the syntax, vast and mature library ecosystem, dynamic style and interactive workflows that Python offers provide a flexible and productive prototyping environment for new ideas. However, when moving past initial ideas and beginning to apply those ideas to datasets of meaningful size, <em>pythonistas</em> often look to things like <a href="https://dektoud.github.io/blog/post/fast_subroutines/">Cython, Numba, F2PY or C++</a> to gain additional performance. In my research group we spend much of our time developing and implementing ideas using Python (or Matlab), and once those ideas are demonstrated, often a follow-up Fortran implementation is generated so that statically compiled executables implementing those ideas can reach as wide an audience as possible. Thus, to be successful we are required to work with some high-level and dynamic language and also some secondary language that can speed up the implementation and be compiled to a static executable for distribution. This two language problem is a common <code>pain point</code> for numerical computing in Python.</p>
+<p>Python suffers from a two language problem. On one end the syntax, vast and mature library ecosystem, dynamic style and interactive workflows that Python offers provide a flexible and productive prototyping environment for new ideas. However, when moving past initial ideas and beginning to apply those ideas to datasets of meaningful size, <em>pythonistas</em> often look to things like <a href="/blog/post/fast_subroutines/">Cython, Numba, F2PY or C++</a> to gain additional performance. In my research group we spend much of our time developing and implementing ideas using Python (or Matlab), and once those ideas are demonstrated, often a follow-up Fortran implementation is generated so that statically compiled executables implementing those ideas can reach as wide an audience as possible. Thus, to be successful we are required to work with some high-level and dynamic language and also some secondary language that can speed up the implementation and be compiled to a static executable for distribution. This two language problem is a common <code>pain point</code> for numerical computing in Python.</p>
 
 <h2 id="the-motivation">The Motivation</h2>
 
@@ -251,7 +251,7 @@ ax[:set_xlim]([-4, 4])
 
 <h2 id="quick-speed-demo">Quick Speed Demo</h2>
 
-<p>In my <a href="https://dektoud.github.io/blog/post/fast_subroutines/">previous post</a> I demonstrated a number of methods to improve the speed of a naive triple loop implementation of a gradient calculation for a 3-dimensional array. A similar implementation using the same triple-loop strategy in Julia is shown below:</p>
+<p>In my <a href="/blog/post/fast_subroutines/">previous post</a> I demonstrated a number of methods to improve the speed of a naive triple loop implementation of a gradient calculation for a 3-dimensional array. A similar implementation using the same triple-loop strategy in Julia is shown below:</p>
 
 <pre><code class="language-julia">&quot; calculate the forward-reverse diffs on the 3D array&quot;
 function gridgradients(a)

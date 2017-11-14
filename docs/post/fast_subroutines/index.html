@@ -229,10 +229,10 @@
 <p>A number of projects address the need for fast Python subroutines, like <a href="http://www.numpy.org/">Numpy</a>, <a href="http://pypy.org/">PyPy</a>,  <a href="http://numba.pydata.org/">Numba</a>, <a href="http://cython.org/">Cython</a>, and many many many others&hellip;. I&rsquo;m sure. So, for the beginning researcher? Which methodology provides the most benefit with the least amount of investment? I will focus on the following mainly because they are the ones that I have tried:</p>
 
 <ol>
-<li><a href="/blog/post/fast_subroutines/#F2PY">F2PY</a></li>
-<li><a href="/blog/post/fast_subroutines/#numpy">Numpy</a></li>
-<li><a href="/blog/post/fast_subroutines/#numba">Numba</a></li>
-<li><a href="/blog/post/fast_subroutines/#cython">Cython</a></li>
+<li><a href="#F2PY">F2PY</a></li>
+<li><a href="#numpy">Numpy</a></li>
+<li><a href="#numba">Numba</a></li>
+<li><a href="#cython">Cython</a></li>
 </ol>
 
 <p>Each of the above methods attacks the problem in different ways. F2PY lets you compile Fortran code into easily callable python modules. Numpy provides a vast library of numerical computation functions that might allow you to skip the lower level languages all together. Numba uses &lsquo;just in time&rsquo; (JIT) compiling to &lsquo;compile&rsquo; native python code. This can be advantageous when the code consists of a number of loops with relatively simple mathematical operations. And finally Cython allows you to write static-typed &lsquo;Python&rsquo; that is compiled to C++ and taken to the extreme using Cython would allow you to write an entire project essentially in C++.</p>
