@@ -19,7 +19,7 @@ defaultContentLanguageInSubdir = false
 pygmentsStyle="colorful"
 
 [blackfriday]
-  hrefTargetBlank = true
+  hrefTargetBlank = false
 
 [params]
   name = "Ryan Martin"

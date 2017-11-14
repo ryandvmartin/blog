@@ -27,10 +27,10 @@ Keeping in mind that we are at the cutting edge and need to develop fast subrout
 
 A number of projects address the need for fast Python subroutines, like [Numpy](http://www.numpy.org/), [PyPy](http://pypy.org/),  [Numba](http://numba.pydata.org/), [Cython](http://cython.org/), and many many many others.... I'm sure. So, for the beginning researcher? Which methodology provides the most benefit with the least amount of investment? I will focus on the following mainly because they are the ones that I have tried:
 
-1. [F2PY]({{< ref "fast_subroutines.md#F2PY" >}})
-2. [Numpy]({{< ref "fast_subroutines.md#numpy" >}})
-3. [Numba]({{< ref "fast_subroutines.md#numba" >}})
-4. [Cython]({{< ref "fast_subroutines.md#cython" >}})
+1. [F2PY]({{< relref "fast_subroutines.md#F2PY" >}})
+2. [Numpy]({{< relref "fast_subroutines.md#numpy" >}})
+3. [Numba]({{< relref "fast_subroutines.md#numba" >}})
+4. [Cython]({{< relref "fast_subroutines.md#cython" >}})
 
 Each of the above methods attacks the problem in different ways. F2PY lets you compile Fortran code into easily callable python modules. Numpy provides a vast library of numerical computation functions that might allow you to skip the lower level languages all together. Numba uses 'just in time' (JIT) compiling to 'compile' native python code. This can be advantageous when the code consists of a number of loops with relatively simple mathematical operations. And finally Cython allows you to write static-typed 'Python' that is compiled to C++ and taken to the extreme using Cython would allow you to write an entire project essentially in C++.
 
