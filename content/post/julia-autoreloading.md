@@ -11,7 +11,9 @@ summary = """
 +++
 
 ## AutoReloading PyCall Imported Modules
-One of the major components of being productive with my Python workflows was the IPython magic command `%autoreload 2`. This magic command throws a hook on the start of running an IPython cell, and reloads recompiles Python modules where source code changes are detected. This is probably the single most useful component of my workflow since I modify and work on packages in Sublime and test and develop the code in an interactive Jupyter notebook. When I first started with PyCall in Julia, I sorely missed this feature. Julia itself offers a sort-of-autoreload for Julia modules using the package `ClobberingReload.jl`. Although this works for the Julia packages, any changed Python source code is omitted. To add this functionality to `PyCall.jl`, I did some digging through IPython to figure out how Python does it and how it can be replicated for PyCall loaded modules in Julia.
+One of the major components of being productive with my Python workflows was the IPython magic command `%autoreload 2`. This magic command throws a hook on the start of running an IPython cell, and recompiles Python modules where source code changes are detected. This is probably the single most useful component of my workflow since I modify and work on packages in Sublime and test and develop the code in an interactive Jupyter notebook. When I first started with PyCall in Julia, I sorely missed this feature. Julia itself offers a sort-of-autoreload for Julia modules using the package `ClobberingReload.jl`. Although this (mostly) works for the Julia packages, any changed Python source code is omitted. To add this functionality to `PyCall.jl`, I did some digging through IPython to figure out how Python does it and how it can be replicated for PyCall loaded modules in Julia.
+
+The first component is to generate a new class that mimics what is being done by the IPython Magic reloader:
 
 ```python
 from IPython.extensions.autoreload import ModuleReloader
@@ -42,7 +44,7 @@ class PyReloader:
         self.loaded_modules.update(newly_loaded_modules)
 ```
 
-and loaded in Julia with:
+Then, it should be loaded in Julia with PyCall, and made to run before each IJulia cell using:
 
 ```julia
 using IJulia: push_preexecute_hook
