@@ -60,6 +60,8 @@ using PyCall
 pyreloader = prl.PyReloader()
 push_preexecute_hook(() -&amp;gt; pyreloader[:reload]())
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now in an interactive Julia session, if Python code is loaded using PyCall, and modified, it will be automatically reloaded as if &lt;code&gt;%autoreload 2&lt;/code&gt; was working in the background!&lt;/p&gt;
 </description>
     </item>
     
