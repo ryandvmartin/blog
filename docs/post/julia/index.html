@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.30" />
+  <meta name="author" content="Ryan Martin">
+  <meta name="description" content="PhD Candidate, Research Assistant">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
+    
+  
+  <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/blog/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/blog/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
+  <link rel="stylesheet" href="/blog/css/hugo-academic.css">
+  
+
+  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+
+  <link rel="icon" type="image/png" href="/blog/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
+
+  <link rel="canonical" href="https://dektoud.github.io/blog/post/julia/">
+
+  
+
+  <title>Transitioning from Python to Julia | Rmar&#39;s Guide</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/blog/">Rmar&#39;s Guide</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#publications">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name">Transitioning from Python to Julia</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-11-13 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Mon, Nov 13, 2017
+    </time>
+  </span>
+
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/blog/tags/julia">Julia</a
+    >, 
+    
+    <a href="/blog/tags/python">Python</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Transitioning%20from%20Python%20to%20Julia&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f&amp;title=Transitioning%20from%20Python%20to%20Julia"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f&amp;title=Transitioning%20from%20Python%20to%20Julia"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Transitioning%20from%20Python%20to%20Julia&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="two-languages">Two Languages</h2>
+
+<p>Python suffers from a two language problem. On one end the syntax, vast and mature library ecosystem, dynamic style and interactive workflows that Python offers provide a flexible and productive prototyping environment for new ideas. However, when moving past initial ideas and beginning to apply those ideas to datasets of meaningful size, <em>pythonistas</em> often look to things like <a href="https://dektoud.github.io/blog/post/fast_subroutines/" target="_blank">Cython, Numba, F2PY or C++</a> to gain additional performance. In my research group we spend much of our time developing and implementing ideas using Python (or Matlab), and once those ideas are demonstrated, often a follow-up Fortran implementation is generated so that statically compiled executables implementing those ideas can reach as wide an audience as possible. Thus, to be successful we are required to work with some high-level and dynamic language and also some secondary language that can speed up the implementation and be compiled to a static executable for distribution. This two language problem is a common <code>pain point</code> for numerical computing in Python.</p>
+
+<h2 id="the-motivation">The Motivation</h2>
+
+<p><a href="https://julialang.org/" target="_blank">Julia</a> claims to offer a fundamentally new paradigm targeting this problem. This language is tailored to numerical computing by offering a dynamic programming environment and static type definitions with JIT-compilation to within 1-2x the performance compiled languages (Fortran, C). Thus it is easy to see just why Julia is so appealing: fast development times with dynamic and interactive programming; seemingly painless code optimization using static typing and an LLVM compiler that gets speeds in the ballpark of compiled languages; and as a final perk to the language, a glimmer of hope that static compilation may one day be a standard part of the language.</p>
+
+<pre><code class="language-julia"># dynamic containers
+list = Any[]
+# iteration
+for item in items
+    push!(list, item)
+end
+</code></pre>
+
+<h2 id="really-switching">Really Switching?</h2>
+
+<p>One of the larger hurdles for actually switching from Python is the fact that I have developed a large suite of utilities that I depend on in my scripting and research workflows. One of those components is F2PY, which I use to write fast-running custom loops. I am hoping that Julia fills the requirements of fast-running code going forward.. but one important point of concern is losing all the utilities that I have worked so hard on in the past. Luckily a package <code>PyCall.jl</code> allows Julia to interact directly with Python code. The syntax is a bit strange but a Python call like:</p>
+
+<pre><code class="language-python">import pygeostat as gs
+import numpy as np
+
+x = np.random.randn(100)
+y = np.random.randn(100)
+
+ax = gs.scatxval(x, y)
+# and to modify properties, e.g.:
+ax.set_ylim([-4, 4])
+ax.set_xlim([-4, 4])
+</code></pre>
+
+<p>turns into this when called from Julia:</p>
+
+<pre><code class="language-julia">using PyCall
+@pyimport pygeostat as gs
+
+x = randn(100)  # Julia includes this by default
+y = randn(100)
+
+ax = gs.scatxval(x, y)
+ax[:set_ylim]([-4, 4])
+ax[:set_xlim]([-4, 4])
+</code></pre>
+
+<p>Note the similarity of the calls to the <code>scatxval()</code> function. A large number of standard Python types are interoperable. One potential concern is the use of <code>pd.DataFrames()</code> in Python versus the DataFrames in Julia.. but much of that concern can be alleviated by using Arrays which PyCall automates the type conversion back and forth between the Julia and Python objects. Infact, an entire Python-based workflow can be generated using existing scripts and tools developed in Python. Thus, any researcher who depends largely on Python can rest easy that their hard work will still aid them as they venture out to learn Julia.</p>
+
+<h2 id="quick-speed-demo">Quick Speed Demo</h2>
+
+<p>In my <a href="https://dektoud.github.io/blog/post/fast_subroutines/" target="_blank">previous post</a> I demonstrated a number of methods to improve the speed of a naive triple loop implementation of a gradient calculation for a 3-dimensional array. A similar implementation using the same triple-loop strategy in Julia is shown below:</p>
+
+<pre><code class="language-julia">&quot; calculate the forward-reverse diffs on the 3D array&quot;
+function gridgradients(a)
+    nx, ny, nz = size(a)
+    gx = zeros(a)
+    gy = zeros(a)
+    gz = zeros(a)
+    for k in 1:nz
+        for j in 1:ny
+            for i in 1:nx
+                is = max(1, i - 1)
+                ie = min(nx, i + 1)
+                js = max(1, j - 1)
+                je = min(nx, j + 1)
+                ks = max(1, k - 1)
+                ke = min(nx, k + 1)
+                gx[i, j, k] = a[ie, j, k] - a[is, j, k]
+                gy[i, j, k] = a[i, je, k] - a[i, js, k]
+                gz[i, j, k] = a[i, j, ke] - a[i, j, ks]
+            end
+        end
+    end
+    return gx, gy, gz
+end
+</code></pre>
+
+<p>Over 1000 iterations, this function averages $1.13ms$, which is ~1.5x the speed of Fortran or Cython, and almost 2x the speed of Numba with no additional decorations or work on my behalf. Note that the arrays are $1$ indexed, and the ordering of the fastest axis is familiar as it is the same as Fortran and the opposite of C and Python. The speedup here over pure Python is immense for code generated with similar effort.</p>
+
+<p>Recalling one of the optimizations that we chose in Cython:</p>
+
+<pre><code class="language-python">@cython.boundscheck(False)
+@cython.wraparound(False)
+</code></pre>
+
+<p>A similar optimization is immediately available in the Julia code with the <code>@inbounds</code> macro, which simply disables bounds-checks:</p>
+
+<pre><code class="language-julia">&gt;?@inbounds
+@inbounds(blk)
+
+Eliminates array bounds checking within expressions.
+</code></pre>
+
+<pre><code class="language-julia">&quot; calculate the forward-reverse diffs on the 3D array&quot;
+function gridgradients_inbounds(a)
+    nx, ny, nz = size(a)
+    gx = zeros(a)
+    gy = zeros(a)
+    gz = zeros(a)
+    @inbounds for k in 1:nz
+        @inbounds for j in 1:ny
+            @inbounds for i in 1:nx
+                is = max(1, i - 1)
+                ie = min(nx, i + 1)
+                js = max(1, j - 1)
+                je = min(nx, j + 1)
+                ks = max(1, k - 1)
+                ke = min(nx, k + 1)
+                gx[i, j, k] = a[ie, j, k] - a[is, j, k]
+                gy[i, j, k] = a[i, je, k] - a[i, js, k]
+                gz[i, j, k] = a[i, j, ke] - a[i, j, ks]
+            end
+        end
+    end
+    return gx, gy, gz
+end
+</code></pre>
+
+<p>And this modified code runs in $0.67ms$ averaged over 1000 iterations. In other words, we are faster than both Cython and Fortran, and very close to Numba, and the syntax and complexity of the code hasn&rsquo;t changed dramatically. The other touted benefit to the user (which I am still trying to wrap my head around as I learn more about Julia) is that all user defined types are statically compiled, so if <code>a</code> was a matrix of:</p>
+
+<pre><code class="language-julia">type MyFloat &lt;: Real
+    xi::Float64
+    yi::Float64
+end
+</code></pre>
+
+<p>and certain methods are properly overloaded to make <code>+</code>, <code>-</code>, <code>min</code> and <code>max</code> work correctly, the code using that custom type <em>would be as fast as</em> that using the native types from the loops above.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>I am very new to Julia. The type system is familiar since Fortran had a form of multiple dispatch by defining function interfaces. Static typing is familiar, plotting is available using existing Python libraries. Static compiling to exe remains to be seen. Going forward I expect to carry out all work in Julia in hopes of finally dropping Fortran as my speed crutch.</p>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="https://dektoud.github.io/blog/post/fast_subroutines/"><span
+      aria-hidden="true">&larr;</span> Methods to write fast subroutines for Python - minimal computer science required</a></li>
+    
+
+    
+    <li class="next"><a href="https://dektoud.github.io/blog/post/julia-autoreloading/">AutoReloading PyCall imported Python modules in Julia <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "rmaruab" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 Ryan Martin &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script src="/blog/js/jquery-1.12.3.min.js"></script>
+    <script src="/blog/js/bootstrap.min.js"></script>
+    <script src="/blog/js/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script src="/blog/js/hugo-academic.js"></script>
+    
+
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-91366725-1', 'auto');
+        ga('send', 'pageview');
+
+         
+        var links = document.querySelectorAll('a');
+        Array.prototype.map.call(links, function(item) {
+            if (item.host != document.location.host) {
+                item.addEventListener('click', function() {
+                    var action = item.getAttribute('data-action') || 'follow';
+                    ga('send', 'event', 'outbound', action, item.href);
+                });
+            }
+        });
+    </script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/fortran.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/cython.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/julia.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/julia-repl.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    
+
+  </body>
+</html>
+

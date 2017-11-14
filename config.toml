@@ -16,6 +16,7 @@ googleAnalytics = "UA-91366725-1"
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+pygmentsStyle="colorful"
 
 [blackfriday]
   hrefTargetBlank = true
@@ -79,9 +80,9 @@ defaultContentLanguageInSubdir = false
   #   For more info on the highlighting options, see:
   #   https://gcushen.github.io/hugo-academic-demo/post/writing-markdown-latex/#highlighting-options
   highlight = true
-  highlight_languages = ['python', 'fortran']
-  # highlight_style = "github"
-  # highlight_version = "9.9.0"
+  highlight_languages = ["python", "fortran", "cython", "julia", "julia-repl"]
+  highlight_style = "github-gist"
+  highlight_version = "9.9.0"
 
   # Enable native social sharing buttons?
   sharing = true

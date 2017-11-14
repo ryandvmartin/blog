@@ -809,6 +809,8 @@
 	"file_history":
 	[
 		"/C/GIT/gitblog/config.toml",
+		"/C/GIT/gitblog/content/post/fast_subroutines.md",
+		"/C/GIT/gitblog/content/post/julia.md",
 		"/C/GIT/gitblog/content/home/contact.md",
 		"/C/GIT/gitblog/content/publication/_index.md",
 		"/C/GIT/gitblog/content/home/posts.md",
@@ -933,9 +935,7 @@
 		"/Z/Temp/To Tyler/wassa_kriged.xdmf",
 		"/D/0_User Data/Desktop/slice_with_oris/orientationfield.py",
 		"/D/0_User Data/Desktop/SRK a1est/Wassa_ByLith/aa_projectdefs.py",
-		"/D/0_User Data/Desktop/slice_with_oris/aa_projectdefs.py",
-		"/Z/Temp/To Tyler/finalreals.xdmf",
-		"/Q/CCV/Cresson_AuFA/_custom_functions.py"
+		"/D/0_User Data/Desktop/slice_with_oris/aa_projectdefs.py"
 	],
 	"find":
 	{
@@ -946,6 +946,7 @@
 		"height": 158.0,
 		"where_history":
 		[
+			"C:\\GIT\\gitblog"
 		]
 	},
 	"find_state":
@@ -953,6 +954,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"highlight",
 			"publications"
 		],
 		"highlight": true,

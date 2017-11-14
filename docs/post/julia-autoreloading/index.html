@@ -34,11 +34,11 @@
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/publication/geological-features/">
+  <link rel="canonical" href="https://dektoud.github.io/blog/post/julia-autoreloading/">
 
   
 
-  <title>Iterative refinement of implicit boundary models for improved geological feature reproduction | Rmar&#39;s Guide</title>
+  <title>AutoReloading PyCall imported Python modules in Julia | Rmar&#39;s Guide</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -118,50 +118,76 @@
   </div>
 </nav>
 
-<div class="container pub" itemscope itemtype="http://schema.org/CreativeWork">
 
-  <div class="pub-title">
-    <h1 itemprop="name">Iterative refinement of implicit boundary models for improved geological feature reproduction</h1>
-    <span class="pub-authors" itemprop="author">
-      
-      Ryan Martin, Jeff Boisvert
-      
-    </span>
-    <span class="pull-right">
-      
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name">AutoReloading PyCall imported Python modules in Julia</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-11-13 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Mon, Nov 13, 2017
+    </time>
+  </span>
+
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/blog/tags/julia">Julia</a
+    >, 
+    
+    <a href="/blog/tags/python">Python</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f"
+         href="https://twitter.com/intent/tweet?text=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f&amp;title=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f&amp;title=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f&amp;title=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f&amp;title=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Iterative%20refinement%20of%20implicit%20boundary%20models%20for%20improved%20geological%20feature%20reproduction&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fgeological-features%2f">
+         href="mailto:?subject=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -169,114 +195,100 @@
 </div>
 
 
-    </span>
-  </div>
+  
 
 </div>
-<div class="article-container">
 
-  
-  <img src="https://dektoud.github.io/blog/img/iref.gif" class="pub-banner" itemprop="image">
-  
+    <div class="article-style" itemprop="articleBody">
+      
 
-  <h3>Abstract</h3>
-  <p class="pub-abstract" itemprop="text">Geological domains contain non-stationary features that cannot be described by a single direction of continuity. Non-stationary estimation frameworks generate more realistic curvilinear interpretations of subsurface geome-tries. A radial basis function (RBF) based implicit modeling framework using domain decomposition is developed that permits introduction of locally varying orientations and magnitudes of anisotropy for boundary models to better account for the local variability of complex geological deposits. The interpolation framework is paired with a method to automatically infer the locally predominant orientations, which results in a rapid and robust iterative non-stationary boundary modeling technique that can refine locally anisotropic geological shapes automatically from the sample data. The method also permits quantification of the volumetric uncertainty associated with the boundary modeling. The methodology is demonstrated on a porphyry dataset and shows improved local geological features.</p>
+<h2 id="autoreloading-pycall-imported-modules">AutoReloading PyCall Imported Modules</h2>
 
-  
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading">Type</div>
-        <div class="col-xs-12 col-sm-9">
-          
-          <a href="/blog/publication/#2">
-            Journal
-          </a>
-          
-        </div>
-      </div>
+<p>One of the major components of being productive with my Python workflows was the IPython magic command <code>%autoreload 2</code>. This magic command throws a hook on the start of running an IPython cell, and reloads recompiles Python modules where source code changes are detected. This is probably the single most useful component of my workflow since I modify and work on packages in Sublime and test and develop the code in an interactive Jupyter notebook. When I first started with PyCall in Julia, I sorely missed this feature. Julia itself offers a sort-of-autoreload for Julia modules using the package <code>ClobberingReload.jl</code>. Although this works for the Julia packages, any changed Python source code is omitted. To add this functionality to <code>PyCall.jl</code>, I did some digging through IPython to figure out how Python does it and how it can be replicated for PyCall loaded modules in Julia.</p>
+
+<pre><code class="language-python">from IPython.extensions.autoreload import ModuleReloader
+import sys
+
+class PyReloader:
+    &quot;&quot;&quot;
+    Class pretty well taken directly from the IPython %autoreload magic function..
+    very untested..
+    &quot;&quot;&quot;
+    def __init__(self):
+        self.mr = ModuleReloader()
+        self.mr.enabled = True
+        self.mr.check_all = True
+        self.mr.check()
+        self.loaded_modules = set(sys.modules)
+
+    def reload(self):
+        self.mr.check()
+        self.reload_step2()
+
+    def reload_step2(self):
+        newly_loaded_modules = set(sys.modules) - self.loaded_modules
+        for modname in newly_loaded_modules:
+            _, pymtime = self.mr.filename_and_mtime(sys.modules[modname])
+            if pymtime is not None:
+                self.mr.modules_mtimes[modname] = pymtime
+        self.loaded_modules.update(newly_loaded_modules)
+</code></pre>
+
+<p>and loaded in Julia with:</p>
+
+<pre><code class="language-julia">using IJulia: push_preexecute_hook
+using PyCall
+@pyimport rmutils.jlutils.pyreimport as prl
+pyreloader = prl.PyReloader()
+push_preexecute_hook(() -&gt; pyreloader[:reload]())
+</code></pre>
+
     </div>
-    <div class="col-sm-1"></div>
   </div>
-  <div class="visible-xs space-below"></div>
-  
 
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading">Publication</div>
-        <div class="col-xs-12 col-sm-9"><em>Computers and Geoscience</em></div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
-        <div class="col-xs-12 col-sm-9" itemprop="datePublished">
-          July, 2017
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-
-  <div class="row" style="padding-top: 10px">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading" style="line-height:34px;">Links</div>
-        <div class="col-xs-12 col-sm-9">
-
-          
-
-
-
-
-<a class="btn btn-primary btn-outline" href="http://www.sciencedirect.com/science/article/pii/S0098300416307555">
-  PDF
-</a>
-
-
-
-
-
-
-
-<a class="btn btn-primary btn-outline" href="http://www.ccgalberta.com">
-  CCG UAlberta
-</a>
-
-
-
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-
-  <div class="space-below"></div>
-
-  <div class="article-style"></div>
-
-</div>
+</article>
 
 <div class="container">
   <nav>
   <ul class="pager">
     
+    <li class="previous"><a href="https://dektoud.github.io/blog/post/julia/"><span
+      aria-hidden="true">&larr;</span> Transitioning from Python to Julia</a></li>
+    
 
     
   </ul>
 </nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "rmaruab" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
 
 </div>
 

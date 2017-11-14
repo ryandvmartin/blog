@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Rmar&#39;s Guide</title>
+    <link>https://dektoud.github.io/blog/tags/python/</link>
+    <description>Recent content in Python on Rmar&#39;s Guide</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Ryan Martin</copyright>
+    <lastBuildDate>Mon, 13 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/blog/tags/python/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>AutoReloading PyCall imported Python modules in Julia</title>
+      <link>https://dektoud.github.io/blog/post/julia-autoreloading/</link>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/post/julia-autoreloading/</guid>
+      <description>
+
+&lt;h2 id=&#34;autoreloading-pycall-imported-modules&#34;&gt;AutoReloading PyCall Imported Modules&lt;/h2&gt;
+
+&lt;p&gt;One of the major components of being productive with my Python workflows was the IPython magic command &lt;code&gt;%autoreload 2&lt;/code&gt;. This magic command throws a hook on the start of running an IPython cell, and reloads recompiles Python modules where source code changes are detected. This is probably the single most useful component of my workflow since I modify and work on packages in Sublime and test and develop the code in an interactive Jupyter notebook. When I first started with PyCall in Julia, I sorely missed this feature. Julia itself offers a sort-of-autoreload for Julia modules using the package &lt;code&gt;ClobberingReload.jl&lt;/code&gt;. Although this works for the Julia packages, any changed Python source code is omitted. To add this functionality to &lt;code&gt;PyCall.jl&lt;/code&gt;, I did some digging through IPython to figure out how Python does it and how it can be replicated for PyCall loaded modules in Julia.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.extensions.autoreload import ModuleReloader
+import sys
+
+class PyReloader:
+    &amp;quot;&amp;quot;&amp;quot;
+    Class pretty well taken directly from the IPython %autoreload magic function..
+    very untested..
+    &amp;quot;&amp;quot;&amp;quot;
+    def __init__(self):
+        self.mr = ModuleReloader()
+        self.mr.enabled = True
+        self.mr.check_all = True
+        self.mr.check()
+        self.loaded_modules = set(sys.modules)
+
+    def reload(self):
+        self.mr.check()
+        self.reload_step2()
+
+    def reload_step2(self):
+        newly_loaded_modules = set(sys.modules) - self.loaded_modules
+        for modname in newly_loaded_modules:
+            _, pymtime = self.mr.filename_and_mtime(sys.modules[modname])
+            if pymtime is not None:
+                self.mr.modules_mtimes[modname] = pymtime
+        self.loaded_modules.update(newly_loaded_modules)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and loaded in Julia with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;using IJulia: push_preexecute_hook
+using PyCall
+@pyimport rmutils.jlutils.pyreimport as prl
+pyreloader = prl.PyReloader()
+push_preexecute_hook(() -&amp;gt; pyreloader[:reload]())
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Transitioning from Python to Julia</title>
+      <link>https://dektoud.github.io/blog/post/julia/</link>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/post/julia/</guid>
+      <description>
+
+&lt;h2 id=&#34;two-languages&#34;&gt;Two Languages&lt;/h2&gt;
+
+&lt;p&gt;Python suffers from a two language problem. On one end the syntax, vast and mature library ecosystem, dynamic style and interactive workflows that Python offers provide a flexible and productive prototyping environment for new ideas. However, when moving past initial ideas and beginning to apply those ideas to datasets of meaningful size, &lt;em&gt;pythonistas&lt;/em&gt; often look to things like &lt;a href=&#34;https://dektoud.github.io/blog/post/fast_subroutines/&#34; target=&#34;_blank&#34;&gt;Cython, Numba, F2PY or C++&lt;/a&gt; to gain additional performance. In my research group we spend much of our time developing and implementing ideas using Python (or Matlab), and once those ideas are demonstrated, often a follow-up Fortran implementation is generated so that statically compiled executables implementing those ideas can reach as wide an audience as possible. Thus, to be successful we are required to work with some high-level and dynamic language and also some secondary language that can speed up the implementation and be compiled to a static executable for distribution. This two language problem is a common &lt;code&gt;pain point&lt;/code&gt; for numerical computing in Python.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-motivation&#34;&gt;The Motivation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://julialang.org/&#34; target=&#34;_blank&#34;&gt;Julia&lt;/a&gt; claims to offer a fundamentally new paradigm targeting this problem. This language is tailored to numerical computing by offering a dynamic programming environment and static type definitions with JIT-compilation to within 1-2x the performance compiled languages (Fortran, C). Thus it is easy to see just why Julia is so appealing: fast development times with dynamic and interactive programming; seemingly painless code optimization using static typing and an LLVM compiler that gets speeds in the ballpark of compiled languages; and as a final perk to the language, a glimmer of hope that static compilation may one day be a standard part of the language.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;# dynamic containers
+list = Any[]
+# iteration
+for item in items
+    push!(list, item)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;really-switching&#34;&gt;Really Switching?&lt;/h2&gt;
+
+&lt;p&gt;One of the larger hurdles for actually switching from Python is the fact that I have developed a large suite of utilities that I depend on in my scripting and research workflows. One of those components is F2PY, which I use to write fast-running custom loops. I am hoping that Julia fills the requirements of fast-running code going forward.. but one important point of concern is losing all the utilities that I have worked so hard on in the past. Luckily a package &lt;code&gt;PyCall.jl&lt;/code&gt; allows Julia to interact directly with Python code. The syntax is a bit strange but a Python call like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import pygeostat as gs
+import numpy as np
+
+x = np.random.randn(100)
+y = np.random.randn(100)
+
+ax = gs.scatxval(x, y)
+# and to modify properties, e.g.:
+ax.set_ylim([-4, 4])
+ax.set_xlim([-4, 4])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;turns into this when called from Julia:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;using PyCall
+@pyimport pygeostat as gs
+
+x = randn(100)  # Julia includes this by default
+y = randn(100)
+
+ax = gs.scatxval(x, y)
+ax[:set_ylim]([-4, 4])
+ax[:set_xlim]([-4, 4])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the similarity of the calls to the &lt;code&gt;scatxval()&lt;/code&gt; function. A large number of standard Python types are interoperable. One potential concern is the use of &lt;code&gt;pd.DataFrames()&lt;/code&gt; in Python versus the DataFrames in Julia.. but much of that concern can be alleviated by using Arrays which PyCall automates the type conversion back and forth between the Julia and Python objects. Infact, an entire Python-based workflow can be generated using existing scripts and tools developed in Python. Thus, any researcher who depends largely on Python can rest easy that their hard work will still aid them as they venture out to learn Julia.&lt;/p&gt;
+
+&lt;h2 id=&#34;quick-speed-demo&#34;&gt;Quick Speed Demo&lt;/h2&gt;
+
+&lt;p&gt;In my &lt;a href=&#34;https://dektoud.github.io/blog/post/fast_subroutines/&#34; target=&#34;_blank&#34;&gt;previous post&lt;/a&gt; I demonstrated a number of methods to improve the speed of a naive triple loop implementation of a gradient calculation for a 3-dimensional array. A similar implementation using the same triple-loop strategy in Julia is shown below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;&amp;quot; calculate the forward-reverse diffs on the 3D array&amp;quot;
+function gridgradients(a)
+    nx, ny, nz = size(a)
+    gx = zeros(a)
+    gy = zeros(a)
+    gz = zeros(a)
+    for k in 1:nz
+        for j in 1:ny
+            for i in 1:nx
+                is = max(1, i - 1)
+                ie = min(nx, i + 1)
+                js = max(1, j - 1)
+                je = min(nx, j + 1)
+                ks = max(1, k - 1)
+                ke = min(nx, k + 1)
+                gx[i, j, k] = a[ie, j, k] - a[is, j, k]
+                gy[i, j, k] = a[i, je, k] - a[i, js, k]
+                gz[i, j, k] = a[i, j, ke] - a[i, j, ks]
+            end
+        end
+    end
+    return gx, gy, gz
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Over 1000 iterations, this function averages $1.13ms$, which is ~1.5x the speed of Fortran or Cython, and almost 2x the speed of Numba with no additional decorations or work on my behalf. Note that the arrays are $1$ indexed, and the ordering of the fastest axis is familiar as it is the same as Fortran and the opposite of C and Python. The speedup here over pure Python is immense for code generated with similar effort.&lt;/p&gt;
+
+&lt;p&gt;Recalling one of the optimizations that we chose in Cython:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;@cython.boundscheck(False)
+@cython.wraparound(False)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A similar optimization is immediately available in the Julia code with the &lt;code&gt;@inbounds&lt;/code&gt; macro, which simply disables bounds-checks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;&amp;gt;?@inbounds
+@inbounds(blk)
+
+Eliminates array bounds checking within expressions.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;&amp;quot; calculate the forward-reverse diffs on the 3D array&amp;quot;
+function gridgradients_inbounds(a)
+    nx, ny, nz = size(a)
+    gx = zeros(a)
+    gy = zeros(a)
+    gz = zeros(a)
+    @inbounds for k in 1:nz
+        @inbounds for j in 1:ny
+            @inbounds for i in 1:nx
+                is = max(1, i - 1)
+                ie = min(nx, i + 1)
+                js = max(1, j - 1)
+                je = min(nx, j + 1)
+                ks = max(1, k - 1)
+                ke = min(nx, k + 1)
+                gx[i, j, k] = a[ie, j, k] - a[is, j, k]
+                gy[i, j, k] = a[i, je, k] - a[i, js, k]
+                gz[i, j, k] = a[i, j, ke] - a[i, j, ks]
+            end
+        end
+    end
+    return gx, gy, gz
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this modified code runs in $0.67ms$ averaged over 1000 iterations. In other words, we are faster than both Cython and Fortran, and very close to Numba, and the syntax and complexity of the code hasn&amp;rsquo;t changed dramatically. The other touted benefit to the user (which I am still trying to wrap my head around as I learn more about Julia) is that all user defined types are statically compiled, so if &lt;code&gt;a&lt;/code&gt; was a matrix of:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;type MyFloat &amp;lt;: Real
+    xi::Float64
+    yi::Float64
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and certain methods are properly overloaded to make &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;min&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; work correctly, the code using that custom type &lt;em&gt;would be as fast as&lt;/em&gt; that using the native types from the loops above.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;I am very new to Julia. The type system is familiar since Fortran had a form of multiple dispatch by defining function interfaces. Static typing is familiar, plotting is available using existing Python libraries. Static compiling to exe remains to be seen. Going forward I expect to carry out all work in Julia in hopes of finally dropping Fortran as my speed crutch.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

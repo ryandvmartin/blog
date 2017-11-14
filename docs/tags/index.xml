@@ -38,11 +38,29 @@
     </item>
     
     <item>
+      <title>Julia</title>
+      <link>https://dektoud.github.io/blog/tags/julia/</link>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/tags/julia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Numba</title>
       <link>https://dektoud.github.io/blog/tags/numba/</link>
       <pubDate>Tue, 07 Feb 2017 21:00:01 -0700</pubDate>
       
       <guid>https://dektoud.github.io/blog/tags/numba/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://dektoud.github.io/blog/tags/python/</link>
+      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/tags/python/</guid>
       <description></description>
     </item>
     

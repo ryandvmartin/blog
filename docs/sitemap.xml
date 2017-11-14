@@ -4,6 +4,22 @@
     
     
     <url>
+      <loc>https://dektoud.github.io/blog/post/julia-autoreloading/</loc>
+      <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+      <loc>https://dektoud.github.io/blog/post/julia/</loc>
+      <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
       <loc>https://dektoud.github.io/blog/publication/geological-features/</loc>
       <lastmod>2017-07-01T00:00:00+00:00</lastmod>
     </url>
@@ -87,6 +103,15 @@
     
     
     <url>
+      <loc>https://dektoud.github.io/blog/tags/julia/</loc>
+      <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
       <loc>https://dektoud.github.io/blog/tags/numba/</loc>
       <lastmod>2017-02-07T21:00:01-07:00</lastmod>
       <priority>0</priority>
@@ -98,6 +123,15 @@
     <url>
       <loc>https://dektoud.github.io/blog/publication_types/</loc>
       <lastmod>2017-07-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+      <loc>https://dektoud.github.io/blog/tags/python/</loc>
+      <lastmod>2017-11-13T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
