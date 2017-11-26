@@ -55,3 +55,24 @@ push_preexecute_hook(() -> pyreloader[:reload]())
 ```
 
 And now in an interactive Julia session, if Python code is loaded using PyCall, and modified, it will be automatically reloaded as if `%autoreload 2` was working in the background!
+
+
+---
+Update - 25-11-2017
+
+Using the `ClobberingReload` and the above PyReloader would casue things to get very messy when reloading Julia modules that contained the above python-reload code... the following solves this issue:
+
+```julia
+# load the AutoReload hack for Python code in Julia
+using IJulia: push_preexecute_hook, preexecute_hooks
+using PyCall
+@pyimport rmutils.jlutils.pyreimport as pyrl
+pyreloader = pyrl.PyReloader()
+pyloadfunc() = pyreloader[:reload]()
+if !(pyloadfunc in preexecute_hooks)
+    push_preexecute_hook(pyloadfunc)
+    println("loading pyautoreload...")
+end
+```
+
+The modified method first checks `preexecute_hooks` to make sure the reload function hasnt already been added to the list of functions to execute. This ensures that the interactive Julia and Python sessions don't duplicate the Python reload functions!
