@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="author" content="Ryan Martin">
+  <meta name="description" content="PhD Candidate, Research Assistant">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
+    
+  
+  <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/blog/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/blog/css/academicons.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
+  <link rel="stylesheet" href="/blog/css/hugo-academic.css">
+  
+
+  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+
+  <link rel="icon" type="image/png" href="/blog/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
+
+  <link rel="canonical" href="https://dektoud.github.io/blog/post/calling_fortran_dlls/">
+
+  
+
+  <title>Calling Fortran DLL&#39;s from Python and Julia | Rmar&#39;s Guide</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/blog/">Rmar&#39;s Guide</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#about">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#publications">
+            
+            <span>Publications</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="/blog/#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+  <div class="article-container">
+    <h1 itemprop="name">Calling Fortran DLL&#39;s from Python and Julia</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    <time datetime="2017-02-07 21:00:01 -0700 MST" itemprop="datePublished">
+      Tue, Feb 7, 2017
+    </time>
+  </span>
+
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="/blog/tags/fortran">Fortran</a
+    >, 
+    
+    <a href="/blog/tags/python">Python</a
+    >, 
+    
+    <a href="/blog/tags/julia">Julia</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fcalling_fortran_dlls%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fcalling_fortran_dlls%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fcalling_fortran_dlls%2f&amp;title=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fcalling_fortran_dlls%2f&amp;title=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fcalling_fortran_dlls%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>The standard Python library contains a package called <code>ctypes</code> which provides interfaces to foreign functions that are found in shared libraries. With the Intel compiler, a Fortran function or subroutine can be exported to dll by ensuring that the <code>!DEC$</code> is present to define the exported symbol:</p>
+
+<pre><code class="language-fortran">! Note: this only works with the Intel Compiler
+subroutine sqr(val)
+    !DEC$ ATTRIBUTES DLLEXPORT, ALIAS:'sqr' :: sqr
+    integer, intent(inout) :: val
+    val = val ** 2
+end subroutine sqr
+</code></pre>
+
+<p>If the above subroutine is contained in the <code>example.f90</code> file, it is compiled with :</p>
+
+<pre><code>$ ifort /dll example.f90
+</code></pre>
+
+<p>which produces the shared library <code>example.dll</code>. Inspecting this object with dumpbin:</p>
+
+<pre><code>$ dumpbin /exports example.dll
+1    0 00001000 sqr
+</code></pre>
+
+<p>The function can be imported to Python with the <code>ctypes</code> module and called with the following Python code:</p>
+
+<pre><code class="language-python">import ctypes as ct
+
+fortlib = ct.CDLL('example.dll')
+val = 100
+val = ct.pointer(ct.c_int(val)) # setup the pointer to the correct data structure
+_ = fortlib.sqr(val)            # call the function
+print(val[0])                   # index the memory address setup above
+</code></pre>
+
+<p>It is immediately clear that compiling the shared library in this way is easier (when compared to F2PY), and calling the Fortran from Python is much difficult. The advantages are that this is a C-independent method to build and link the Fortran extension, and the same dll called from Python here could also be called from other languages (e.g. Julia).</p>
+
+<h1 id="maintaining-gnu-intel-compatibility">Maintaining GNU - Intel compatibility</h1>
+
+<p>The method to call specific functions should be compiler independent. A method to maintain a compatible Python calling sequence for the dll&rsquo;s is required since one set of Python code should be able to call the Fortran function regardless of how it was compiled. This can be done by using the <code>iso_c_binding</code> module:</p>
+
+<pre><code class="language-fortran">subroutine sqr2(val) BIND(C, NAME='sqr2')
+    use iso_c_binding
+    !DEC$ ATTRIBUTES DLLEXPORT :: sqr2
+    integer, intent(inout) :: val
+    val = val ** 2
+end subroutine sqr2
+</code></pre>
+
+<p>The <code>iso_c_binding</code> in this case overwrites the name mangling for each compiler (gfortran and ifort), and ensures the call sequence from Python is constant. In this case the <code>!DEC$</code> statement is ignored by gfortran and the function is available in the exported dll. Notably, the <code>ALIAS</code> is dropped from the <code>!DEC$</code> export for Intel Fortran since the name in the binding overwrites this setting.</p>
+
+<h1 id="more-complicated-data-types">More Complicated Data Types</h1>
+
+<p>The main concern for calling Fortran functions in the dll&rsquo;s from Python is how to setup the data structures. Consider the following function which take a 2-dimensional array of integers and computes some arbitrary value from the inputs by replacing the values in the array:</p>
+
+<pre><code class="language-fortran">module example
+    use iso_c_binding
+    implicit none
+contains
+    subroutine sqr_2d_arr(nd, val) BIND(C, NAME='sqr_2d_arr')
+        !DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
+        integer, intent(in) :: nd
+        integer, intent(inout) :: val(nd, nd)
+        integer :: i, j
+        do j = 1, nd
+        do i = 1, nd
+            val(i, j) = (val(i, j) + val(j, i)) ** 2
+        enddo
+        enddo
+    end subroutine sqr_2d_arr
+end module example
+</code></pre>
+
+<p>The module is compiled with:</p>
+
+<pre><code>$ ifort /dll example.f90
+</code></pre>
+
+<p>or:</p>
+
+<pre><code>$ gfortran -shared example.f90 -o example.dll
+</code></pre>
+
+<p>and can be called from Python with:</p>
+
+<pre><code class="language-python">import ctypes as ct
+import numpy as np
+
+# import the dll
+fortlib = ct.CDLL('example.dll')
+
+# setup the data
+N = 10
+nd = ct.pointer( ct.c_int(N) )          # setup the pointer
+pyarr = np.arange(0, N, dtype=int) * 5  # setup the N-long
+for i in range(1, N):                   # concatenate columns until it is N x N
+    pyarr = np.c_[pyarr, np.arange(0, N, dtype=int) * 5]
+
+# call the function by passing the ctypes pointer using the numpy function:
+_ = fortlib.sqr_2d_arr(nd, np.ctypeslib.as_ctypes(pyarr))
+
+print(pyarr)
+</code></pre>
+
+<h1 id="important-considerations">Important Considerations</h1>
+
+<p>In the above Python code some things are notable:</p>
+
+<ol>
+<li>All data is passed by pointer reference to the Fortran dll, the data is modified in place if the variable is <code>intent(inout)</code>, or replaced if the variable is <code>intent(out)</code>. All memory is controlled on the Python side of things</li>
+<li>The memory must be allocated in some form on the Python side using <code>np.zeros(size, dtype=type)</code> (or similar) even if the variable is <code>intent(out)</code></li>
+
+<li><p><strong>The types of all data initialized on the Python size must match those being called in the Fortran module</strong>
+a. This is very important. For example, use <code>int</code> for <code>integer</code>, <code>float</code> for <code>real*8</code>, etc. Python <code>float</code> is double precision by default. This may not be a correct list, and is definitely not exhaustive, but it has worked with the limited testing that has been done with this method of calling Fortran
+b. the function <code>ctypes.c_pointer()</code> can be used to create the necessary references to non-array elements, be sure to use <code>ctypes.c_int()</code> and <code>ctypes.c_double()</code> (and others) as required for the needed parameter
+c. initializing arrays on the python end is strange. For example, say a Fortran subroutine is defined with an <code>integer, intent(out)</code> array with size <code>nd</code>, to initialize this array on the python side, you can use::</p>
+
+<pre><code>import ctypes as ct
+intarray = (ct.c_int * nd)()
+</code></pre>
+
+<p>and to give the array values for input::</p>
+
+<pre><code>import ctypes as ct
+pyarray = np.zeros(nd, dtype=np.int)
+valarray = (ct.c_int * nd)(*pyarray)
+</code></pre></li>
+
+<li><p>Numpy provides some convenient methods <code>np.ctypeslib.as_ctypes()</code> to pass initialized arrays with the correct types to the Fortran functions (as demonstrated above)</p></li>
+</ol>
+
+<h1 id="mixed-language-debugging">Mixed Language Debugging</h1>
+
+<p>The use of dll&rsquo;s and <code>ctypes</code> library for calling the Fortran code provides some exciting opportunities to speed up code development while leveraging the plotting and data management capabilities of pygeostat with the GSLIB Fortran geostatistical library. For example, to debug a Fortran dll which is present in a Visual Studio project, compiled with debug flags, generally follow these steps::</p>
+
+<p>Visual Studio 2015 Community is currently free and has recently developed a set of Python tools that will utilize Python distributions found on the machine. Combined with the Intel Compiler, projects containing Fortran code compiled to dll, and called VIA the Python libraries and tools presented above, can be debugged after it is called from Python!</p>
+
+<h1 id="what-about-julia">What about Julia</h1>
+
+<p>Julia provides first class support for calling C libraries using the <code>ccall</code> function. The example above requires no modification on the fortran side:</p>
+
+<pre><code class="language-fortran">module example
+    use iso_c_binding
+    implicit none
+contains
+    subroutine sqr_2d_arr(nd, val) BIND(C, NAME='sqr_2d_arr')
+        !DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
+        integer, intent(in) :: nd
+        integer, intent(inout) :: val(nd, nd)
+        integer :: i, j
+        do j = 1, nd
+        do i = 1, nd
+            val(i, j) = (val(i, j) + val(j, i)) ** 2
+        enddo
+        enddo
+    end subroutine sqr_2d_arr
+end module example
+</code></pre>
+
+<p>The module is compiled with:</p>
+
+<pre><code>$ ifort /dll example.f90
+</code></pre>
+
+<p>or:</p>
+
+<pre><code>$ gfortran -shared example.f90 -o example.dll
+</code></pre>
+
+<p>But now the call in Julia is vastly simplified:</p>
+
+<pre><code class="language-julia">nd = Int(100)
+arr = zeros(Int64, (nd, nd));
+ccall((:sqr_2d_arr, &quot;./example.dll&quot;), Void, (Ref{Int64}, Ref{Matrix{Int64}}), nd, arr)
+</code></pre>
+
+    </div>
+  </div>
+
+</article>
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="https://dektoud.github.io/blog/post/fast_subroutines/"><span
+      aria-hidden="true">&larr;</span> Methods to write fast subroutines for Python - minimal computer science required</a></li>
+    
+
+    
+    <li class="next"><a href="https://dektoud.github.io/blog/post/julia/">Transitioning from Python to Julia <span
+      aria-hidden="true">&rarr;</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "rmaruab" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+</section>
+
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 Ryan Martin &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+    <script src="/blog/js/jquery-1.12.3.min.js"></script>
+    <script src="/blog/js/bootstrap.min.js"></script>
+    <script src="/blog/js/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script src="/blog/js/hugo-academic.js"></script>
+    
+
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-91366725-1', 'auto');
+        ga('send', 'pageview');
+
+         
+        var links = document.querySelectorAll('a');
+        Array.prototype.map.call(links, function(item) {
+            if (item.host != document.location.host) {
+                item.addEventListener('click', function() {
+                    var action = item.getAttribute('data-action') || 'follow';
+                    ga('send', 'event', 'outbound', action, item.href);
+                });
+            }
+        });
+    </script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/fortran.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/cython.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/julia.min.js"></script>
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/julia-repl.min.js"></script>
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    <script async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    
+
+  </body>
+</html>
+
