@@ -3,8 +3,9 @@ tags = ["Fortran", "Python", "Julia"]
 highlight = true
 math = true
 image = ""
-date = "2018-03-12T16:43:01-07:00"
+date = "2018-03-12"
 title = "Calling Fortran DLL's from Python and Julia"
+summary = "Calling those legacy DLL's from our fun new languages :-)"
 
 +++
 

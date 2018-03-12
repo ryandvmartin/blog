@@ -7,8 +7,191 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Ryan Martin</copyright>
-    <lastBuildDate>Mon, 13 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Mar 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/blog/tags/python/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Calling Fortran DLL&#39;s from Python and Julia</title>
+      <link>https://dektoud.github.io/blog/post/fortran_dlls/</link>
+      <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/post/fortran_dlls/</guid>
+      <description>
+
+&lt;p&gt;The standard Python library contains a package called &lt;code&gt;ctypes&lt;/code&gt; which provides interfaces to foreign functions that are found in shared libraries. With the Intel compiler, a Fortran function or subroutine can be exported to dll by ensuring that the &lt;code&gt;!DEC$&lt;/code&gt; is present to define the exported symbol:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-fortran&#34;&gt;! Note: this only works with the Intel Compiler
+subroutine sqr(val)
+    !DEC$ ATTRIBUTES DLLEXPORT, ALIAS:&#39;sqr&#39; :: sqr
+    integer, intent(inout) :: val
+    val = val ** 2
+end subroutine sqr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the above subroutine is contained in the &lt;code&gt;example.f90&lt;/code&gt; file, it is compiled with :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ifort /dll example.f90
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which produces the shared library &lt;code&gt;example.dll&lt;/code&gt;. Inspecting this object with dumpbin:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ dumpbin /exports example.dll
+1    0 00001000 sqr
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The function can be imported to Python with the &lt;code&gt;ctypes&lt;/code&gt; module and called with the following Python code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import ctypes as ct
+
+fortlib = ct.CDLL(&#39;example.dll&#39;)
+val = 100
+val = ct.pointer(ct.c_int(val)) # setup the pointer to the correct data structure
+_ = fortlib.sqr(val)            # call the function
+print(val[0])                   # index the memory address setup above
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is immediately clear that compiling the shared library in this way is easier (when compared to F2PY), and calling the Fortran from Python is much difficult. The advantages are that this is a C-independent method to build and link the Fortran extension, and the same dll called from Python here could also be called from other languages (e.g. Julia).&lt;/p&gt;
+
+&lt;h1 id=&#34;maintaining-gnu-intel-compatibility&#34;&gt;Maintaining GNU - Intel compatibility&lt;/h1&gt;
+
+&lt;p&gt;The method to call specific functions should be compiler independent. A method to maintain a compatible Python calling sequence for the dll&amp;rsquo;s is required since one set of Python code should be able to call the Fortran function regardless of how it was compiled. This can be done by using the &lt;code&gt;iso_c_binding&lt;/code&gt; module:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-fortran&#34;&gt;subroutine sqr2(val) BIND(C, NAME=&#39;sqr2&#39;)
+    use iso_c_binding
+    !DEC$ ATTRIBUTES DLLEXPORT :: sqr2
+    integer, intent(inout) :: val
+    val = val ** 2
+end subroutine sqr2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;iso_c_binding&lt;/code&gt; in this case overwrites the name mangling for each compiler (gfortran and ifort), and ensures the call sequence from Python is constant. In this case the &lt;code&gt;!DEC$&lt;/code&gt; statement is ignored by gfortran and the function is available in the exported dll. Notably, the &lt;code&gt;ALIAS&lt;/code&gt; is dropped from the &lt;code&gt;!DEC$&lt;/code&gt; export for Intel Fortran since the name in the binding overwrites this setting.&lt;/p&gt;
+
+&lt;h1 id=&#34;more-complicated-data-types&#34;&gt;More Complicated Data Types&lt;/h1&gt;
+
+&lt;p&gt;The main concern for calling Fortran functions in the dll&amp;rsquo;s from Python is how to setup the data structures. Consider the following function which take a 2-dimensional array of integers and computes some arbitrary value from the inputs by replacing the values in the array:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-fortran&#34;&gt;module example
+    use iso_c_binding
+    implicit none
+contains
+    subroutine sqr_2d_arr(nd, val) BIND(C, NAME=&#39;sqr_2d_arr&#39;)
+        !DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
+        integer, intent(in) :: nd
+        integer, intent(inout) :: val(nd, nd)
+        integer :: i, j
+        do j = 1, nd
+        do i = 1, nd
+            val(i, j) = (val(i, j) + val(j, i)) ** 2
+        enddo
+        enddo
+    end subroutine sqr_2d_arr
+end module example
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The module is compiled with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ifort /dll example.f90
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gfortran -shared example.f90 -o example.dll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and can be called from Python with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import ctypes as ct
+import numpy as np
+
+# import the dll
+fortlib = ct.CDLL(&#39;example.dll&#39;)
+
+# setup the data
+N = 10
+nd = ct.pointer( ct.c_int(N) )          # setup the pointer
+pyarr = np.arange(0, N, dtype=int) * 5  # setup the N-long
+for i in range(1, N):                   # concatenate columns until it is N x N
+    pyarr = np.c_[pyarr, np.arange(0, N, dtype=int) * 5]
+
+# call the function by passing the ctypes pointer using the numpy function:
+_ = fortlib.sqr_2d_arr(nd, np.ctypeslib.as_ctypes(pyarr))
+
+print(pyarr)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;important-considerations&#34;&gt;Important Considerations&lt;/h1&gt;
+
+&lt;p&gt;In the above Python code some things are notable:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;All data is passed by pointer reference to the Fortran dll, the data is modified in place if the variable is &lt;code&gt;intent(inout)&lt;/code&gt;, or replaced if the variable is &lt;code&gt;intent(out)&lt;/code&gt;. All memory is controlled on the Python side of things&lt;/li&gt;
+&lt;li&gt;The memory must be allocated in some form on the Python side using &lt;code&gt;np.zeros(size, dtype=type)&lt;/code&gt; (or similar) even if the variable is &lt;code&gt;intent(out)&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The types of all data initialized on the Python size must match those being called in the Fortran module&lt;/strong&gt;
+a. This is very important. For example, use &lt;code&gt;int&lt;/code&gt; for &lt;code&gt;integer&lt;/code&gt;, &lt;code&gt;float&lt;/code&gt; for &lt;code&gt;real*8&lt;/code&gt;, etc. Python &lt;code&gt;float&lt;/code&gt; is double precision by default. This may not be a correct list, and is definitely not exhaustive, but it has worked with the limited testing that has been done with this method of calling Fortran
+b. the function &lt;code&gt;ctypes.c_pointer()&lt;/code&gt; can be used to create the necessary references to non-array elements, be sure to use &lt;code&gt;ctypes.c_int()&lt;/code&gt; and &lt;code&gt;ctypes.c_double()&lt;/code&gt; (and others) as required for the needed parameter
+c. initializing arrays on the python end is strange. For example, say a Fortran subroutine is defined with an &lt;code&gt;integer, intent(out)&lt;/code&gt; array with size &lt;code&gt;nd&lt;/code&gt;, to initialize this array on the python side, you can use::&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import ctypes as ct
+intarray = (ct.c_int * nd)()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and to give the array values for input::&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import ctypes as ct
+pyarray = np.zeros(nd, dtype=np.int)
+valarray = (ct.c_int * nd)(*pyarray)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Numpy provides some convenient methods &lt;code&gt;np.ctypeslib.as_ctypes()&lt;/code&gt; to pass initialized arrays with the correct types to the Fortran functions (as demonstrated above)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;mixed-language-debugging&#34;&gt;Mixed Language Debugging&lt;/h1&gt;
+
+&lt;p&gt;The use of dll&amp;rsquo;s and &lt;code&gt;ctypes&lt;/code&gt; library for calling the Fortran code provides some exciting opportunities to speed up code development while leveraging the plotting and data management capabilities of pygeostat with the GSLIB Fortran geostatistical library. For example, to debug a Fortran dll which is present in a Visual Studio project, compiled with debug flags, generally follow these steps::&lt;/p&gt;
+
+&lt;p&gt;Visual Studio 2015 Community is currently free and has recently developed a set of Python tools that will utilize Python distributions found on the machine. Combined with the Intel Compiler, projects containing Fortran code compiled to dll, and called VIA the Python libraries and tools presented above, can be debugged after it is called from Python!&lt;/p&gt;
+
+&lt;h1 id=&#34;what-about-julia&#34;&gt;What about Julia&lt;/h1&gt;
+
+&lt;p&gt;Julia provides first class support for calling C libraries using the &lt;code&gt;ccall&lt;/code&gt; function. The example above requires no modification on the fortran side:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-fortran&#34;&gt;module example
+    use iso_c_binding
+    implicit none
+contains
+    subroutine sqr_2d_arr(nd, val) BIND(C, NAME=&#39;sqr_2d_arr&#39;)
+        !DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
+        integer, intent(in) :: nd
+        integer, intent(inout) :: val(nd, nd)
+        integer :: i, j
+        do j = 1, nd
+        do i = 1, nd
+            val(i, j) = (val(i, j) + val(j, i)) ** 2
+        enddo
+        enddo
+    end subroutine sqr_2d_arr
+end module example
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The module is compiled with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ifort /dll example.f90
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gfortran -shared example.f90 -o example.dll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But now the call in Julia is vastly simplified:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-julia&#34;&gt;nd = Int(100)
+arr = zeros(Int64, (nd, nd));
+ccall((:sqr_2d_arr, &amp;quot;./example.dll&amp;quot;), Void, (Ref{Int64}, Ref{Matrix{Int64}}), nd, arr)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>AutoReloading PyCall imported Python modules in Julia</title>
