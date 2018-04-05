@@ -175,3 +175,9 @@ arr = zeros(Int64, (nd, nd));
 ccall((:sqr_2d_arr, "./example.dll"), Void, (Ref{Int64}, Ref{Matrix{Int64}}), nd, arr)
 ```
 
+# UPDATE 04-05-2018
+
+Through some suffering I have learned of the joys of string interop between C and Fortran. I wrote some Fortran to facilitate the conversions. Maybe this will help someone somewhere someday...
+
+<script src="https://gist.github.com/dektoud/a3b9bb0c485d2ae58143d71f55a8d9e4.js"></script>
+

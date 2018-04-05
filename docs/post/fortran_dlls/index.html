@@ -378,6 +378,12 @@ arr = zeros(Int64, (nd, nd));
 ccall((:sqr_2d_arr, &quot;./example.dll&quot;), Void, (Ref{Int64}, Ref{Matrix{Int64}}), nd, arr)
 </code></pre>
 
+<h1 id="update-04-05-2018">UPDATE 04-05-2018</h1>
+
+<p>Through some suffering I have learned of the joys of string interop between C and Fortran. I wrote some Fortran to facilitate the conversions. Maybe this will help someone somewhere someday&hellip;</p>
+
+<script src="https://gist.github.com/dektoud/a3b9bb0c485d2ae58143d71f55a8d9e4.js"></script>
+
     </div>
   </div>
 
