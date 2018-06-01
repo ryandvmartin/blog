@@ -11,6 +11,15 @@
     <atom:link href="/blog/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Non-stationary Geostatistical Modeling: A Case Study Comparing LVA Estimation Frameworks</title>
+      <link>https://dektoud.github.io/blog/publication/non-stationary-estimation/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://dektoud.github.io/blog/publication/non-stationary-estimation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Calling Fortran DLL&#39;s from Python and Julia</title>
       <link>https://dektoud.github.io/blog/post/fortran_dlls/</link>
       <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
