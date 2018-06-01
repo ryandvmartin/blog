@@ -199,6 +199,12 @@ end module example
 arr = zeros(Int64, (nd, nd));
 ccall((:sqr_2d_arr, &amp;quot;./example.dll&amp;quot;), Void, (Ref{Int64}, Ref{Matrix{Int64}}), nd, arr)
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;update-04-05-2018&#34;&gt;UPDATE 04-05-2018&lt;/h1&gt;
+
+&lt;p&gt;Through some suffering I have learned of the joys of string interop between C and Fortran. I wrote some Fortran to facilitate the conversions. Maybe this will help someone somewhere someday&amp;hellip;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/dektoud/a3b9bb0c485d2ae58143d71f55a8d9e4.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
