@@ -1,7 +1,7 @@
 +++
 # About/Biography widget.
 
-date = "2016-04-20T00:00:00"
+date = "2019-01-10T00:00:00"
 draft = false
 
 widget = "about"
@@ -12,28 +12,27 @@ weight = 1
 # List your academic interests.
 [interests]
   interests = [
-    "Machine Learning",
+    "Spatial Clustering",
     "Geostatistics",
     "Stationarity",
-    "Spatial Clustering",
+    "Machine Learning",
     "Python",
     "Fortran",
-    "Parallel Computing"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "PhD in Geostatistics"
-  institution = "University of Alberta"
-  year = "est. 2018"
+  course = "PhD, Geostatistics"
+  institution = "Center for Computational Geostatistics, University of Alberta, Edmonton, Canada"
+  year = "January, 2019"
 
 [[education.courses]]
-  course = "MSc in Economic Geology"
-  institution = "Univeristy of Waterloo, Ontario, Canada"
+  course = "MSc, Economic Geology"
+  institution = "University of Waterloo, Ontario, Canada"
   year = "2012"
 
 [[education.courses]]
-  course = "BSc in Geology"
+  course = "BSc, Geology"
   institution = "University of Waterloo, Ontario, Canada"
   year = "2009"
 
@@ -41,7 +40,8 @@ weight = 1
 
 # Biography {#bio}
 
-I am a PhD candidate at the University of Alberta studying Geostatistics for uncertainty characterizations in natural systems. Following my MSc at the University of Waterloo I worked as an exploration geologist in northern Ontario at a syenite-hosted gold deposit. I have a keen interest in geochemistry, mineral chemistry, spatial clustering, implicit modeling, locally varying anisotropy and other non-stationary geostatistical topics.
+I am a geologist turned geostatistician who loves to develop innovative solutions for geostatistical and geological modeling problems. My PhD thesis revolved around several data-driven solutions that address complex and important components of a geostatistical modeling workflow, with the goal of reducing subjectivity and increasing reproducibility between practitioners. My tool of choice is Python.
 
-I am a self-taught programmer that enjoys the `art` of Fortran. I excel at creating *mildly* inefficient research code that accomplishes a variety of tasks. Of special interest, I enjoy compiling and testing various numerical libraries; sparse solvers, binary storage, parallel computing, etc, developing python code for [pygeostat](http://ccgalberta.com/pygeostat), writing research papers, geeking out over computers and components and [CS:GO](http://blog.counter-strike.net/).
+After obtaining my MSc at the University of Waterloo in 2012, I worked as an exploration geologist in northern Ontario at a syenite-hosted gold deposit. In 2014 I began at Center for Computational Geostatistics at the University of Alberta, and obtained my PhD in Geostatistics in early 2019.
 
+I have worked in several research areas including: locally varying anisotropy (LVA), LVA parameter inference, LVA field modeling, high-performance computing (HPC), Python library development, implicit boundary modeling, clustering and spatial clustering, local change of support, and estimation and simulation methodologies for recoverable reserves. I have a keen interest in geochemistry, mineral chemistry, spatial clustering, implicit modeling, locally varying anisotropy and other non-stationary geostatistical topics.
