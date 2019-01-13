@@ -34,11 +34,11 @@
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/publication/non-stationary-estimation/">
+  <link rel="canonical" href="https://dektoud.github.io/blog/publication/clustering/">
 
   
 
-  <title>Non-stationary Geostatistical Modeling: A Case Study Comparing LVA Estimation Frameworks | Rmar&#39;s Guide</title>
+  <title>Towards justifying unsupervised stationary decisions for geostatistical modeling: Ensemble spatial and multivariate clustering with geomodeling specific clustering metrics | Rmar&#39;s Guide</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -121,10 +121,10 @@
 <div class="container pub" itemscope itemtype="http://schema.org/CreativeWork">
 
   <div class="pub-title">
-    <h1 itemprop="name">Non-stationary Geostatistical Modeling: A Case Study Comparing LVA Estimation Frameworks</h1>
+    <h1 itemprop="name">Towards justifying unsupervised stationary decisions for geostatistical modeling: Ensemble spatial and multivariate clustering with geomodeling specific clustering metrics</h1>
     <span class="pub-authors" itemprop="author">
       
-      Ryan Martin, David Machuca-Mory, Oy Leuangthong, Jeff Boisvert
+      Ryan Martin, Jeff Boisvert
       
     </span>
     <span class="pull-right">
@@ -133,35 +133,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fnon-stationary-estimation%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fclustering%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Non-stationary%20Geostatistical%20Modeling%3a%20A%20Case%20Study%20Comparing%20LVA%20Estimation%20Frameworks&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fnon-stationary-estimation%2f"
+         href="https://twitter.com/intent/tweet?text=Towards%20justifying%20unsupervised%20stationary%20decisions%20for%20geostatistical%20modeling%3a%20Ensemble%20spatial%20and%20multivariate%20clustering%20with%20geomodeling%20specific%20clustering%20metrics&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fclustering%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fnon-stationary-estimation%2f&amp;title=Non-stationary%20Geostatistical%20Modeling%3a%20A%20Case%20Study%20Comparing%20LVA%20Estimation%20Frameworks"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fclustering%2f&amp;title=Towards%20justifying%20unsupervised%20stationary%20decisions%20for%20geostatistical%20modeling%3a%20Ensemble%20spatial%20and%20multivariate%20clustering%20with%20geomodeling%20specific%20clustering%20metrics"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fnon-stationary-estimation%2f&amp;title=Non-stationary%20Geostatistical%20Modeling%3a%20A%20Case%20Study%20Comparing%20LVA%20Estimation%20Frameworks"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fclustering%2f&amp;title=Towards%20justifying%20unsupervised%20stationary%20decisions%20for%20geostatistical%20modeling%3a%20Ensemble%20spatial%20and%20multivariate%20clustering%20with%20geomodeling%20specific%20clustering%20metrics"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Non-stationary%20Geostatistical%20Modeling%3a%20A%20Case%20Study%20Comparing%20LVA%20Estimation%20Frameworks&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fnon-stationary-estimation%2f">
+         href="mailto:?subject=Towards%20justifying%20unsupervised%20stationary%20decisions%20for%20geostatistical%20modeling%3a%20Ensemble%20spatial%20and%20multivariate%20clustering%20with%20geomodeling%20specific%20clustering%20metrics&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpublication%2fclustering%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -176,11 +176,11 @@
 <div class="article-container">
 
   
-  <img src="https://dektoud.github.io/blog/img/lva-main.png" class="pub-banner" itemprop="image">
+  <img src="https://dektoud.github.io/blog/img/metric_expected_relationship.png" class="pub-banner" itemprop="image">
   
 
   <h3>Abstract</h3>
-  <p class="pub-abstract" itemprop="text">Incorporating locally varying anisotropy (LVA) in geostatistical modeling improves estimates for structurally complex domains where a single set of anisotropic parameters modeled globally do not account for all geological features. In this work, the properties of two LVA-geostatistical modeling frameworks are explored through application to a complexly folded gold deposit in Ghana. The inference of necessary parameters is a significant requirement of geostatistical modeling with LVA; this work focuses on the case where LVA orientations, derived from expert geological interpretation, are used to improve the grade estimates. The different methodologies for inferring the required parameters in this context are explored. The results of considering different estimation frameworks and alternate methods of parameterization are evaluated with a cross validation study, as well as visual inspection of grade continuity along select cross sections. Results show that stationary methodologies are outperformed by all LVA techniques, even when the LVA framework has minimal guidance on parameterization. Findings also show that additional improvements are gained by considering parameter inference where the LVA orientations and point data are used to infer the local range of anisotropy. Considering LVA for geostatistical modeling of the deposit considered in this work results in better reproduction of curvilinear geological features.</p>
+  <p class="pub-abstract" itemprop="text">The subdivision of samples into stationary sets is one of the first decisions in a resource modeling workflow where geologically and statistically related samples are grouped for further geostatistical modeling. Unsupervised learning algorithms (clustering) with modifications to consider spatial correlation have several benefits in the decision of stationarity, they are: automatic and repeatable; assess uncertainty; and provide a framework for checking existing groupings. However, subjective parameterization remains a critical limitation for the application of spatial clustering in geostatistical workflows. In this work, two main extensions to the current state of research are proposed: 1) a combined spatial-multivariate metric that describes cluster quality in both multivariate and Cartesian space by measuring multivariate compactness and spatial contiguity; and 2) a novel random-path spatial-multivariate ensemble clustering algorithm to reduce the reliance on subjective clustering parameterization. The metrics developed in this work quantify clustering quality based multivariate and spatial properties. Moreover, the proposed clustering algorithm allows the user to control the spatial contiguity and multivariate compactness of the final clusters by modifying a single parameter. The clustering algorithm is introduced and demonstrated on a synthetic test dataset, then further application to more complex datasets are explored to demonstrate the clustering properties and simplicity of tuning the algorithm to prefer spatially contiguous clusters or multivariate compactness. The proposed algorithm outperforms other clustering algorithms for the datasets tested based on the metrics developed.</p>
 
   
   <div class="row">
@@ -207,7 +207,7 @@
     <div class="col-sm-10">
       <div class="row">
         <div class="col-xs-12 col-sm-3 pub-row-heading">Publication</div>
-        <div class="col-xs-12 col-sm-9"><em>Natural Resources Research</em></div>
+        <div class="col-xs-12 col-sm-9"><em>Computers and Geoscience</em></div>
       </div>
     </div>
     <div class="col-sm-1"></div>
@@ -220,7 +220,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
         <div class="col-xs-12 col-sm-9" itemprop="datePublished">
-          May, 2018
+          November, 2018
         </div>
       </div>
     </div>
@@ -240,7 +240,7 @@
 
 
 
-<a class="btn btn-primary btn-outline" href="http://doi.org/10.1007/s11053-018-9384-5">
+<a class="btn btn-primary btn-outline" href="https://www.sciencedirect.com/science/article/pii/S0098300417312992">
   PDF
 </a>
 
@@ -249,10 +249,6 @@
 
 
 
-
-<a class="btn btn-primary btn-outline" href="https://rdcu.be/QmT1">
-  SharedIt
-</a>
 
 <a class="btn btn-primary btn-outline" href="http://www.ccgalberta.com">
   CCG UAlberta
@@ -277,13 +273,10 @@
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="https://dektoud.github.io/blog/publication/geological-features/"><span
-      aria-hidden="true">&larr;</span> Iterative refinement of implicit boundary models for improved geological feature reproduction</a></li>
+    <li class="previous"><a href="https://dektoud.github.io/blog/publication/non-stationary-estimation/"><span
+      aria-hidden="true">&larr;</span> Non-stationary Geostatistical Modeling: A Case Study Comparing LVA Estimation Frameworks</a></li>
     
 
-    
-    <li class="next"><a href="https://dektoud.github.io/blog/publication/clustering/">Towards justifying unsupervised stationary decisions for geostatistical modeling: Ensemble spatial and multivariate clustering with geomodeling specific clustering metrics <span
-      aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
 </nav>
