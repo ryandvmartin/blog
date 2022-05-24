@@ -1,43 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Julia on Rmar&#39;s Guide</title>
-    <link>https://dektoud.github.io/blog/tags/julia/</link>
+    <link>https://ryandvmartin.github.io/blog/tags/julia/</link>
     <description>Recent content in Julia on Rmar&#39;s Guide</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Ryan Martin</copyright>
-    <lastBuildDate>Mon, 12 Mar 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://dektoud.github.io/blog/tags/julia/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 12 Mar 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://ryandvmartin.github.io/blog/tags/julia/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Calling Fortran DLL&#39;s from Python and Julia</title>
-      <link>https://dektoud.github.io/blog/post/fortran_dlls/</link>
+      <link>https://ryandvmartin.github.io/blog/post/fortran_dlls/</link>
       <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/post/fortran_dlls/</guid>
-      <description>The standard Python library contains a package called ctypes which provides interfaces to foreign functions that are found in shared libraries. With the Intel compiler, a Fortran function or subroutine can be exported to dll by ensuring that the !DEC$ is present to define the exported symbol:
-! Note: this only works with the Intel Compiler subroutine sqr(val) !DEC$ ATTRIBUTES DLLEXPORT, ALIAS:&#39;sqr&#39; :: sqr integer, intent(inout) :: val val = val ** 2 end subroutine sqr  If the above subroutine is contained in the example.</description>
+      <guid>https://ryandvmartin.github.io/blog/post/fortran_dlls/</guid>
+      <description>Calling those legacy DLL&amp;rsquo;s from our fun new languages :-)</description>
     </item>
     
     <item>
       <title>AutoReloading PyCall imported Python modules in Julia</title>
-      <link>https://dektoud.github.io/blog/post/julia-autoreloading/</link>
+      <link>https://ryandvmartin.github.io/blog/post/julia-autoreloading/</link>
       <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/post/julia-autoreloading/</guid>
-      <description>AutoReloading PyCall Imported Modules One of the major components of being productive with my Python workflows was the IPython magic command %autoreload 2. This magic command throws a hook on the start of running an IPython cell, and recompiles Python modules where source code changes are detected. This is probably the single most useful component of my workflow since I modify and work on packages in Sublime and test and develop the code in an interactive Jupyter notebook.</description>
+      <guid>https://ryandvmartin.github.io/blog/post/julia-autoreloading/</guid>
+      <description>&lt;code&gt;%autoreload 2&lt;/code&gt; for PyCall imported python modules in the IJulia environment</description>
     </item>
     
     <item>
       <title>Transitioning from Python to Julia</title>
-      <link>https://dektoud.github.io/blog/post/julia/</link>
+      <link>https://ryandvmartin.github.io/blog/post/julia/</link>
       <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/post/julia/</guid>
-      <description>Two Languages Python suffers from a two language problem. On one end the syntax, vast and mature library ecosystem, dynamic style and interactive workflows that Python offers provide a flexible and productive prototyping environment for new ideas. However, when moving past initial ideas and beginning to apply those ideas to datasets of meaningful size, pythonistas often look to things like Cython, Numba, F2PY or C++ to gain additional performance. In my research group we spend much of our time developing and implementing ideas using Python (or Matlab), and once those ideas are demonstrated, often a follow-up Fortran implementation is generated so that statically compiled executables implementing those ideas can reach as wide an audience as possible.</description>
+      <guid>https://ryandvmartin.github.io/blog/post/julia/</guid>
+      <description>A few useful tips and tricks for transitioning from Python + Compiled language to Julia</description>
     </item>
     
   </channel>

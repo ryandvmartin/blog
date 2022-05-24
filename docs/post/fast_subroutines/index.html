@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta name="author" content="Ryan Martin">
   <meta name="description" content="PhD Geostatistics, MSc Economic Geology">
 
@@ -28,13 +28,13 @@
   <link rel="stylesheet" href="/blog/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
-  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="alternate" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
 
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/post/fast_subroutines/">
+  <link rel="canonical" href="https://ryandvmartin.github.io/blog/post/fast_subroutines/">
 
   
 
@@ -130,7 +130,7 @@
 <div class="article-metadata">
 
   <span class="article-date">
-    <time datetime="2017-02-07 21:00:01 -0700 MST" itemprop="datePublished">
+    <time datetime="2017-02-07 21:00:01 -0700 -0700" itemprop="datePublished">
       Tue, Feb 7, 2017
     </time>
   </span>
@@ -165,35 +165,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffast_subroutines%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffast_subroutines%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffast_subroutines%2f"
+         href="https://twitter.com/intent/tweet?text=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffast_subroutines%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffast_subroutines%2f&amp;title=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffast_subroutines%2f&amp;title=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffast_subroutines%2f&amp;title=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffast_subroutines%2f&amp;title=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffast_subroutines%2f">
+         href="mailto:?subject=Methods%20to%20write%20fast%20subroutines%20for%20Python%20-%20minimal%20computer%20science%20required&amp;body=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffast_subroutines%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -206,220 +206,168 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<hr />
-
+      <hr>
 <blockquote>
 <p>Note: I am not a Python or programming expert. There are probably better ways to optimize subroutines, but that is not the point of this post!.</p>
 </blockquote>
-
-<hr />
-
+<hr>
 <h1 id="introduction">Introduction</h1>
-
 <p>Python is an impressive programming language for a beginning programmer/scientist. Syntax is easy to learn, the language is expressive (in the sense that it reads like it is doing things), and there are immense guides out there on the web to learn nearly any aspect of Python you can think of. I do not profess to be an expert of Python, by any means. I am self taught and know enough to make things happen for my research. I know (generally and definitely not enough) about the standard libraries, and I know enough about what <em>I want</em> to happen in my code that I can find libraries meaningful for my research, i.e. numpy matrix manipulations, sparse linear algebra and sklearn machine learning algorithms.</p>
-
 <p>However, as with any research project, you are on the cutting edge and sometimes functions you require are not implemented in standard packages, or you require access to specific portions of the functions to insert new ideas. Our research group is historically invested in Fortran, so naturally, new code is written in Fortran to leverage the vast library of existing codes. Many libraries can be used within Fortran, however, its commonly easier to prototype and test outside of Fortran.</p>
-
 <h1 id="methods-for-fast-computations-in-python">Methods for <em>FAST</em> computations in Python</h1>
-
-<p>Keeping in mind that we are at the cutting edge and need to develop fast subroutines for complicated numerical analyses, and also that our definition of <strong><em>fast</em></strong> is to execute numerical calculations in the least amount of time (as opposed to querying databases or other non-numerical tasks), what are the ways that we can do this within our chosen Python scripting universe? Anyone who has traveled down this road is likely familiar with the major options, and there are benefits and drawbacks to each of them. It depends on the application, complexity of the code, and the intended use of the code. I am focused on numerical computations in my research using linear algebra, matrix solvers, and machine learning techniques. Since my research group primarily produces the standalone Fortran executables, <a href="https://docs.scipy.org/doc/numpy-dev/f2py/">F2PY</a> project is attractive for mixing Python and Fortran code. There are other methods to call Fortran code from Python, too, like <a href="https://docs.python.org/3.5/library/ctypes.html">ctypes</a> or a library called <a href="http://cffi.readthedocs.io/en/latest/">cffi</a>. However, all of these methods require fairly polished and working Fortran code that can be compiled and runs with minimal and easy to trace errors. This may not be completely suitable for speeding up research code since tracking down and fixing errors is difficult, especially for the newcomer. Compiling the code can be a headache in itself, especially if you are working on windows (which I am). As a beginning programmer and researcher learning about designing algorithms I guarantee that the flexibility in debugging and testing out subroutines that Python provides will improve the development of your ideas.</p>
-
+<p>Keeping in mind that we are at the cutting edge and need to develop fast subroutines for complicated numerical analyses, and also that our definition of <em><strong>fast</strong></em> is to execute numerical calculations in the least amount of time (as opposed to querying databases or other non-numerical tasks), what are the ways that we can do this within our chosen Python scripting universe? Anyone who has traveled down this road is likely familiar with the major options, and there are benefits and drawbacks to each of them. It depends on the application, complexity of the code, and the intended use of the code. I am focused on numerical computations in my research using linear algebra, matrix solvers, and machine learning techniques. Since my research group primarily produces the standalone Fortran executables, <a href="https://docs.scipy.org/doc/numpy-dev/f2py/">F2PY</a> project is attractive for mixing Python and Fortran code. There are other methods to call Fortran code from Python, too, like <a href="https://docs.python.org/3.5/library/ctypes.html">ctypes</a> or a library called <a href="http://cffi.readthedocs.io/en/latest/">cffi</a>. However, all of these methods require fairly polished and working Fortran code that can be compiled and runs with minimal and easy to trace errors. This may not be completely suitable for speeding up research code since tracking down and fixing errors is difficult, especially for the newcomer. Compiling the code can be a headache in itself, especially if you are working on windows (which I am). As a beginning programmer and researcher learning about designing algorithms I guarantee that the flexibility in debugging and testing out subroutines that Python provides will improve the development of your ideas.</p>
 <p>A number of projects address the need for fast Python subroutines, like <a href="http://www.numpy.org/">Numpy</a>, <a href="http://pypy.org/">PyPy</a>,  <a href="http://numba.pydata.org/">Numba</a>, <a href="http://cython.org/">Cython</a>, and many many many others&hellip;. I&rsquo;m sure. So, for the beginning researcher? Which methodology provides the most benefit with the least amount of investment? I will focus on the following mainly because they are the ones that I have tried:</p>
-
 <ol>
 <li><a href="#F2PY">F2PY</a></li>
 <li><a href="#numpy">Numpy</a></li>
 <li><a href="#numba">Numba</a></li>
 <li><a href="#cython">Cython</a></li>
 </ol>
-
 <p>Each of the above methods attacks the problem in different ways. F2PY lets you compile Fortran code into easily callable python modules. Numpy provides a vast library of numerical computation functions that might allow you to skip the lower level languages all together. Numba uses &lsquo;just in time&rsquo; (JIT) compiling to &lsquo;compile&rsquo; native python code. This can be advantageous when the code consists of a number of loops with relatively simple mathematical operations. And finally Cython allows you to write static-typed &lsquo;Python&rsquo; that is compiled to C++ and taken to the extreme using Cython would allow you to write an entire project essentially in C++.</p>
-
 <h1 id="example">Example where fast code is needed</h1>
-
 <p>Lets consider an example of computing the gradients on a 3D grid using the forward-reverse difference at each cell. Assume that we don&rsquo;t have any knowledge about specialized libraries that have already implemented this feature. Lets also assume that writing out the code in loop-format benefits our research so we can add in some ad-hoc calculations in the grid that <em>couldn&rsquo;t</em> be handled if we used an existing package to get the gradients, or if we used vectorized code (which Python is very good at).</p>
-
 <h2 id="testing-the-code">Testing the Code</h2>
-
 <p>I run Python 3.5 from Anaconda usually in the Jupyter notebook. A magic cell prefixed with <code>%time</code> or <code>%%timeit</code> <em>should</em> be available to time functions, but these have never worked for me. Therefore I am using the following to test the functions implemented in this document:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">time</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">timefunc</span>(function, args, n<span style="color:#333">=</span><span style="color:#00d;font-weight:bold">100</span>):
+    stime <span style="color:#333">=</span> time<span style="color:#333">.</span>time()
+    <span style="color:#080;font-weight:bold">for</span> _ <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(n):
+        function(<span style="color:#333">*</span>args)
+    <span style="color:#080;font-weight:bold">return</span> <span style="background-color:#fff0f0">&#39;Time per iteration </span><span style="background-color:#eee">%.9f</span><span style="background-color:#fff0f0">&#39;</span> <span style="color:#333">%</span> ((time<span style="color:#333">.</span>time() <span style="color:#333">-</span> stime) <span style="color:#333">/</span> <span style="color:#007020">float</span>(n))
+</code></pre></div><p>and tested with:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">function</span> ():
+    <span style="color:#080;font-weight:bold">return</span> <span style="background-color:#fff0f0">&#39;this is the function &#39;</span>
 
-<pre><code class="language-python">import time
-def timefunc(function, args, n=100):
-    stime = time.time()
-    for _ in range(n):
-        function(*args)
-    return 'Time per iteration %.9f' % ((time.time() - stime) / float(n))
-</code></pre>
-
-<p>and tested with:</p>
-
-<pre><code class="language-python">def function ():
-    return 'this is the function '
-
-print(timefunc(function, arguments))
-</code></pre>
-
-<p>The test data is constant between runs, and generated using numpy:</p>
-
-<pre><code class="language-python">import numpy as np
-grid = np.random.rand(50, 50, 50)
-</code></pre>
-
-<h1 id="python-only">Python Only</h1>
-
+<span style="color:#080;font-weight:bold">print</span>(timefunc(function, arguments))
+</code></pre></div><p>The test data is constant between runs, and generated using numpy:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">np</span>
+grid <span style="color:#333">=</span> np<span style="color:#333">.</span>random<span style="color:#333">.</span>rand(<span style="color:#00d;font-weight:bold">50</span>, <span style="color:#00d;font-weight:bold">50</span>, <span style="color:#00d;font-weight:bold">50</span>)
+</code></pre></div><h1 id="python-only">Python Only</h1>
 <p>Lets start with un-vectorized Python code using loops (pretty much the worst case and something that should never be done in Python, but hey, we&rsquo;re learning):</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">np</span>
 
-<pre><code class="language-python">import numpy as np
-
-def calc_gradients(grid):
-    nx, ny, nz = np.shape(grid)  # assumes the grid is 3D
-    gx = np.zeros((nx, ny, nz))
-    gy = np.zeros((nx, ny, nz))
-    gz = np.zeros((nx, ny, nz))
-    # the dreaded triple loop, a naive python implementation
-    for i in range(nx):
-        for j in range(ny):
-            for k in range(nz):
-                # limit the array indexes, remember about Python 0-indexing
-                ist = max([0, i - 1])
-                jst = max([0, j - 1])
-                kst = max([0, k - 1])
-                ifn = min([nx - 1, i + 1])
-                jfn = min([ny - 1, j + 1])
-                kfn = min([nz - 1, k + 1])
-                # calculate the gradients
-                gx[i, j, k] = ( grid[ist, j, k] - grid[ifn, j, k] ) / 2.0
-                gy[i, j, k] = ( grid[i, jst, k] - grid[i, jfn, k] ) / 2.0
-                gz[i, j, k] = ( grid[i, j, kst] - grid[i, j, kfn] ) / 2.0
-    return gx, gy, gz
-</code></pre>
-
-<p>Which takes $0.365s$ per iteration. This isnt terribly bad. Some time is saved by using the standard library <code>max()</code> function instead of the numpy <code>np.maximum()</code> function.</p>
-
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">calc_gradients</span>(grid):
+    nx, ny, nz <span style="color:#333">=</span> np<span style="color:#333">.</span>shape(grid)  <span style="color:#888"># assumes the grid is 3D</span>
+    gx <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz))
+    gy <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz))
+    gz <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz))
+    <span style="color:#888"># the dreaded triple loop, a naive python implementation</span>
+    <span style="color:#080;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(nx):
+        <span style="color:#080;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(ny):
+            <span style="color:#080;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(nz):
+                <span style="color:#888"># limit the array indexes, remember about Python 0-indexing</span>
+                ist <span style="color:#333">=</span> <span style="color:#007020">max</span>([<span style="color:#00d;font-weight:bold">0</span>, i <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>])
+                jst <span style="color:#333">=</span> <span style="color:#007020">max</span>([<span style="color:#00d;font-weight:bold">0</span>, j <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>])
+                kst <span style="color:#333">=</span> <span style="color:#007020">max</span>([<span style="color:#00d;font-weight:bold">0</span>, k <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>])
+                ifn <span style="color:#333">=</span> <span style="color:#007020">min</span>([nx <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, i <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>])
+                jfn <span style="color:#333">=</span> <span style="color:#007020">min</span>([ny <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, j <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>])
+                kfn <span style="color:#333">=</span> <span style="color:#007020">min</span>([nz <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, k <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>])
+                <span style="color:#888"># calculate the gradients</span>
+                gx[i, j, k] <span style="color:#333">=</span> ( grid[ist, j, k] <span style="color:#333">-</span> grid[ifn, j, k] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gy[i, j, k] <span style="color:#333">=</span> ( grid[i, jst, k] <span style="color:#333">-</span> grid[i, jfn, k] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gz[i, j, k] <span style="color:#333">=</span> ( grid[i, j, kst] <span style="color:#333">-</span> grid[i, j, kfn] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+    <span style="color:#080;font-weight:bold">return</span> gx, gy, gz
+</code></pre></div><p>Which takes $0.365s$ per iteration. This isnt terribly bad. Some time is saved by using the standard library <code>max()</code> function instead of the numpy <code>np.maximum()</code> function.</p>
 <h1 id="numba">Numba</h1>
-
 <p><a href="http://numba.pydata.org/">Numba</a>, the JIT compiler, at a very high level takes Python code and makes machine code that runs very fast. Recent versions of Numba support many Numpy functions (you can <a href="http://numba.pydata.org/">check it out here</a>). To my knowledge, this is the simplest way to speed up this type of triple loop happening in Python. A simple decorator <code>@numba.jit</code> placed at the start of the function:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numba</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">np</span>
 
-<pre><code class="language-python">import numba
-import numpy as np
-
-@numba.jit
-def calc_gradients_jit(grid):
-    nx, ny, nz = np.shape(grid)  # assumes the grid is 3D
-    gx = np.zeros((nx, ny, nz))
-    gy = np.zeros((nx, ny, nz))
-    gz = np.zeros((nx, ny, nz))
-    # the dreaded triple loop, a naive python implementation
-    for i in range(nx):
-        for j in range(ny):
-            for k in range(nz):
-                # limit the array indexes, remember about Python 0-indexing
-                ist = max(0, i - 1)
-                jst = max(0, j - 1)
-                kst = max(0, k - 1)
-                ifn = min(nx - 1, i + 1)
-                jfn = min(ny - 1, j + 1)
-                kfn = min(nz - 1, k + 1)
-                # calculate the gradients
-                gx[i, j, k] = ( grid[ist, j, k] - grid[ifn, j, k] ) / 2.0
-                gy[i, j, k] = ( grid[i, jst, k] - grid[i, jfn, k] ) / 2.0
-                gz[i, j, k] = ( grid[i, j, kst] - grid[i, j, kfn] ) / 2.0
-    return gx, gy, gz
-</code></pre>
-
-<p>And the function runs in $0.695ms$, or about $525x$ faster average over 1000 iterations. Unfortunately if things outside of simple mathematical operations are required, and those are unsupported within the set of functions converted from Numpy (or other libraries) to standard Python implementations specifically for Numba, then you&rsquo;re stuck implementing them on your own. So, this can&rsquo;t be used for everything. But in this simple case, it is the best!</p>
-
+<span style="color:#555;font-weight:bold">@numba.jit</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">calc_gradients_jit</span>(grid):
+    nx, ny, nz <span style="color:#333">=</span> np<span style="color:#333">.</span>shape(grid)  <span style="color:#888"># assumes the grid is 3D</span>
+    gx <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz))
+    gy <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz))
+    gz <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz))
+    <span style="color:#888"># the dreaded triple loop, a naive python implementation</span>
+    <span style="color:#080;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(nx):
+        <span style="color:#080;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(ny):
+            <span style="color:#080;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(nz):
+                <span style="color:#888"># limit the array indexes, remember about Python 0-indexing</span>
+                ist <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">0</span>, i <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                jst <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">0</span>, j <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                kst <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">0</span>, k <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ifn <span style="color:#333">=</span> <span style="color:#007020">min</span>(nx <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, i <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                jfn <span style="color:#333">=</span> <span style="color:#007020">min</span>(ny <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, j <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                kfn <span style="color:#333">=</span> <span style="color:#007020">min</span>(nz <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, k <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                <span style="color:#888"># calculate the gradients</span>
+                gx[i, j, k] <span style="color:#333">=</span> ( grid[ist, j, k] <span style="color:#333">-</span> grid[ifn, j, k] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gy[i, j, k] <span style="color:#333">=</span> ( grid[i, jst, k] <span style="color:#333">-</span> grid[i, jfn, k] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gz[i, j, k] <span style="color:#333">=</span> ( grid[i, j, kst] <span style="color:#333">-</span> grid[i, j, kfn] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+    <span style="color:#080;font-weight:bold">return</span> gx, gy, gz
+</code></pre></div><p>And the function runs in $0.695ms$, or about $525x$ faster average over 1000 iterations. Unfortunately if things outside of simple mathematical operations are required, and those are unsupported within the set of functions converted from Numpy (or other libraries) to standard Python implementations specifically for Numba, then you&rsquo;re stuck implementing them on your own. So, this can&rsquo;t be used for everything. But in this simple case, it is the best!</p>
 <h1 id="cython">Cython</h1>
-
 <p><a href="http://cython.org/">Cython</a> is a nice library that essentially lets you write compiled C extensions with familiar Python-like syntax. Speed comes from declaring static types with specialized code. Cython is essentially its own syntax although many things are similar to Python or C (although I have never used the latter). The Cython code is converted to C using all sorts of trickery that isn&rsquo;t important at this level of understanding, and the result is an extension module that can be imported and called from Python, and has all the speed of a compiled language. I think Cython can be quite flexible, but the most speed comes from being explicit and defining the types of all variables that are used in the code. Special syntax is required for this part which can be a bit confusing to learn, but there are lots of examples out there. So, our 3D gradient subroutine becomes (using the Cython magic cell):</p>
-
-<pre><code class="language-python">%%cython
-import numpy as np
-cimport numpy as np
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#333">%%</span>cython
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">np</span>
+cimport numpy <span style="color:#080;font-weight:bold">as</span> np
 cimport cython
 
-@cython.boundscheck(False) # these flags may make problems..
-@cython.wraparound(False)
-def calc_gradients_cy(np.ndarray[np.double_t, ndim=3] grid):
-    # explicitly define ***ALL*** variables types
-    cdef int nx = grid.shape[0]
-    cdef int ny = grid.shape[1]
-    cdef int nz = grid.shape[2]
-    cdef int i, j, k, ist, jst, kst, ifn, jfn, kfn
-    cdef np.ndarray[np.double_t, ndim=3] gx = np.zeros((nx, ny, nz), dtype=np.double)
-    cdef np.ndarray[np.double_t, ndim=3] gy = np.zeros((nx, ny, nz), dtype=np.double)
-    cdef np.ndarray[np.double_t, ndim=3] gz = np.zeros((nx, ny, nz), dtype=np.double)
+<span style="color:#555;font-weight:bold">@cython.boundscheck</span>(False) <span style="color:#888"># these flags may make problems..</span>
+<span style="color:#555;font-weight:bold">@cython.wraparound</span>(False)
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">calc_gradients_cy</span>(np<span style="color:#333">.</span>ndarray[np<span style="color:#333">.</span>double_t, ndim<span style="color:#333">=</span><span style="color:#00d;font-weight:bold">3</span>] grid):
+    <span style="color:#888"># explicitly define ***ALL*** variables types</span>
+    cdef <span style="color:#007020">int</span> nx <span style="color:#333">=</span> grid<span style="color:#333">.</span>shape[<span style="color:#00d;font-weight:bold">0</span>]
+    cdef <span style="color:#007020">int</span> ny <span style="color:#333">=</span> grid<span style="color:#333">.</span>shape[<span style="color:#00d;font-weight:bold">1</span>]
+    cdef <span style="color:#007020">int</span> nz <span style="color:#333">=</span> grid<span style="color:#333">.</span>shape[<span style="color:#00d;font-weight:bold">2</span>]
+    cdef <span style="color:#007020">int</span> i, j, k, ist, jst, kst, ifn, jfn, kfn
+    cdef np<span style="color:#333">.</span>ndarray[np<span style="color:#333">.</span>double_t, ndim<span style="color:#333">=</span><span style="color:#00d;font-weight:bold">3</span>] gx <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz), dtype<span style="color:#333">=</span>np<span style="color:#333">.</span>double)
+    cdef np<span style="color:#333">.</span>ndarray[np<span style="color:#333">.</span>double_t, ndim<span style="color:#333">=</span><span style="color:#00d;font-weight:bold">3</span>] gy <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz), dtype<span style="color:#333">=</span>np<span style="color:#333">.</span>double)
+    cdef np<span style="color:#333">.</span>ndarray[np<span style="color:#333">.</span>double_t, ndim<span style="color:#333">=</span><span style="color:#00d;font-weight:bold">3</span>] gz <span style="color:#333">=</span> np<span style="color:#333">.</span>zeros((nx, ny, nz), dtype<span style="color:#333">=</span>np<span style="color:#333">.</span>double)
 
-    # the dreaded triple loop, a naive python implementation
-    for i in range(nx):
-        for j in range(ny):
-            for k in range(nz):
-                # limit the array indexes, remember about Python 0-indexing
-                ist = max(0, i - 1)
-                jst = max(0, j - 1)
-                kst = max(0, k - 1)
-                ifn = min(nx - 1, i + 1)
-                jfn = min(ny - 1, j + 1)
-                kfn = min(nz - 1, k + 1)
-                # calculate the gradients
-                gx[i, j, k] = ( grid[ist, j, k] - grid[ifn, j, k] ) / 2.0
-                gy[i, j, k] = ( grid[i, jst, k] - grid[i, jfn, k] ) / 2.0
-                gz[i, j, k] = ( grid[i, j, kst] - grid[i, j, kfn] ) / 2.0
-    return gx, gy, gz
-</code></pre>
-
-<p>This function comes in slightly behind Numba at $0.953ms$ average over 1000 iterations, which is a $383x$ speedup. However, this comes at a cost of much more complex conversion of the original code to statically type everything. Additionally, there are likely Cython best practice conventions that I have not considered, and therefore the above code may be suboptimal.</p>
-
+    <span style="color:#888"># the dreaded triple loop, a naive python implementation</span>
+    <span style="color:#080;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(nx):
+        <span style="color:#080;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(ny):
+            <span style="color:#080;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(nz):
+                <span style="color:#888"># limit the array indexes, remember about Python 0-indexing</span>
+                ist <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">0</span>, i <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                jst <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">0</span>, j <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                kst <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">0</span>, k <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ifn <span style="color:#333">=</span> <span style="color:#007020">min</span>(nx <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, i <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                jfn <span style="color:#333">=</span> <span style="color:#007020">min</span>(ny <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, j <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                kfn <span style="color:#333">=</span> <span style="color:#007020">min</span>(nz <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>, k <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                <span style="color:#888"># calculate the gradients</span>
+                gx[i, j, k] <span style="color:#333">=</span> ( grid[ist, j, k] <span style="color:#333">-</span> grid[ifn, j, k] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gy[i, j, k] <span style="color:#333">=</span> ( grid[i, jst, k] <span style="color:#333">-</span> grid[i, jfn, k] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gz[i, j, k] <span style="color:#333">=</span> ( grid[i, j, kst] <span style="color:#333">-</span> grid[i, j, kfn] ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+    <span style="color:#080;font-weight:bold">return</span> gx, gy, gz
+</code></pre></div><p>This function comes in slightly behind Numba at $0.953ms$ average over 1000 iterations, which is a $383x$ speedup. However, this comes at a cost of much more complex conversion of the original code to statically type everything. Additionally, there are likely Cython best practice conventions that I have not considered, and therefore the above code may be suboptimal.</p>
 <h1 id="F2PY">F2PY</h1>
-
 <p><a href="https://docs.scipy.org/doc/numpy-dev/f2py/">F2PY</a> is my favorite methodology to compile fast code, but this is because: 1) my research group uses Fortran, 2) I know Fortran, and 3) I have mastered F2PY on Windows with the Intel Compiler. This method is definitely not where I would start if I am learning. Many people view Fortran as an ancient language not worth learning. I agree that prototyping code and ideas in Fortran can be arduous, but the open source GSLIB programs released in the 90&rsquo;s, which are still relevant, pretty well sum up how useful Fortran can be. Distributing static executables allows you to reach a wider audience than Python which is notoriously hard to distribute on Windows to people who don&rsquo;t use Python.</p>
-
-<pre><code class="language-fortran">subroutine calc_gradients(nx, ny, nz, grid, gx, gy, gz)
-  implicit none
-  integer, intent(in) :: nx, ny, nz
-  real*8, intent(in) :: grid(nx, ny, nz)
-  real*8, intent(out) :: gx(nx, ny, nz), gy(nx, ny, nz), gz(nx, ny, nz)
-  integer :: i, j, k, ist, jst, kst, ifn, jfn, kfn
-  ! triple loop, reverse fastest axes
-  do k = 1, nz
-    do j = 1, ny
-      do i = 1, nx
-        ! ensure the indices do not go out of bounds
-        ist = max(1, i - 1)
-        jst = max(1, j - 1)
-        kst = max(1, k - 1)
-        ifn = min(nx, i + 1)
-        jfn = min(ny, j + 1)
-        kfn = min(nz, k + 1)
-        ! calculate each gradient
-        gx(i, j, k) = ( grid(ist, j, k) - grid(ifn, j, k) ) / 2.0D0
-        gy(i, j, k) = ( grid(i, jst, k) - grid(i, jfn, k) ) / 2.0D0
-        gz(i, j, k) = ( grid(i, j, kst) - grid(i, j, kfn) ) / 2.0D0
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fortran" data-lang="fortran"><span style="color:#080;font-weight:bold">subroutine </span>calc_gradients(nx, ny, nz, grid, gx, gy, gz)
+  <span style="color:#080;font-weight:bold">implicit none
+</span><span style="color:#080;font-weight:bold">  </span><span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(in) <span style="color:#080;font-weight:bold">::</span> nx, ny, nz
+  <span style="color:#339;font-weight:bold">real</span><span style="color:#333">*</span><span style="color:#00d;font-weight:bold">8</span>, <span style="color:#080;font-weight:bold">intent</span>(in) <span style="color:#080;font-weight:bold">::</span> grid(nx, ny, nz)
+  <span style="color:#339;font-weight:bold">real</span><span style="color:#333">*</span><span style="color:#00d;font-weight:bold">8</span>, <span style="color:#080;font-weight:bold">intent</span>(out) <span style="color:#080;font-weight:bold">::</span> gx(nx, ny, nz), gy(nx, ny, nz), gz(nx, ny, nz)
+  <span style="color:#339;font-weight:bold">integer</span> <span style="color:#080;font-weight:bold">::</span> i, j, k, ist, jst, kst, ifn, jfn, kfn
+  <span style="color:#888">! triple loop, reverse fastest axes
+</span><span style="color:#888"></span>  <span style="color:#080;font-weight:bold">do </span>k <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, nz
+    <span style="color:#080;font-weight:bold">do </span>j <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, ny
+      <span style="color:#080;font-weight:bold">do </span>i <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, nx
+        <span style="color:#888">! ensure the indices do not go out of bounds
+</span><span style="color:#888"></span>        ist <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">1</span>, i <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+        jst <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">1</span>, j <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+        kst <span style="color:#333">=</span> <span style="color:#007020">max</span>(<span style="color:#00d;font-weight:bold">1</span>, k <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+        ifn <span style="color:#333">=</span> <span style="color:#007020">min</span>(nx, i <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+        jfn <span style="color:#333">=</span> <span style="color:#007020">min</span>(ny, j <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+        kfn <span style="color:#333">=</span> <span style="color:#007020">min</span>(nz, k <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+        <span style="color:#888">! calculate each gradient
+</span><span style="color:#888"></span>        gx(i, j, k) <span style="color:#333">=</span> ( grid(ist, j, k) <span style="color:#333">-</span> grid(ifn, j, k) ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0D0</span>
+        gy(i, j, k) <span style="color:#333">=</span> ( grid(i, jst, k) <span style="color:#333">-</span> grid(i, jfn, k) ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0D0</span>
+        gz(i, j, k) <span style="color:#333">=</span> ( grid(i, j, kst) <span style="color:#333">-</span> grid(i, j, kfn) ) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0D0</span>
       enddo
     enddo
   enddo
-end subroutine calc_gradients
-</code></pre>
-
-<p>This function runs in roughly the same amount of time as Cython at $0.993ms$ average over 1000 iterations, which is a $367x$ speedup. However, this is a totally different language and if you need to change the code and recompile the function with F2PY, you have to restart the kernel in order to reimport the modified Fortran extension, which ends up loosing you some efficiency in the long run. This method is extremely useful if your end use case is to deploy with Fortran executables, of if you want to leverage some ancient Fortran library that isn&rsquo;t already wrapped for Python. However, it&rsquo;s hard to recommend this method for newcomers since the other methods are simpler to get fast code going.</p>
-
+<span style="color:#080;font-weight:bold">end subroutine </span>calc_gradients
+</code></pre></div><p>This function runs in roughly the same amount of time as Cython at $0.993ms$ average over 1000 iterations, which is a $367x$ speedup. However, this is a totally different language and if you need to change the code and recompile the function with F2PY, you have to restart the kernel in order to reimport the modified Fortran extension, which ends up loosing you some efficiency in the long run. This method is extremely useful if your end use case is to deploy with Fortran executables, of if you want to leverage some ancient Fortran library that isn&rsquo;t already wrapped for Python. However, it&rsquo;s hard to recommend this method for newcomers since the other methods are simpler to get fast code going.</p>
 <p>The common issue with linking Fortran to Python (mainly for Windows users) is with F2PY. Depending on the version of Python, Fortran compiler, and platform, this can either be a breeze, or a complete pain. If you are having some issues in Windows, you can check out the <a href="http://www.ccgalberta.com/pygeostat/fortran.html">pygeostat documentation on Fortran in Python</a> for some examples on common errors and some suggested solutions. Typically the fact of running Windows is the single greatest hurdle to using F2PY for this workflow. Luckily <a href="http://www.ccgalberta.com/pygeostat">pygeostat</a> has taken care of the hard work and implements a custom F2PY compiling script for Windows that works across several versions of Python and with Intel and GNU Fortran compilers.</p>
-
 <h1 id="numpy">So, what about straight up Numpy?</h1>
-
 <p>Of course, for a task such as computing the gradients on the grid (this is a very common task), Numpy and its vast library of computational functions should probably be investigated. A quick Google search for <code>'numpy gradients'</code> returns the <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html">numpy.gradient</a> function which can be used to quickly compute the gradients of the 3D grid. The implementation is simple:</p>
-
-<pre><code class="language-python">from numpy import gradient
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">import</span> gradient
 
 gradient(grid)
-</code></pre>
-
-<p>The numpy gradient function runs only a little bit slower than Cython and Fortran at $2.50ms$ averaged over 1000 iterations, which is a $146x$ speedup. Unfortunately, since we offload the numerical component of the calculation, we loose access to the portion of the subroutine that we wanted, to inject some custom code at each cell.</p>
-
+</code></pre></div><p>The numpy gradient function runs only a little bit slower than Cython and Fortran at $2.50ms$ averaged over 1000 iterations, which is a $146x$ speedup. Unfortunately, since we offload the numerical component of the calculation, we loose access to the portion of the subroutine that we wanted, to inject some custom code at each cell.</p>
 <h1 id="conclusions">Conclusions</h1>
-
 <p>There are a variety of methods to make subroutines run faster in Python. The best way to prototype new ideas is definitely to <em>NOT</em> write research code in Fortran, rather use some mixed Python-Speed methodology as outlined above to develop ideas quickly while writing readable and quickly modifiable code.</p>
 
     </div>
@@ -433,7 +381,7 @@ gradient(grid)
     
 
     
-    <li class="next"><a href="https://dektoud.github.io/blog/post/julia/">Transitioning from Python to Julia <span
+    <li class="next"><a href="https://ryandvmartin.github.io/blog/post/julia/">Transitioning from Python to Julia <span
       aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
@@ -475,7 +423,7 @@ gradient(grid)
   <div class="container">
     <p class="powered-by">
 
-      &copy; 2017 Ryan Martin &middot; 
+      © 2017 Ryan Martin &middot; 
 
       Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
       theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.

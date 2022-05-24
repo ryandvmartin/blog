@@ -10,33 +10,33 @@
   <meta name="author" content="Ryan Martin">
   <meta name="description" content="PhD Candidate, Research Assistant">
 
-  
-  
-  
-    
-  
-  
-    
-    
+
+
+
+
+
+
+
+
     <link rel="stylesheet" href="/blog/css/highlight.min.css">
-    
-  
+
+
   <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
   <link rel="stylesheet" href="/blog/css/font-awesome.min.css">
   <link rel="stylesheet" href="/blog/css/academicons.min.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
   <link rel="stylesheet" href="/blog/css/hugo-academic.css">
-  
 
-  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
-  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+
+  <link rel="alternate" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
 
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/post/writing_paraview_hdf5/">
+  <link rel="canonical" href="https://ryandvmartin.github.io/blog/post/writing_paraview_hdf5/">
 
-  
+
 
   <title>Generating XDMF files to read HDF5 in Paraview | Rmar&#39;s Guide</title>
 
@@ -46,7 +46,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
   <div class="container">
 
-    
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
               data-target=".navbar-collapse" aria-expanded="false">
@@ -58,48 +58,48 @@
       <a class="navbar-brand" href="/blog/">Rmar&#39;s Guide</a>
     </div>
 
-    
+
     <div class="collapse navbar-collapse">
 
-      
-      <ul class="nav navbar-nav navbar-right">
-        
 
-        
+      <ul class="nav navbar-nav navbar-right">
+
+
+
 
         <li class="nav-item">
           <a href="/blog/#about">
-            
+
             <span>Home</span>
           </a>
         </li>
 
-        
-        
 
-        
+
+
+
 
         <li class="nav-item">
           <a href="/blog/#posts">
-            
+
             <span>Posts</span>
           </a>
         </li>
 
-        
-        
 
-        
+
+
+
 
         <li class="nav-item">
           <a href="/blog/#contact">
-            
+
             <span>Contact</span>
           </a>
         </li>
 
-        
-        
+
+
       </ul>
 
     </div>
@@ -109,11 +109,11 @@
 
 <article class="article" itemscope itemtype="http://schema.org/Article">
 
-  
+
 
   <div class="article-container">
     <h1 itemprop="name">Generating XDMF files to read HDF5 in Paraview</h1>
-    
+
 
 <div class="article-metadata">
 
@@ -123,62 +123,62 @@
     </time>
   </span>
 
-  
 
-  
-  
-  
+
+
+
+
   <span class="article-tags">
     <i class="fa fa-tags"></i>
-    
+
     <a href="/blog/tags/paraview">Paraview</a
-    >, 
-    
+    >,
+
     <a href="/blog/tags/hdf5">HDF5</a
-    >, 
-    
+    >,
+
     <a href="/blog/tags/big-data">Big Data</a
     >
-    
-  </span>
-  
-  
 
-  
-  
+  </span>
+
+
+
+
+
 <div class="share-box" aria-hidden="true">
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f"
+         href="https://twitter.com/intent/tweet?text=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f&amp;title=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f&amp;title=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f&amp;title=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f&amp;title=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f">
+         href="mailto:?subject=Generating%20XDMF%20files%20to%20read%20HDF5%20in%20Paraview&amp;body=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fwriting_paraview_hdf5%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -186,7 +186,7 @@
 </div>
 
 
-  
+
 
 </div>
 
@@ -272,27 +272,27 @@
 <div class="container">
   <nav>
   <ul class="pager">
-    
-    <li class="previous"><a href="https://dektoud.github.io/blog/post/crossvalidations/"><span
-      aria-hidden="true">&larr;</span> Cross validation as justification of parameters and methods in Geostatistics</a></li>
-    
 
-    
+    <li class="previous"><a href="https://ryandvmartin.github.io/blog/post/crossvalidations/"><span
+      aria-hidden="true">&larr;</span> Cross validation as justification of parameters and methods in Geostatistics</a></li>
+
+
+
   </ul>
 </nav>
 
 </div>
 
 <div class="article-container">
-  
+
 <section id="comments">
   <div id="disqus_thread">
     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'rmaruab';
-    var disqus_identifier = 'https:\/\/dektoud.github.io\/blog\/post\/writing_paraview_hdf5\/';
+    var disqus_identifier = 'https:\/\/ryandvmartin.github.io\/blog\/post\/writing_paraview_hdf5\/';
     var disqus_title = 'Generating XDMF files to read HDF5 in Paraview';
-    var disqus_url = 'https:\/\/dektoud.github.io\/blog\/post\/writing_paraview_hdf5\/';
+    var disqus_url = 'https:\/\/ryandvmartin.github.io\/blog\/post\/writing_paraview_hdf5\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -312,7 +312,7 @@
   <div class="container">
     <p class="powered-by">
 
-      &copy; 2017 Ryan Martin &middot; 
+      &copy; 2017 Ryan Martin &middot;
 
       Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
       theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
@@ -336,9 +336,9 @@
     <script src="/blog/js/isotope.pkgd.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
     <script src="/blog/js/hugo-academic.js"></script>
-    
 
-    
+
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -347,7 +347,7 @@
         ga('create', 'UA-91366725-1', 'auto');
         ga('send', 'pageview');
 
-         
+
         var links = document.querySelectorAll('a');
         Array.prototype.map.call(links, function(item) {
             if (item.host != document.location.host) {
@@ -358,31 +358,31 @@
             }
         });
     </script>
-    
 
-    
-    
-      
+
+
+
+
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 
-      
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
-      
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/fortran.min.js"></script>
-      
 
-      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/python.min.js"></script>
+
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/fortran.min.js"></script>
+
+
+
 
       <script>hljs.initHighlightingOnLoad();</script>
-    
 
-    
-    
+
+
+
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
     </script>
     <script async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
-    
+
 
   </body>
 </html>

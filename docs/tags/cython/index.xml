@@ -1,25 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cython on Rmar&#39;s Guide</title>
-    <link>https://dektoud.github.io/blog/tags/cython/</link>
+    <link>https://ryandvmartin.github.io/blog/tags/cython/</link>
     <description>Recent content in Cython on Rmar&#39;s Guide</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Ryan Martin</copyright>
-    <lastBuildDate>Tue, 07 Feb 2017 21:00:01 -0700</lastBuildDate>
-    
-	<atom:link href="https://dektoud.github.io/blog/tags/cython/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 07 Feb 2017 21:00:01 -0700</lastBuildDate><atom:link href="https://ryandvmartin.github.io/blog/tags/cython/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Methods to write fast subroutines for Python - minimal computer science required</title>
-      <link>https://dektoud.github.io/blog/post/fast_subroutines/</link>
+      <link>https://ryandvmartin.github.io/blog/post/fast_subroutines/</link>
       <pubDate>Tue, 07 Feb 2017 21:00:01 -0700</pubDate>
       
-      <guid>https://dektoud.github.io/blog/post/fast_subroutines/</guid>
-      <description>Note: I am not a Python or programming expert. There are probably better ways to optimize subroutines, but that is not the point of this post!.
- Introduction Python is an impressive programming language for a beginning programmer/scientist. Syntax is easy to learn, the language is expressive (in the sense that it reads like it is doing things), and there are immense guides out there on the web to learn nearly any aspect of Python you can think of.</description>
+      <guid>https://ryandvmartin.github.io/blog/post/fast_subroutines/</guid>
+      <description>Speeding up research code in Python with Numpy, Numba, Cython and F2PY</description>
     </item>
     
   </channel>

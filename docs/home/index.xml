@@ -1,53 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homes on Rmar&#39;s Guide</title>
-    <link>https://dektoud.github.io/blog/home/</link>
+    <link>https://ryandvmartin.github.io/blog/home/</link>
     <description>Recent content in Homes on Rmar&#39;s Guide</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Ryan Martin</copyright>
-    <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://dektoud.github.io/blog/home/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://ryandvmartin.github.io/blog/home/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://dektoud.github.io/blog/home/about/</link>
+      <link>https://ryandvmartin.github.io/blog/home/about/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/home/about/</guid>
+      <guid>https://ryandvmartin.github.io/blog/home/about/</guid>
       <description>Biography I am a geologist turned geostatistician who loves to develop innovative solutions for geostatistical and geological modeling problems. My PhD thesis revolved around several data-driven solutions that address complex and important components of a geostatistical modeling workflow, with the goal of reducing subjectivity and increasing reproducibility between practitioners. My tool of choice is Python.
 After obtaining my MSc at the University of Waterloo in 2012, I worked as an exploration geologist in northern Ontario at a syenite-hosted gold deposit.</description>
     </item>
     
     <item>
       <title>Recent Publications</title>
-      <link>https://dektoud.github.io/blog/home/publications/</link>
+      <link>https://ryandvmartin.github.io/blog/home/publications/</link>
       <pubDate>Thu, 10 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/home/publications/</guid>
+      <guid>https://ryandvmartin.github.io/blog/home/publications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Recent Posts</title>
-      <link>https://dektoud.github.io/blog/home/posts/</link>
+      <link>https://ryandvmartin.github.io/blog/home/posts/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/home/posts/</guid>
+      <guid>https://ryandvmartin.github.io/blog/home/posts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Contact</title>
-      <link>https://dektoud.github.io/blog/home/contact/</link>
+      <link>https://ryandvmartin.github.io/blog/home/contact/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://dektoud.github.io/blog/home/contact/</guid>
+      <guid>https://ryandvmartin.github.io/blog/home/contact/</guid>
       <description>All content included on this site unless otherwise attributed ownership is subject to the following license:
-Copyright (c) 2019 Ryan Martin Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;quot;Software&amp;quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</description>
+Copyright (c) 2019 Ryan Martin  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;#34;Software&amp;#34;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</description>
     </item>
     
   </channel>

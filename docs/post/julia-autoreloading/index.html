@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta name="author" content="Ryan Martin">
   <meta name="description" content="PhD Geostatistics, MSc Economic Geology">
 
@@ -28,13 +28,13 @@
   <link rel="stylesheet" href="/blog/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
-  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="alternate" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
 
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/post/julia-autoreloading/">
+  <link rel="canonical" href="https://ryandvmartin.github.io/blog/post/julia-autoreloading/">
 
   
 
@@ -159,35 +159,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia-autoreloading%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f"
+         href="https://twitter.com/intent/tweet?text=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia-autoreloading%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f&amp;title=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia-autoreloading%2f&amp;title=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f&amp;title=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia-autoreloading%2f&amp;title=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia-autoreloading%2f">
+         href="mailto:?subject=AutoReloading%20PyCall%20imported%20Python%20modules%20in%20Julia&amp;body=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia-autoreloading%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -200,72 +200,56 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="autoreloading-pycall-imported-modules">AutoReloading PyCall Imported Modules</h2>
-
+      <h2 id="autoreloading-pycall-imported-modules">AutoReloading PyCall Imported Modules</h2>
 <p>One of the major components of being productive with my Python workflows was the IPython magic command <code>%autoreload 2</code>. This magic command throws a hook on the start of running an IPython cell, and recompiles Python modules where source code changes are detected. This is probably the single most useful component of my workflow since I modify and work on packages in Sublime and test and develop the code in an interactive Jupyter notebook. When I first started with PyCall in Julia, I sorely missed this feature. Julia itself offers a sort-of-autoreload for Julia modules using the package <code>ClobberingReload.jl</code>. Although this (mostly) works for the Julia packages, any changed Python source code is omitted. To add this functionality to <code>PyCall.jl</code>, I did some digging through IPython to figure out how Python does it and how it can be replicated for PyCall loaded modules in Julia.</p>
-
 <p>The first component is to generate a new class that mimics what is being done by the IPython Magic reloader:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">IPython.extensions.autoreload</span> <span style="color:#080;font-weight:bold">import</span> ModuleReloader
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">sys</span>
 
-<pre><code class="language-python">from IPython.extensions.autoreload import ModuleReloader
-import sys
+<span style="color:#080;font-weight:bold">class</span> <span style="color:#b06;font-weight:bold">PyReloader</span>:
+    <span style="background-color:#fff0f0">&#34;&#34;&#34;
+</span><span style="background-color:#fff0f0">    Class pretty well taken directly from the IPython %autoreload magic function..
+</span><span style="background-color:#fff0f0">    very untested..
+</span><span style="background-color:#fff0f0">    &#34;&#34;&#34;</span>
+    <span style="color:#080;font-weight:bold">def</span> __init__(self):
+        self<span style="color:#333">.</span>mr <span style="color:#333">=</span> ModuleReloader()
+        self<span style="color:#333">.</span>mr<span style="color:#333">.</span>enabled <span style="color:#333">=</span> True
+        self<span style="color:#333">.</span>mr<span style="color:#333">.</span>check_all <span style="color:#333">=</span> True
+        self<span style="color:#333">.</span>mr<span style="color:#333">.</span>check()
+        self<span style="color:#333">.</span>loaded_modules <span style="color:#333">=</span> <span style="color:#007020">set</span>(sys<span style="color:#333">.</span>modules)
 
-class PyReloader:
-    &quot;&quot;&quot;
-    Class pretty well taken directly from the IPython %autoreload magic function..
-    very untested..
-    &quot;&quot;&quot;
-    def __init__(self):
-        self.mr = ModuleReloader()
-        self.mr.enabled = True
-        self.mr.check_all = True
-        self.mr.check()
-        self.loaded_modules = set(sys.modules)
+    <span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">reload</span>(self):
+        self<span style="color:#333">.</span>mr<span style="color:#333">.</span>check()
+        self<span style="color:#333">.</span>reload_step2()
 
-    def reload(self):
-        self.mr.check()
-        self.reload_step2()
-
-    def reload_step2(self):
-        newly_loaded_modules = set(sys.modules) - self.loaded_modules
-        for modname in newly_loaded_modules:
-            _, pymtime = self.mr.filename_and_mtime(sys.modules[modname])
-            if pymtime is not None:
-                self.mr.modules_mtimes[modname] = pymtime
-        self.loaded_modules.update(newly_loaded_modules)
-</code></pre>
-
-<p>Then, it should be loaded in Julia with PyCall, and made to run before each IJulia cell using:</p>
-
-<pre><code class="language-julia">using IJulia: push_preexecute_hook
-using PyCall
-@pyimport rmutils.jlutils.pyreimport as prl
-pyreloader = prl.PyReloader()
-push_preexecute_hook(() -&gt; pyreloader[:reload]())
-</code></pre>
-
-<p>And now in an interactive Julia session, if Python code is loaded using PyCall, and modified, it will be automatically reloaded as if <code>%autoreload 2</code> was working in the background!</p>
-
-<hr />
-
+    <span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">reload_step2</span>(self):
+        newly_loaded_modules <span style="color:#333">=</span> <span style="color:#007020">set</span>(sys<span style="color:#333">.</span>modules) <span style="color:#333">-</span> self<span style="color:#333">.</span>loaded_modules
+        <span style="color:#080;font-weight:bold">for</span> modname <span style="color:#000;font-weight:bold">in</span> newly_loaded_modules:
+            _, pymtime <span style="color:#333">=</span> self<span style="color:#333">.</span>mr<span style="color:#333">.</span>filename_and_mtime(sys<span style="color:#333">.</span>modules[modname])
+            <span style="color:#080;font-weight:bold">if</span> pymtime <span style="color:#000;font-weight:bold">is</span> <span style="color:#000;font-weight:bold">not</span> None:
+                self<span style="color:#333">.</span>mr<span style="color:#333">.</span>modules_mtimes[modname] <span style="color:#333">=</span> pymtime
+        self<span style="color:#333">.</span>loaded_modules<span style="color:#333">.</span>update(newly_loaded_modules)
+</code></pre></div><p>Then, it should be loaded in Julia with PyCall, and made to run before each IJulia cell using:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#080;font-weight:bold">using</span> IJulia<span style="color:#333">:</span> push_preexecute_hook
+<span style="color:#080;font-weight:bold">using</span> PyCall
+<span style="color:#555;font-weight:bold">@pyimport</span> rmutils<span style="color:#333">.</span>jlutils<span style="color:#333">.</span>pyreimport as prl
+pyreloader <span style="color:#333">=</span> prl<span style="color:#333">.</span>PyReloader()
+push_preexecute_hook(() <span style="color:#333">-&gt;</span> pyreloader[<span style="color:#333">:</span>reload]())
+</code></pre></div><p>And now in an interactive Julia session, if Python code is loaded using PyCall, and modified, it will be automatically reloaded as if <code>%autoreload 2</code> was working in the background!</p>
+<hr>
 <p>Update - 25-11-2017</p>
-
 <p>Using the <code>ClobberingReload</code> and the above PyReloader would casue things to get very messy when reloading Julia modules that contained the above python-reload code&hellip; the following solves this issue:</p>
-
-<pre><code class="language-julia"># load the AutoReload hack for Python code in Julia
-using IJulia: push_preexecute_hook, preexecute_hooks
-using PyCall
-@pyimport rmutils.jlutils.pyreimport as pyrl
-pyreloader = pyrl.PyReloader()
-pyloadfunc() = pyreloader[:reload]()
-if !(pyloadfunc in preexecute_hooks)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#888"># load the AutoReload hack for Python code in Julia</span>
+<span style="color:#080;font-weight:bold">using</span> IJulia<span style="color:#333">:</span> push_preexecute_hook, preexecute_hooks
+<span style="color:#080;font-weight:bold">using</span> PyCall
+<span style="color:#555;font-weight:bold">@pyimport</span> rmutils<span style="color:#333">.</span>jlutils<span style="color:#333">.</span>pyreimport as pyrl
+pyreloader <span style="color:#333">=</span> pyrl<span style="color:#333">.</span>PyReloader()
+pyloadfunc() <span style="color:#333">=</span> pyreloader[<span style="color:#333">:</span>reload]()
+<span style="color:#080;font-weight:bold">if</span> <span style="color:#333">!</span>(pyloadfunc <span style="color:#038;font-weight:bold">in</span> preexecute_hooks)
     push_preexecute_hook(pyloadfunc)
-    println(&quot;loading pyautoreload...&quot;)
-end
-</code></pre>
-
-<p>The modified method first checks <code>preexecute_hooks</code> to make sure the reload function hasnt already been added to the list of functions to execute. This ensures that the interactive Julia and Python sessions don&rsquo;t duplicate the Python reload functions!</p>
+    println(<span style="background-color:#fff0f0">&#34;loading pyautoreload...&#34;</span>)
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p>The modified method first checks <code>preexecute_hooks</code> to make sure the reload function hasnt already been added to the list of functions to execute. This ensures that the interactive Julia and Python sessions don&rsquo;t duplicate the Python reload functions!</p>
 
     </div>
   </div>
@@ -276,12 +260,12 @@ end
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="https://dektoud.github.io/blog/post/julia/"><span
+    <li class="previous"><a href="https://ryandvmartin.github.io/blog/post/julia/"><span
       aria-hidden="true">&larr;</span> Transitioning from Python to Julia</a></li>
     
 
     
-    <li class="next"><a href="https://dektoud.github.io/blog/post/fortran_dlls/">Calling Fortran DLL&#39;s from Python and Julia <span
+    <li class="next"><a href="https://ryandvmartin.github.io/blog/post/fortran_dlls/">Calling Fortran DLL&#39;s from Python and Julia <span
       aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
@@ -323,7 +307,7 @@ end
   <div class="container">
     <p class="powered-by">
 
-      &copy; 2017 Ryan Martin &middot; 
+      © 2017 Ryan Martin &middot; 
 
       Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
       theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.

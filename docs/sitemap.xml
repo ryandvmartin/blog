@@ -1,181 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/publication/random_path_clustering/</loc>
-      <lastmod>2018-11-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/publication/non-stationary-estimation/</loc>
-      <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/post/fortran_dlls/</loc>
-      <lastmod>2018-03-12T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/post/julia-autoreloading/</loc>
-      <lastmod>2017-11-13T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/post/julia/</loc>
-      <lastmod>2017-11-13T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/publication/geological-features/</loc>
-      <lastmod>2017-07-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/post/fast_subroutines/</loc>
-      <lastmod>2017-02-07T21:00:01-07:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/post/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/publication/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/license/</loc>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/publication_types/2/</loc>
-      <lastmod>2018-11-01T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/categories/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/cython/</loc>
-      <lastmod>2017-02-07T21:00:01-07:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/f2py/</loc>
-      <lastmod>2017-02-07T21:00:01-07:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/fortran/</loc>
-      <lastmod>2018-03-12T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/julia/</loc>
-      <lastmod>2018-03-12T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/numba/</loc>
-      <lastmod>2017-02-07T21:00:01-07:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/publication_types/</loc>
-      <lastmod>2018-11-01T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/python/</loc>
-      <lastmod>2018-03-12T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/</loc>
-      <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-      <loc>https://dektoud.github.io/blog/tags/</loc>
-      <lastmod>2017-02-07T21:00:01-07:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ryandvmartin.github.io/blog/home/about/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/home/publications/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/home/posts/</loc>
+    <lastmod>2016-04-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/home/contact/</loc>
+    <lastmod>2016-04-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/home/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/</loc>
+    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/publication_types/2/</loc>
+    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/publication_types/</loc>
+    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/publication/random_path_clustering/</loc>
+    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/publication/non-stationary-estimation/</loc>
+    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/post/fortran_dlls/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/fortran/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/julia/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/python/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/</loc>
+    <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/post/julia-autoreloading/</loc>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/post/julia/</loc>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/publication/geological-features/</loc>
+    <lastmod>2017-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/cython/</loc>
+    <lastmod>2017-02-07T21:00:01-07:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/f2py/</loc>
+    <lastmod>2017-02-07T21:00:01-07:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/post/fast_subroutines/</loc>
+    <lastmod>2017-02-07T21:00:01-07:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/tags/numba/</loc>
+    <lastmod>2017-02-07T21:00:01-07:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/post/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/publication/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/license/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://ryandvmartin.github.io/blog/categories/</loc>
+  </url>
 </urlset>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta name="author" content="Ryan Martin">
   <meta name="description" content="PhD Geostatistics, MSc Economic Geology">
 
@@ -28,13 +28,13 @@
   <link rel="stylesheet" href="/blog/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
-  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="alternate" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
 
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/post/fortran_dlls/">
+  <link rel="canonical" href="https://ryandvmartin.github.io/blog/post/fortran_dlls/">
 
   
 
@@ -162,35 +162,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffortran_dlls%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffortran_dlls%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffortran_dlls%2f"
+         href="https://twitter.com/intent/tweet?text=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffortran_dlls%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffortran_dlls%2f&amp;title=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffortran_dlls%2f&amp;title=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffortran_dlls%2f&amp;title=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffortran_dlls%2f&amp;title=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2ffortran_dlls%2f">
+         href="mailto:?subject=Calling%20Fortran%20DLL%27s%20from%20Python%20and%20Julia&amp;body=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2ffortran_dlls%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -203,186 +203,141 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<p>The standard Python library contains a package called <code>ctypes</code> which provides interfaces to foreign functions that are found in shared libraries. With the Intel compiler, a Fortran function or subroutine can be exported to dll by ensuring that the <code>!DEC$</code> is present to define the exported symbol:</p>
-
-<pre><code class="language-fortran">! Note: this only works with the Intel Compiler
-subroutine sqr(val)
-    !DEC$ ATTRIBUTES DLLEXPORT, ALIAS:'sqr' :: sqr
-    integer, intent(inout) :: val
-    val = val ** 2
-end subroutine sqr
-</code></pre>
-
-<p>If the above subroutine is contained in the <code>example.f90</code> file, it is compiled with :</p>
-
+      <p>The standard Python library contains a package called <code>ctypes</code> which provides interfaces to foreign functions that are found in shared libraries. With the Intel compiler, a Fortran function or subroutine can be exported to dll by ensuring that the <code>!DEC$</code> is present to define the exported symbol:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fortran" data-lang="fortran"><span style="color:#888">! Note: this only works with the Intel Compiler
+</span><span style="color:#888"></span><span style="color:#080;font-weight:bold">subroutine </span>sqr(val)
+    <span style="color:#888">!DEC$ ATTRIBUTES DLLEXPORT, ALIAS:&#39;sqr&#39; :: sqr
+</span><span style="color:#888"></span>    <span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(inout) <span style="color:#080;font-weight:bold">::</span> val
+    val <span style="color:#333">=</span> val <span style="color:#333">**</span> <span style="color:#00d;font-weight:bold">2</span>
+<span style="color:#080;font-weight:bold">end subroutine </span>sqr
+</code></pre></div><p>If the above subroutine is contained in the <code>example.f90</code> file, it is compiled with :</p>
 <pre><code>$ ifort /dll example.f90
 </code></pre>
-
 <p>which produces the shared library <code>example.dll</code>. Inspecting this object with dumpbin:</p>
-
 <pre><code>$ dumpbin /exports example.dll
 1    0 00001000 sqr
 </code></pre>
-
 <p>The function can be imported to Python with the <code>ctypes</code> module and called with the following Python code:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">ctypes</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">ct</span>
 
-<pre><code class="language-python">import ctypes as ct
-
-fortlib = ct.CDLL('example.dll')
-val = 100
-val = ct.pointer(ct.c_int(val)) # setup the pointer to the correct data structure
-_ = fortlib.sqr(val)            # call the function
-print(val[0])                   # index the memory address setup above
-</code></pre>
-
-<p>It is immediately clear that compiling the shared library in this way is easier (when compared to F2PY), and calling the Fortran from Python is much difficult. The advantages are that this is a C-independent method to build and link the Fortran extension, and the same dll called from Python here could also be called from other languages (e.g. Julia).</p>
-
-<h1 id="maintaining-gnu-intel-compatibility">Maintaining GNU - Intel compatibility</h1>
-
+fortlib <span style="color:#333">=</span> ct<span style="color:#333">.</span>CDLL(<span style="background-color:#fff0f0">&#39;example.dll&#39;</span>)
+val <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">100</span>
+val <span style="color:#333">=</span> ct<span style="color:#333">.</span>pointer(ct<span style="color:#333">.</span>c_int(val)) <span style="color:#888"># setup the pointer to the correct data structure</span>
+_ <span style="color:#333">=</span> fortlib<span style="color:#333">.</span>sqr(val)            <span style="color:#888"># call the function</span>
+<span style="color:#080;font-weight:bold">print</span>(val[<span style="color:#00d;font-weight:bold">0</span>])                   <span style="color:#888"># index the memory address setup above</span>
+</code></pre></div><p>It is immediately clear that compiling the shared library in this way is easier (when compared to F2PY), and calling the Fortran from Python is much difficult. The advantages are that this is a C-independent method to build and link the Fortran extension, and the same dll called from Python here could also be called from other languages (e.g. Julia).</p>
+<h1 id="maintaining-gnu---intel-compatibility">Maintaining GNU - Intel compatibility</h1>
 <p>The method to call specific functions should be compiler independent. A method to maintain a compatible Python calling sequence for the dll&rsquo;s is required since one set of Python code should be able to call the Fortran function regardless of how it was compiled. This can be done by using the <code>iso_c_binding</code> module:</p>
-
-<pre><code class="language-fortran">subroutine sqr2(val) BIND(C, NAME='sqr2')
-    use iso_c_binding
-    !DEC$ ATTRIBUTES DLLEXPORT :: sqr2
-    integer, intent(inout) :: val
-    val = val ** 2
-end subroutine sqr2
-</code></pre>
-
-<p>The <code>iso_c_binding</code> in this case overwrites the name mangling for each compiler (gfortran and ifort), and ensures the call sequence from Python is constant. In this case the <code>!DEC$</code> statement is ignored by gfortran and the function is available in the exported dll. Notably, the <code>ALIAS</code> is dropped from the <code>!DEC$</code> export for Intel Fortran since the name in the binding overwrites this setting.</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fortran" data-lang="fortran"><span style="color:#080;font-weight:bold">subroutine </span>sqr2(val) <span style="color:#080;font-weight:bold">BIND</span>(C, NAME<span style="color:#333">=</span><span style="background-color:#fff0f0">&#39;sqr2&#39;</span>)
+    <span style="color:#080;font-weight:bold">use </span><span style="color:#007020">iso_c_binding</span>
+    <span style="color:#888">!DEC$ ATTRIBUTES DLLEXPORT :: sqr2
+</span><span style="color:#888"></span>    <span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(inout) <span style="color:#080;font-weight:bold">::</span> val
+    val <span style="color:#333">=</span> val <span style="color:#333">**</span> <span style="color:#00d;font-weight:bold">2</span>
+<span style="color:#080;font-weight:bold">end subroutine </span>sqr2
+</code></pre></div><p>The <code>iso_c_binding</code> in this case overwrites the name mangling for each compiler (gfortran and ifort), and ensures the call sequence from Python is constant. In this case the <code>!DEC$</code> statement is ignored by gfortran and the function is available in the exported dll. Notably, the <code>ALIAS</code> is dropped from the <code>!DEC$</code> export for Intel Fortran since the name in the binding overwrites this setting.</p>
 <h1 id="more-complicated-data-types">More Complicated Data Types</h1>
-
 <p>The main concern for calling Fortran functions in the dll&rsquo;s from Python is how to setup the data structures. Consider the following function which take a 2-dimensional array of integers and computes some arbitrary value from the inputs by replacing the values in the array:</p>
-
-<pre><code class="language-fortran">module example
-    use iso_c_binding
-    implicit none
-contains
-    subroutine sqr_2d_arr(nd, val) BIND(C, NAME='sqr_2d_arr')
-        !DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
-        integer, intent(in) :: nd
-        integer, intent(inout) :: val(nd, nd)
-        integer :: i, j
-        do j = 1, nd
-        do i = 1, nd
-            val(i, j) = (val(i, j) + val(j, i)) ** 2
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fortran" data-lang="fortran"><span style="color:#080;font-weight:bold">module </span>example
+    <span style="color:#080;font-weight:bold">use </span><span style="color:#007020">iso_c_binding
+</span><span style="color:#007020">    </span><span style="color:#080;font-weight:bold">implicit none
+</span><span style="color:#080;font-weight:bold">contains
+</span><span style="color:#080;font-weight:bold">    subroutine </span>sqr_2d_arr(nd, val) <span style="color:#080;font-weight:bold">BIND</span>(C, NAME<span style="color:#333">=</span><span style="background-color:#fff0f0">&#39;sqr_2d_arr&#39;</span>)
+        <span style="color:#888">!DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
+</span><span style="color:#888"></span>        <span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(in) <span style="color:#080;font-weight:bold">::</span> nd
+        <span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(inout) <span style="color:#080;font-weight:bold">::</span> val(nd, nd)
+        <span style="color:#339;font-weight:bold">integer</span> <span style="color:#080;font-weight:bold">::</span> i, j
+        <span style="color:#080;font-weight:bold">do </span>j <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, nd
+        <span style="color:#080;font-weight:bold">do </span>i <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, nd
+            val(i, j) <span style="color:#333">=</span> (val(i, j) <span style="color:#333">+</span> val(j, i)) <span style="color:#333">**</span> <span style="color:#00d;font-weight:bold">2</span>
         enddo
         enddo
-    end subroutine sqr_2d_arr
-end module example
-</code></pre>
-
-<p>The module is compiled with:</p>
-
+    <span style="color:#080;font-weight:bold">end subroutine </span>sqr_2d_arr
+<span style="color:#080;font-weight:bold">end module </span>example
+</code></pre></div><p>The module is compiled with:</p>
 <pre><code>$ ifort /dll example.f90
 </code></pre>
-
 <p>or:</p>
-
 <pre><code>$ gfortran -shared example.f90 -o example.dll
 </code></pre>
-
 <p>and can be called from Python with:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">ctypes</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">ct</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">np</span>
 
-<pre><code class="language-python">import ctypes as ct
-import numpy as np
+<span style="color:#888"># import the dll</span>
+fortlib <span style="color:#333">=</span> ct<span style="color:#333">.</span>CDLL(<span style="background-color:#fff0f0">&#39;example.dll&#39;</span>)
 
-# import the dll
-fortlib = ct.CDLL('example.dll')
+<span style="color:#888"># setup the data</span>
+N <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">10</span>
+nd <span style="color:#333">=</span> ct<span style="color:#333">.</span>pointer( ct<span style="color:#333">.</span>c_int(N) )          <span style="color:#888"># setup the pointer</span>
+pyarr <span style="color:#333">=</span> np<span style="color:#333">.</span>arange(<span style="color:#00d;font-weight:bold">0</span>, N, dtype<span style="color:#333">=</span><span style="color:#007020">int</span>) <span style="color:#333">*</span> <span style="color:#00d;font-weight:bold">5</span>  <span style="color:#888"># setup the N-long</span>
+<span style="color:#080;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#007020">range</span>(<span style="color:#00d;font-weight:bold">1</span>, N):                   <span style="color:#888"># concatenate columns until it is N x N</span>
+    pyarr <span style="color:#333">=</span> np<span style="color:#333">.</span>c_[pyarr, np<span style="color:#333">.</span>arange(<span style="color:#00d;font-weight:bold">0</span>, N, dtype<span style="color:#333">=</span><span style="color:#007020">int</span>) <span style="color:#333">*</span> <span style="color:#00d;font-weight:bold">5</span>]
 
-# setup the data
-N = 10
-nd = ct.pointer( ct.c_int(N) )          # setup the pointer
-pyarr = np.arange(0, N, dtype=int) * 5  # setup the N-long
-for i in range(1, N):                   # concatenate columns until it is N x N
-    pyarr = np.c_[pyarr, np.arange(0, N, dtype=int) * 5]
+<span style="color:#888"># call the function by passing the ctypes pointer using the numpy function:</span>
+_ <span style="color:#333">=</span> fortlib<span style="color:#333">.</span>sqr_2d_arr(nd, np<span style="color:#333">.</span>ctypeslib<span style="color:#333">.</span>as_ctypes(pyarr))
 
-# call the function by passing the ctypes pointer using the numpy function:
-_ = fortlib.sqr_2d_arr(nd, np.ctypeslib.as_ctypes(pyarr))
-
-print(pyarr)
-</code></pre>
-
-<h1 id="important-considerations">Important Considerations</h1>
-
+<span style="color:#080;font-weight:bold">print</span>(pyarr)
+</code></pre></div><h1 id="important-considerations">Important Considerations</h1>
 <p>In the above Python code some things are notable:</p>
-
 <ol>
-<li>All data is passed by pointer reference to the Fortran dll, the data is modified in place if the variable is <code>intent(inout)</code>, or replaced if the variable is <code>intent(out)</code>. All memory is controlled on the Python side of things</li>
-<li>The memory must be allocated in some form on the Python side using <code>np.zeros(size, dtype=type)</code> (or similar) even if the variable is <code>intent(out)</code></li>
-
-<li><p><strong>The types of all data initialized on the Python size must match those being called in the Fortran module</strong>
+<li>
+<p>All data is passed by pointer reference to the Fortran dll, the data is modified in place if the variable is <code>intent(inout)</code>, or replaced if the variable is <code>intent(out)</code>. All memory is controlled on the Python side of things</p>
+</li>
+<li>
+<p>The memory must be allocated in some form on the Python side using <code>np.zeros(size, dtype=type)</code> (or similar) even if the variable is <code>intent(out)</code></p>
+</li>
+<li>
+<p><strong>The types of all data initialized on the Python size must match those being called in the Fortran module</strong>
 a. This is very important. For example, use <code>int</code> for <code>integer</code>, <code>float</code> for <code>real*8</code>, etc. Python <code>float</code> is double precision by default. This may not be a correct list, and is definitely not exhaustive, but it has worked with the limited testing that has been done with this method of calling Fortran
 b. the function <code>ctypes.c_pointer()</code> can be used to create the necessary references to non-array elements, be sure to use <code>ctypes.c_int()</code> and <code>ctypes.c_double()</code> (and others) as required for the needed parameter
 c. initializing arrays on the python end is strange. For example, say a Fortran subroutine is defined with an <code>integer, intent(out)</code> array with size <code>nd</code>, to initialize this array on the python side, you can use::</p>
-
-<pre><code>import ctypes as ct
-intarray = (ct.c_int * nd)()
+<pre><code> import ctypes as ct
+ intarray = (ct.c_int * nd)()
 </code></pre>
-
 <p>and to give the array values for input::</p>
-
-<pre><code>import ctypes as ct
-pyarray = np.zeros(nd, dtype=np.int)
-valarray = (ct.c_int * nd)(*pyarray)
-</code></pre></li>
-
-<li><p>Numpy provides some convenient methods <code>np.ctypeslib.as_ctypes()</code> to pass initialized arrays with the correct types to the Fortran functions (as demonstrated above)</p></li>
-</ol>
-
-<h1 id="mixed-language-debugging">Mixed Language Debugging</h1>
-
-<p>The use of dll&rsquo;s and <code>ctypes</code> library for calling the Fortran code provides some exciting opportunities to speed up code development while leveraging the plotting and data management capabilities of pygeostat with the GSLIB Fortran geostatistical library. For example, to debug a Fortran dll which is present in a Visual Studio project, compiled with debug flags, generally follow these steps::</p>
-
-<p>Visual Studio 2015 Community is currently free and has recently developed a set of Python tools that will utilize Python distributions found on the machine. Combined with the Intel Compiler, projects containing Fortran code compiled to dll, and called VIA the Python libraries and tools presented above, can be debugged after it is called from Python!</p>
-
-<h1 id="what-about-julia">What about Julia</h1>
-
-<p>Julia provides first class support for calling C libraries using the <code>ccall</code> function. The example above requires no modification on the fortran side:</p>
-
-<pre><code class="language-fortran">module example
-    use iso_c_binding
-    implicit none
-contains
-    subroutine sqr_2d_arr(nd, val) BIND(C, NAME='sqr_2d_arr')
-        !DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
-        integer, intent(in) :: nd
-        integer, intent(inout) :: val(nd, nd)
-        integer :: i, j
-        do j = 1, nd
-        do i = 1, nd
-            val(i, j) = (val(i, j) + val(j, i)) ** 2
-        enddo
-        enddo
-    end subroutine sqr_2d_arr
-end module example
+<pre><code> import ctypes as ct
+ pyarray = np.zeros(nd, dtype=np.int)
+ valarray = (ct.c_int * nd)(*pyarray)
 </code></pre>
-
-<p>The module is compiled with:</p>
-
+</li>
+<li>
+<p>Numpy provides some convenient methods <code>np.ctypeslib.as_ctypes()</code> to pass initialized arrays with the correct types to the Fortran functions (as demonstrated above)</p>
+</li>
+</ol>
+<h1 id="mixed-language-debugging">Mixed Language Debugging</h1>
+<p>The use of dll&rsquo;s and <code>ctypes</code> library for calling the Fortran code provides some exciting opportunities to speed up code development while leveraging the plotting and data management capabilities of pygeostat with the GSLIB Fortran geostatistical library. For example, to debug a Fortran dll which is present in a Visual Studio project, compiled with debug flags, generally follow these steps::</p>
+<p>Visual Studio 2015 Community is currently free and has recently developed a set of Python tools that will utilize Python distributions found on the machine. Combined with the Intel Compiler, projects containing Fortran code compiled to dll, and called VIA the Python libraries and tools presented above, can be debugged after it is called from Python!</p>
+<h1 id="what-about-julia">What about Julia</h1>
+<p>Julia provides first class support for calling C libraries using the <code>ccall</code> function. The example above requires no modification on the fortran side:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fortran" data-lang="fortran"><span style="color:#080;font-weight:bold">module </span>example
+    <span style="color:#080;font-weight:bold">use </span><span style="color:#007020">iso_c_binding
+</span><span style="color:#007020">    </span><span style="color:#080;font-weight:bold">implicit none
+</span><span style="color:#080;font-weight:bold">contains
+</span><span style="color:#080;font-weight:bold">    subroutine </span>sqr_2d_arr(nd, val) <span style="color:#080;font-weight:bold">BIND</span>(C, NAME<span style="color:#333">=</span><span style="background-color:#fff0f0">&#39;sqr_2d_arr&#39;</span>)
+        <span style="color:#888">!DEC$ ATTRIBUTES DLLEXPORT :: sqr_2d_arr
+</span><span style="color:#888"></span>        <span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(in) <span style="color:#080;font-weight:bold">::</span> nd
+        <span style="color:#339;font-weight:bold">integer</span>, <span style="color:#080;font-weight:bold">intent</span>(inout) <span style="color:#080;font-weight:bold">::</span> val(nd, nd)
+        <span style="color:#339;font-weight:bold">integer</span> <span style="color:#080;font-weight:bold">::</span> i, j
+        <span style="color:#080;font-weight:bold">do </span>j <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, nd
+        <span style="color:#080;font-weight:bold">do </span>i <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">1</span>, nd
+            val(i, j) <span style="color:#333">=</span> (val(i, j) <span style="color:#333">+</span> val(j, i)) <span style="color:#333">**</span> <span style="color:#00d;font-weight:bold">2</span>
+        enddo
+        enddo
+    <span style="color:#080;font-weight:bold">end subroutine </span>sqr_2d_arr
+<span style="color:#080;font-weight:bold">end module </span>example
+</code></pre></div><p>The module is compiled with:</p>
 <pre><code>$ ifort /dll example.f90
 </code></pre>
-
 <p>or:</p>
-
 <pre><code>$ gfortran -shared example.f90 -o example.dll
 </code></pre>
-
 <p>But now the call in Julia is vastly simplified:</p>
-
-<pre><code class="language-julia">nd = Int(100)
-arr = zeros(Int64, (nd, nd));
-ccall((:sqr_2d_arr, &quot;./example.dll&quot;), Void, (Ref{Int64}, Ref{Matrix{Int64}}), nd, arr)
-</code></pre>
-
-<h1 id="update-04-05-2018">UPDATE 04-05-2018</h1>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">nd <span style="color:#333">=</span> <span style="color:#339;font-weight:bold">Int</span>(<span style="color:#00d;font-weight:bold">100</span>)
+arr <span style="color:#333">=</span> zeros(<span style="color:#339;font-weight:bold">Int64</span>, (nd, nd));
+<span style="color:#080;font-weight:bold">ccall</span>((<span style="color:#333">:</span>sqr_2d_arr, <span style="background-color:#fff0f0">&#34;./example.dll&#34;</span>), <span style="color:#339;font-weight:bold">Void</span>, (<span style="color:#339;font-weight:bold">Ref</span>{<span style="color:#339;font-weight:bold">Int64</span>}, <span style="color:#339;font-weight:bold">Ref</span>{<span style="color:#339;font-weight:bold">Matrix</span>{<span style="color:#339;font-weight:bold">Int64</span>}}), nd, arr)
+</code></pre></div><h1 id="update-04-05-2018">UPDATE 04-05-2018</h1>
 <p>Through some suffering I have learned of the joys of string interop between C and Fortran. I wrote some Fortran to facilitate the conversions. Maybe this will help someone somewhere someday&hellip;</p>
-
-<script src="https://gist.github.com/dektoud/a3b9bb0c485d2ae58143d71f55a8d9e4.js"></script>
+<!-- raw HTML omitted -->
 
     </div>
   </div>
@@ -393,7 +348,7 @@ ccall((:sqr_2d_arr, &quot;./example.dll&quot;), Void, (Ref{Int64}, Ref{Matrix{In
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="https://dektoud.github.io/blog/post/julia-autoreloading/"><span
+    <li class="previous"><a href="https://ryandvmartin.github.io/blog/post/julia-autoreloading/"><span
       aria-hidden="true">&larr;</span> AutoReloading PyCall imported Python modules in Julia</a></li>
     
 
@@ -437,7 +392,7 @@ ccall((:sqr_2d_arr, &quot;./example.dll&quot;), Void, (Ref{Int64}, Ref{Matrix{In
   <div class="container">
     <p class="powered-by">
 
-      &copy; 2017 Ryan Martin &middot; 
+      © 2017 Ryan Martin &middot; 
 
       Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
       theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.

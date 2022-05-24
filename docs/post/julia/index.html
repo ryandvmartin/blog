@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta name="author" content="Ryan Martin">
   <meta name="description" content="PhD Geostatistics, MSc Economic Geology">
 
@@ -28,13 +28,13 @@
   <link rel="stylesheet" href="/blog/css/hugo-academic.css">
   
 
-  <link rel="alternate" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
-  <link rel="feed" href="https://dektoud.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="alternate" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
+  <link rel="feed" href="https://ryandvmartin.github.io/blog/index.xml" type="application/rss+xml" title="Rmar&#39;s Guide">
 
   <link rel="icon" type="image/png" href="/blog/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/blog/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="https://dektoud.github.io/blog/post/julia/">
+  <link rel="canonical" href="https://ryandvmartin.github.io/blog/post/julia/">
 
   
 
@@ -159,35 +159,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Transitioning%20from%20Python%20to%20Julia&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f"
+         href="https://twitter.com/intent/tweet?text=Transitioning%20from%20Python%20to%20Julia&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f&amp;title=Transitioning%20from%20Python%20to%20Julia"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia%2f&amp;title=Transitioning%20from%20Python%20to%20Julia"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f&amp;title=Transitioning%20from%20Python%20to%20Julia"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia%2f&amp;title=Transitioning%20from%20Python%20to%20Julia"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Transitioning%20from%20Python%20to%20Julia&amp;body=https%3a%2f%2fdektoud.github.io%2fblog%2fpost%2fjulia%2f">
+         href="mailto:?subject=Transitioning%20from%20Python%20to%20Julia&amp;body=https%3a%2f%2fryandvmartin.github.io%2fblog%2fpost%2fjulia%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -200,137 +200,103 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="two-languages">Two Languages</h2>
-
+      <h2 id="two-languages">Two Languages</h2>
 <p>Python suffers from a two language problem. On one end the syntax, vast and mature library ecosystem, dynamic style and interactive workflows that Python offers provide a flexible and productive prototyping environment for new ideas. However, when moving past initial ideas and beginning to apply those ideas to datasets of meaningful size, <em>pythonistas</em> often look to things like <a href="/blog/post/fast_subroutines/">Cython, Numba, F2PY or C++</a> to gain additional performance. In my research group we spend much of our time developing and implementing ideas using Python (or Matlab), and once those ideas are demonstrated, often a follow-up Fortran implementation is generated so that statically compiled executables implementing those ideas can reach as wide an audience as possible. Thus, to be successful we are required to work with some high-level and dynamic language and also some secondary language that can speed up the implementation and be compiled to a static executable for distribution. This two language problem is a common <code>pain point</code> for numerical computing in Python.</p>
-
 <h2 id="the-motivation">The Motivation</h2>
-
 <p><a href="https://julialang.org/">Julia</a> claims to offer a fundamentally new paradigm targeting this problem. This language is tailored to numerical computing by offering a dynamic programming environment and static type definitions with JIT-compilation to within 1-2x the performance compiled languages (Fortran, C). Thus it is easy to see just why Julia is so appealing: fast development times with dynamic and interactive programming; seemingly painless code optimization using static typing and an LLVM compiler that gets speeds in the ballpark of compiled languages; and as a final perk to the language, a glimmer of hope that static compilation may one day be a standard part of the language.</p>
-
-<pre><code class="language-julia"># dynamic containers
-list = Any[]
-# iteration
-for item in items
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#888"># dynamic containers</span>
+list <span style="color:#333">=</span> <span style="color:#339;font-weight:bold">Any</span>[]
+<span style="color:#888"># iteration</span>
+<span style="color:#080;font-weight:bold">for</span> item <span style="color:#038;font-weight:bold">in</span> items
     push!(list, item)
-end
-</code></pre>
-
-<h2 id="really-switching">Really Switching?</h2>
-
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><h2 id="really-switching">Really Switching?</h2>
 <p>One of the larger hurdles for actually switching from Python is the fact that I have developed a large suite of utilities that I depend on in my scripting and research workflows. One of those components is F2PY, which I use to write fast-running custom loops. I am hoping that Julia fills the requirements of fast-running code going forward.. but one important point of concern is losing all the utilities that I have worked so hard on in the past. Luckily a package <code>PyCall.jl</code> allows Julia to interact directly with Python code. The syntax is a bit strange but a Python call like:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">pygeostat</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">gs</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">numpy</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">np</span>
 
-<pre><code class="language-python">import pygeostat as gs
-import numpy as np
+x <span style="color:#333">=</span> np<span style="color:#333">.</span>random<span style="color:#333">.</span>randn(<span style="color:#00d;font-weight:bold">100</span>)
+y <span style="color:#333">=</span> np<span style="color:#333">.</span>random<span style="color:#333">.</span>randn(<span style="color:#00d;font-weight:bold">100</span>)
 
-x = np.random.randn(100)
-y = np.random.randn(100)
+ax <span style="color:#333">=</span> gs<span style="color:#333">.</span>scatxval(x, y)
+<span style="color:#888"># and to modify properties, e.g.:</span>
+ax<span style="color:#333">.</span>set_ylim([<span style="color:#333">-</span><span style="color:#00d;font-weight:bold">4</span>, <span style="color:#00d;font-weight:bold">4</span>])
+ax<span style="color:#333">.</span>set_xlim([<span style="color:#333">-</span><span style="color:#00d;font-weight:bold">4</span>, <span style="color:#00d;font-weight:bold">4</span>])
+</code></pre></div><p>turns into this when called from Julia:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#080;font-weight:bold">using</span> PyCall
+<span style="color:#555;font-weight:bold">@pyimport</span> pygeostat as gs
 
-ax = gs.scatxval(x, y)
-# and to modify properties, e.g.:
-ax.set_ylim([-4, 4])
-ax.set_xlim([-4, 4])
-</code></pre>
+x <span style="color:#333">=</span> randn(<span style="color:#00d;font-weight:bold">100</span>)  <span style="color:#888"># Julia includes this by default</span>
+y <span style="color:#333">=</span> randn(<span style="color:#00d;font-weight:bold">100</span>)
 
-<p>turns into this when called from Julia:</p>
-
-<pre><code class="language-julia">using PyCall
-@pyimport pygeostat as gs
-
-x = randn(100)  # Julia includes this by default
-y = randn(100)
-
-ax = gs.scatxval(x, y)
-ax[:set_ylim]([-4, 4])
-ax[:set_xlim]([-4, 4])
-</code></pre>
-
-<p>Note the similarity of the calls to the <code>scatxval()</code> function. A large number of standard Python types are interoperable. One potential concern is the use of <code>pd.DataFrames()</code> in Python versus the DataFrames in Julia.. but much of that concern can be alleviated by using Arrays which PyCall automates the type conversion back and forth between the Julia and Python objects. Infact, an entire Python-based workflow can be generated using existing scripts and tools developed in Python. Thus, any researcher who depends largely on Python can rest easy that their hard work will still aid them as they venture out to learn Julia.</p>
-
+ax <span style="color:#333">=</span> gs<span style="color:#333">.</span>scatxval(x, y)
+ax[<span style="color:#333">:</span>set_ylim]([<span style="color:#333">-</span><span style="color:#00d;font-weight:bold">4</span>, <span style="color:#00d;font-weight:bold">4</span>])
+ax[<span style="color:#333">:</span>set_xlim]([<span style="color:#333">-</span><span style="color:#00d;font-weight:bold">4</span>, <span style="color:#00d;font-weight:bold">4</span>])
+</code></pre></div><p>Note the similarity of the calls to the <code>scatxval()</code> function. A large number of standard Python types are interoperable. One potential concern is the use of <code>pd.DataFrames()</code> in Python versus the DataFrames in Julia.. but much of that concern can be alleviated by using Arrays which PyCall automates the type conversion back and forth between the Julia and Python objects. Infact, an entire Python-based workflow can be generated using existing scripts and tools developed in Python. Thus, any researcher who depends largely on Python can rest easy that their hard work will still aid them as they venture out to learn Julia.</p>
 <h2 id="quick-speed-demo">Quick Speed Demo</h2>
-
 <p>In my <a href="/blog/post/fast_subroutines/">previous post</a> I demonstrated a number of methods to improve the speed of a naive triple loop implementation of a gradient calculation for a 3-dimensional array. A similar implementation using the same triple-loop strategy in Julia is shown below:</p>
-
-<pre><code class="language-julia">&quot; calculate the forward-reverse diffs on the 3D array&quot;
-function gridgradients(a)
-    nx, ny, nz = size(a)
-    gx = zeros(a)
-    gy = zeros(a)
-    gz = zeros(a)
-    for k in 1:nz
-        for j in 1:ny
-            for i in 1:nx
-                is = max(1, i - 1)
-                ie = min(nx, i + 1)
-                js = max(1, j - 1)
-                je = min(nx, j + 1)
-                ks = max(1, k - 1)
-                ke = min(nx, k + 1)
-                gx[i, j, k] = (a[ie, j, k] - a[is, j, k]) / 2.0
-                gy[i, j, k] = (a[i, je, k] - a[i, js, k]) / 2.0
-                gz[i, j, k] = (a[i, j, ke] - a[i, j, ks]) / 2.0
-            end
-        end
-    end
-    return gx, gy, gz
-end
-</code></pre>
-
-<p>Over 1000 iterations, this function averages $1.13ms$, which is ~1.5x the speed of Fortran or Cython, and almost 2x the speed of Numba with no additional decorations or work on my behalf. Note that the arrays are $1$ indexed, and the ordering of the fastest axis is familiar as it is the same as Fortran and the opposite of C and Python. The speedup here over pure Python is immense for code generated with similar effort.</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="background-color:#fff0f0">&#34; calculate the forward-reverse diffs on the 3D array&#34;</span>
+<span style="color:#080;font-weight:bold">function</span> gridgradients(a)
+    nx, ny, nz <span style="color:#333">=</span> size(a)
+    gx <span style="color:#333">=</span> zeros(a)
+    gy <span style="color:#333">=</span> zeros(a)
+    gz <span style="color:#333">=</span> zeros(a)
+    <span style="color:#080;font-weight:bold">for</span> k <span style="color:#038;font-weight:bold">in</span> <span style="color:#00d;font-weight:bold">1</span><span style="color:#333">:</span>nz
+        <span style="color:#080;font-weight:bold">for</span> j <span style="color:#038;font-weight:bold">in</span> <span style="color:#00d;font-weight:bold">1</span><span style="color:#333">:</span>ny
+            <span style="color:#080;font-weight:bold">for</span> i <span style="color:#038;font-weight:bold">in</span> <span style="color:#00d;font-weight:bold">1</span><span style="color:#333">:</span>nx
+                is <span style="color:#333">=</span> max(<span style="color:#00d;font-weight:bold">1</span>, i <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ie <span style="color:#333">=</span> min(nx, i <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                js <span style="color:#333">=</span> max(<span style="color:#00d;font-weight:bold">1</span>, j <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                je <span style="color:#333">=</span> min(nx, j <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ks <span style="color:#333">=</span> max(<span style="color:#00d;font-weight:bold">1</span>, k <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ke <span style="color:#333">=</span> min(nx, k <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                gx[i, j, k] <span style="color:#333">=</span> (a[ie, j, k] <span style="color:#333">-</span> a[is, j, k]) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gy[i, j, k] <span style="color:#333">=</span> (a[i, je, k] <span style="color:#333">-</span> a[i, js, k]) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gz[i, j, k] <span style="color:#333">=</span> (a[i, j, ke] <span style="color:#333">-</span> a[i, j, ks]) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+            <span style="color:#080;font-weight:bold">end</span>
+        <span style="color:#080;font-weight:bold">end</span>
+    <span style="color:#080;font-weight:bold">end</span>
+    <span style="color:#080;font-weight:bold">return</span> gx, gy, gz
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p>Over 1000 iterations, this function averages $1.13ms$, which is ~1.5x the speed of Fortran or Cython, and almost 2x the speed of Numba with no additional decorations or work on my behalf. Note that the arrays are $1$ indexed, and the ordering of the fastest axis is familiar as it is the same as Fortran and the opposite of C and Python. The speedup here over pure Python is immense for code generated with similar effort.</p>
 <p>Recalling one of the optimizations that we chose in Cython:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#555;font-weight:bold">@cython.boundscheck</span>(False)
+<span style="color:#555;font-weight:bold">@cython.wraparound</span>(False)
+</code></pre></div><p>A similar optimization is immediately available in the Julia code with the <code>@inbounds</code> macro, which simply disables bounds-checks:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#333">&gt;?</span><span style="color:#555;font-weight:bold">@inbounds</span>
+<span style="color:#555;font-weight:bold">@inbounds</span>(blk)
 
-<pre><code class="language-python">@cython.boundscheck(False)
-@cython.wraparound(False)
-</code></pre>
-
-<p>A similar optimization is immediately available in the Julia code with the <code>@inbounds</code> macro, which simply disables bounds-checks:</p>
-
-<pre><code class="language-julia">&gt;?@inbounds
-@inbounds(blk)
-
-Eliminates array bounds checking within expressions.
-</code></pre>
-
-<pre><code class="language-julia">&quot; calculate the forward-reverse diffs on the 3D array&quot;
-function gridgradients_inbounds(a)
-    nx, ny, nz = size(a)
-    gx = zeros(a)
-    gy = zeros(a)
-    gz = zeros(a)
-    @inbounds for k in 1:nz
-        @inbounds for j in 1:ny
-            @inbounds for i in 1:nx
-                is = max(1, i - 1)
-                ie = min(nx, i + 1)
-                js = max(1, j - 1)
-                je = min(nx, j + 1)
-                ks = max(1, k - 1)
-                ke = min(nx, k + 1)
-                gx[i, j, k] = (a[ie, j, k] - a[is, j, k]) / 2.0
-                gy[i, j, k] = (a[i, je, k] - a[i, js, k]) / 2.0
-                gz[i, j, k] = (a[i, j, ke] - a[i, j, ks]) / 2.0
-            end
-        end
-    end
-    return gx, gy, gz
-end
-</code></pre>
-
-<p>And this modified code runs in $0.67ms$ averaged over 1000 iterations. In other words, we are faster than both Cython and Fortran, and very close to Numba, and the syntax and complexity of the code hasn&rsquo;t changed dramatically. The other touted benefit to the user (which I am still trying to wrap my head around as I learn more about Julia) is that all user defined types are statically compiled, so if <code>a</code> was a matrix of:</p>
-
-<pre><code class="language-julia">type MyFloat &lt;: Real
-    xi::Float64
-    yi::Float64
-end
-</code></pre>
-
-<p>and certain methods are properly overloaded to make <code>+</code>, <code>-</code>, <code>min</code> and <code>max</code> work correctly, the code using that custom type <em>would be as fast as</em> that using the native types from the loops above.</p>
-
+Eliminates array bounds checking within expressions<span style="color:#333">.</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="background-color:#fff0f0">&#34; calculate the forward-reverse diffs on the 3D array&#34;</span>
+<span style="color:#080;font-weight:bold">function</span> gridgradients_inbounds(a)
+    nx, ny, nz <span style="color:#333">=</span> size(a)
+    gx <span style="color:#333">=</span> zeros(a)
+    gy <span style="color:#333">=</span> zeros(a)
+    gz <span style="color:#333">=</span> zeros(a)
+    <span style="color:#555;font-weight:bold">@inbounds</span> <span style="color:#080;font-weight:bold">for</span> k <span style="color:#038;font-weight:bold">in</span> <span style="color:#00d;font-weight:bold">1</span><span style="color:#333">:</span>nz
+        <span style="color:#555;font-weight:bold">@inbounds</span> <span style="color:#080;font-weight:bold">for</span> j <span style="color:#038;font-weight:bold">in</span> <span style="color:#00d;font-weight:bold">1</span><span style="color:#333">:</span>ny
+            <span style="color:#555;font-weight:bold">@inbounds</span> <span style="color:#080;font-weight:bold">for</span> i <span style="color:#038;font-weight:bold">in</span> <span style="color:#00d;font-weight:bold">1</span><span style="color:#333">:</span>nx
+                is <span style="color:#333">=</span> max(<span style="color:#00d;font-weight:bold">1</span>, i <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ie <span style="color:#333">=</span> min(nx, i <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                js <span style="color:#333">=</span> max(<span style="color:#00d;font-weight:bold">1</span>, j <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                je <span style="color:#333">=</span> min(nx, j <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ks <span style="color:#333">=</span> max(<span style="color:#00d;font-weight:bold">1</span>, k <span style="color:#333">-</span> <span style="color:#00d;font-weight:bold">1</span>)
+                ke <span style="color:#333">=</span> min(nx, k <span style="color:#333">+</span> <span style="color:#00d;font-weight:bold">1</span>)
+                gx[i, j, k] <span style="color:#333">=</span> (a[ie, j, k] <span style="color:#333">-</span> a[is, j, k]) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gy[i, j, k] <span style="color:#333">=</span> (a[i, je, k] <span style="color:#333">-</span> a[i, js, k]) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+                gz[i, j, k] <span style="color:#333">=</span> (a[i, j, ke] <span style="color:#333">-</span> a[i, j, ks]) <span style="color:#333">/</span> <span style="color:#60e;font-weight:bold">2.0</span>
+            <span style="color:#080;font-weight:bold">end</span>
+        <span style="color:#080;font-weight:bold">end</span>
+    <span style="color:#080;font-weight:bold">end</span>
+    <span style="color:#080;font-weight:bold">return</span> gx, gy, gz
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p>And this modified code runs in $0.67ms$ averaged over 1000 iterations. In other words, we are faster than both Cython and Fortran, and very close to Numba, and the syntax and complexity of the code hasn&rsquo;t changed dramatically. The other touted benefit to the user (which I am still trying to wrap my head around as I learn more about Julia) is that all user defined types are statically compiled, so if <code>a</code> was a matrix of:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">type MyFloat <span style="color:#333">&lt;:</span> <span style="color:#339;font-weight:bold">Real</span>
+    xi<span style="color:#333">::</span><span style="color:#339;font-weight:bold">Float64</span>
+    yi<span style="color:#333">::</span><span style="color:#339;font-weight:bold">Float64</span>
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p>and certain methods are properly overloaded to make <code>+</code>, <code>-</code>, <code>min</code> and <code>max</code> work correctly, the code using that custom type <em>would be as fast as</em> that using the native types from the loops above.</p>
 <h2 id="conclusions">Conclusions</h2>
-
 <p>I am very new to Julia. The type system is familiar since Fortran had a form of multiple dispatch by defining function interfaces. Static typing is familiar, plotting is available using existing Python libraries. Static compiling to exe remains to be seen. Going forward I expect to carry out all work in Julia in hopes of finally dropping Fortran as my speed crutch.</p>
 
     </div>
@@ -342,12 +308,12 @@ end
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="https://dektoud.github.io/blog/post/fast_subroutines/"><span
+    <li class="previous"><a href="https://ryandvmartin.github.io/blog/post/fast_subroutines/"><span
       aria-hidden="true">&larr;</span> Methods to write fast subroutines for Python - minimal computer science required</a></li>
     
 
     
-    <li class="next"><a href="https://dektoud.github.io/blog/post/julia-autoreloading/">AutoReloading PyCall imported Python modules in Julia <span
+    <li class="next"><a href="https://ryandvmartin.github.io/blog/post/julia-autoreloading/">AutoReloading PyCall imported Python modules in Julia <span
       aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
@@ -389,7 +355,7 @@ end
   <div class="container">
     <p class="powered-by">
 
-      &copy; 2017 Ryan Martin &middot; 
+      © 2017 Ryan Martin &middot; 
 
       Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
       theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
