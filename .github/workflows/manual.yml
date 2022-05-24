@@ -17,7 +17,7 @@ jobs:
       run: |
         apt-get update -y && apt-get install wget
         wget https://github.com/gohugoio/hugo/releases/download/v0.76.1/hugo_extended_0.76.1_Linux-64bit.deb
-        dpkg -i hugo*.deb
+        sudo dpkg -i hugo*.deb
         hugo
         git add . 
         git commit -m "built website"
