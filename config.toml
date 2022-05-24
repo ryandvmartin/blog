@@ -1,4 +1,4 @@
-baseurl = "https://dektoud.github.io/blog/"
+baseurl = "https://ryandvmartin.github.io/blog/"
 title = "Rmar's Guide"
 copyright = "&copy; 2017 Ryan Martin"
 theme = "academic"
@@ -105,7 +105,7 @@ pygmentsStyle="colorful"
   [[params.social]]
     icon = "github"
     icon_pack = "fa"
-    link = "//github.com/dektoud"
+    link = "//github.com/ryandvmartin"
 
 
 # Navigation Links
